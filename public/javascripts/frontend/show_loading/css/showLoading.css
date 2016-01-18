@@ -1,0 +1,21 @@
+.loading-indicator {
+	height: 80px;
+	width: 80px;
+	background: url( '/javascripts/frontend/show_loading/images/loading.gif' );
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.loading-indicator.small {
+	height: 16px;
+	width: 16px;
+	background: url( '/javascripts/frontend/show_loading/images/loading-small.gif' );
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.loading-indicator-overlay {
+	background-color: #FFFFFF;
+	opacity: 0.6;
+	filter: alpha(opacity = 60);
+}

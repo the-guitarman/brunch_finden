@@ -1,0 +1,11 @@
+<h1 class="blockhead"><%= t_f_a(:confirm_new_email, '.confirmed_headline') -%></h1>
+<p class="confirmation-note"><%= t_f_a(:confirm_new_email, '.confirmed_message') -%></p>
+<% unless logged_in? %>
+  <p class="textblock"><%= t_f_a(:confirm_new_email, '.confirmed_todo_now', {:domain_name => @host_name}) -%></p>
+  <%= render({
+        :partial => 'frontend/user_sessions/new', 
+        :locals => {:headline_off => true}
+      })
+  -%>
+<% end -%>
+<p><%= t_f_a(:confirm_new_email, '.confirmed_enjoy_now', {:domain_name => @host_name}) -%></p>

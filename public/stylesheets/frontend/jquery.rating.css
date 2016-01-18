@@ -1,0 +1,36 @@
+/* jQuery.Rating Plugin CSS - http://www.fyneworks.com/jquery/star-rating/ */
+
+div.rating-cancel, 
+div.star-rating { background:transparent; cursor:pointer; display:block; float:left; height:15px; overflow:hidden; text-indent:-999em; width:17px; }
+
+/*div.rating-cancel, 
+div.rating-cancel a { background:url(/images/frontend/jquery/jquery_rating/delete.gif) no-repeat 0 -16px;}*/
+div.rating-cancel, 
+div.rating-cancel a { background:url(/images/frontend/brunch_finden_de.spr.png) no-repeat 0 -456px; }
+
+/*div.star-rating, 
+div.star-rating a { background:url(/images/frontend/jquery/jquery_rating/star.gif) no-repeat 0 0px; }*/
+div.star-rating,
+div.star-rating a { background:url(/images/frontend/brunch_finden_de.spr.png) no-repeat 0 -393px; }
+
+div.star-rating.dark-star, 
+div.star-rating.dark-star a { background-position:0 -440px; }
+
+div.star-rating.dark-star { border-right:1px solid #990000; margin-right:10px; padding-right:10px; }
+
+div.rating-cancel a, 
+div.star-rating a { border:0; display:block; height:100%; width:16px; }
+
+div.star-rating-on a,
+div.dark-star.star-rating-on a { background-position:0 -409px!important; }
+
+div.star-rating-hover a,
+div.dark-star.star-rating-hover a { background-position:0 -425px; }
+
+div.rating-cancel.star-rating-hover, 
+div.rating-cancel.star-rating-hover a { background-position:0 -472px; }
+/* Read Only CSS */
+div.star-rating-readonly a { cursor:default !important; }
+/* Partial Star CSS */
+div.star-rating { background:transparent !important; overflow:hidden !important; }
+/* END jQuery.Rating Plugin CSS */

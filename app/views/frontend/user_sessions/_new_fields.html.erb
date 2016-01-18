@@ -1,0 +1,58 @@
+<div class="user-authentication">
+  <% if current_user_session.errors[:base].any? -%>
+    <%= infobox_error(current_user_session.errors[:base]) -%>
+  <% end -%>
+  
+  <% field_set_tag do -%>
+    <ol>
+      <%= form_entry(
+            :text_field,
+            f, current_user_session, :login, 
+            {:field_class => :asterisk, :label_name => :login_or_email}
+          )
+      -%>
+      <% content_for :jquery_on_ready do -%>
+          <%= check_asterisk_field(
+                :frontend_user_session_login, 
+                t(:blank, :scope => [:activerecord, :errors, :models, :frontend_user_session, :attributes, :login]),
+                true
+              ) 
+          -%>
+      <% end -%>
+      
+      <%= form_entry(
+            :password_field,
+            f, current_user_session, :password, 
+            {:field_class => :asterisk}
+          )
+      -%>
+      <% content_for :jquery_on_ready do -%>
+          <%= check_asterisk_field(
+                :frontend_user_session_password, 
+                t(:blank, :scope => [:activerecord, :errors, :models, :frontend_user_session, :attributes, :password]),
+                true
+              ) 
+          -%>
+      <% end -%>
+      
+      <%= form_entry(
+            :check_box,
+            f, current_user_session, :remember_me, 
+            {
+              :no_label => true, 
+              :field_value => params.seek(:frontend_user_session, :remember_me),
+              :check_box_text => FrontendUserSession.human_attribute_name(:remember_me)
+            }
+          )
+      -%>
+    </ol>
+  <% end -%>
+  
+  <ol>
+    <li class="form-entry submit">
+      <%= f.submit('Login', {:class => 'primarybutton publishbutton', :name => nil}) -%>
+      <%= link_to('Passwort vergessen?', frontend_user_password_reset_request_url) -%>
+      <%# , {:class => 'remote'} -%>
+    </li>
+  </ol>
+</div>

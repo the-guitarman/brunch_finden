@@ -1,0 +1,28 @@
+<%
+  link_parameters = {:merchant_id => @coupon_merchant.merchant_id}
+  link_parameters.merge!({:page => @page}) if @page.to_i > 1
+-%>
+<div id="all-merchant-coupons" class="content-box last only coupons">
+  <h1>
+    <%= get_coupon_merchant_image_tag(@coupon_merchant) -%>
+    <%= link_to(t('.headline_h1', {:merchant_name => @coupon_merchant.name, :page => @page}), merchant_coupons_url(link_parameters)) -%>
+  </h1>
+  <% unless @merchant_coupons.empty? -%>
+    <h2 class="headline">
+      <%= link_to(t('.headline_h2', {:merchant_name => @coupon_merchant.name, :page => @page}), merchant_coupons_url(link_parameters)) -%>
+    </h2>
+    <%= render({
+          :partial => 'frontend/coupons/coupon', 
+          :collection => @merchant_coupons, 
+          :as => :coupons,
+          :locals => {:show_logo => false}
+        })
+    -%>
+    <%= will_paginate(@merchant_coupons) -%>
+    <h3>
+      <%= link_to(t('.headline_h3', {:merchant_name => @coupon_merchant.name, :page => @page}), merchant_coupons_url(link_parameters)) -%>
+    </h3>
+  <% else -%>
+    <%= t('.no_merchant_coupons_available', {:merchant_name => @coupon_merchant.name}) -%>
+  <% end -%>
+</div>

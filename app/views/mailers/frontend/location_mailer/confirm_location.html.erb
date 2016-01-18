@@ -1,0 +1,19 @@
+Hi <%= @frontend_user.name -%>!
+
+You registrate a new brunch location at <%= @domain_full_name -%>. To publish it please follow the link below and confirm it.
+
+<%= @location.name -%> in <%= @location.zip_code.city.name %>
+<%= confirm_frontend_location_url({:id => @location.id, :token => @location.confirmation_code}) %>
+
+<% unless @locations_unconfirmed.empty? -%>
+More unconfirmed locations from you:
+<% @locations_unconfirmed.each do |l| -%>
+<%= l.name -%> in <%= l.zip_code.city.name %>
+<%= confirm_frontend_location_url({:id => l.id, :token => l.confirmation_code}) %>
+
+<% end -%>
+<% end -%>
+Thank you
+The team of <%= @domain_name %>
+
+Note: You did not report this new location so please ignore or delete this email. There will be no more email.

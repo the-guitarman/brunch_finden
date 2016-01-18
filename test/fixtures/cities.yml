@@ -1,0 +1,7 @@
+1:
+  id: 1
+  state_id: 1
+  city_char_id: 1
+  name: Chemnitz
+  rewrite: sachsen/chemnitz
+  number_of_locations: 1

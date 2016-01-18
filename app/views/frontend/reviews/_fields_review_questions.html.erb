@@ -1,0 +1,57 @@
+<% unless review_template_questions.empty? -%>
+  <!-- review questions -->
+  <%
+  review_template_questions.each_with_index do |rtq, idx|
+    if review_questions[rtq.review_question_id]
+      rq = rtq.review_question
+  -%>
+      <li id="review-questions-<%= rq.id -%>" class="form-entry review-question<%= (idx==review_template_questions.length-1) ? " last" : "" -%><%= "" if idx.odd? -%><%= form_entry_error(review_questions[rq.id], :value) -%>">
+        <% if 'list' == rq.answer_type -%>
+          <% # selectbox questions -%>
+          <%= label_tag "review_questions_#{rq.id}", rq.text -%>
+          <%= set_review_question_stars(rtq, review_questions[rq.id].value, {:star_hover => true}) -%>
+
+        <% elsif 'boolean' == rq.answer_type -%>
+          <% # radio button questions -%>
+
+          <% 
+             #ordered_review_answers = rq.review_answers.order('position DESC')
+             ordered_review_answers = rq.review_answers.find(:all, {:order => 'position DESC'})
+          -%>
+          <% unless ordered_review_answers.empty? -%>
+            <label><%= rq.text -%></label>
+            <div class="sub-section">
+              <% ordered_review_answers.each do |review_answer| -%>
+                <%= radio_button_tag(
+                      "review_questions[#{rq.id}]",
+                      review_answer.score,
+                      (review_questions[rq.id].blank? or review_questions[rq.id].value.blank?) ? false : review_answer.score == review_questions[rq.id].value,
+                      {:class => 'standard-radio one-row'}
+                    )
+                -%>
+                <%= label_tag "review_questions[#{rq.id}][#{review_answer.score}]", review_answer.text -%>
+              <% end -%>
+            </div>
+          <% end -%>
+        <% else -%>
+          <% # text field questions -%>
+          <%= label_tag "review_questions_#{rq.id}", rq.text -%>
+          <%= text_field_tag(
+                "review_questions[#{rq.id}]",
+                (review_questions[rq.id].blank? or review_questions[rq.id].text.blank?) ? '' : review_questions[rq.id].text,
+                {:class => ''}
+              )
+          -%>
+
+        <% end -%>
+        <%# unless review_questions[rq.id].blank? -%>
+          <%#= tooltip(review_questions[rq.id].completeness_note) -%>
+        <%# end -%>
+      </li>
+    <% end -%>
+  <% end -%>
+  <% if rating = review_questions.values.find{|r| r.errors[:value].any? or r.errors[:text].any?} -%>
+    <%#= infobox_error(rating.errors[:value]) -%>
+  <% end -%>
+  <!-- // review questions -->
+<% end -%>

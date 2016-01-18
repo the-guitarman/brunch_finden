@@ -1,0 +1,9 @@
+unless @attribute.blank?
+  id = "location_suggestion_#{@attribute}".to_sym
+  page << remove_error_message_from(id) + remove_check_mark_from(id)
+  unless @result.blank?  
+    page << append_error_message_to(id, text_message_error(@result))
+  else
+    page << add_check_mark_to(id)
+  end
+end

@@ -1,0 +1,19 @@
+<% unless @coupon_categories.empty? -%>
+  <h1><%= link_to(t('.coupon_categories'), coupon_categories_url) -%></h1>
+  <h2 class="headline"><%= link_to(t('.new_coupons'), coupon_categories_url) -%></h2>
+  <div id="coupon-categories" class="content-box last only coupon-categories">
+    <ul>
+      <% @coupon_categories.each_with_index do |cc, index| -%>
+        <li>
+          <% if cc.number_of_coupons > 0 -%>
+            <%= link_to(cc.name, coupon_category_url(:rewrite => cc.rewrite)) -%>
+            <%= "(#{cc.number_of_coupons})" -%>
+          <% else -%>
+            <%= cc.name -%>
+          <% end -%>
+        </li>
+      <% end -%>
+    </ul>
+  </div>
+  <h3><%= link_to(t('.new_coupons'), coupon_categories_url) -%></h3>
+<% end -%>

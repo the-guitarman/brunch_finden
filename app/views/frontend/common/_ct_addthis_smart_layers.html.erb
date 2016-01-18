@@ -1,0 +1,42 @@
+<% javascript_tag do -%>
+    if (!addthis_config || (addthis_config && !addthis_config['data_ga_property'])) {
+        var addthis_config = {
+            pubid:'ra-4dc68dac6169ab52',
+            ui_header_background:'#990000'
+        };
+        <% if Rails.env.production? -%>
+        addthis_config['data_ga_property'] = '<%= google_analytics_property_id -%>';
+        addthis_config['data_ga_social'] = true;
+        <% end -%>
+
+        $(document).ready(function() {
+            $.getScript(
+                "//s7.addthis.com/js/300/addthis_widget.js",
+                function(data, textStatus, jqxhr){
+                    addthis.layers({
+                        theme:'transparent',
+                        domain:'<%= CustomConfigHandler.instance.frontend_config.seek('DOMAIN','FULL_NAME') || 'www.brunch-finden.de' %>',
+                        share:{
+                            theme:'transparent',
+                            position:'left',
+                            numPreferredServices:4,
+                            services:'facebook,google_plusone_share,twitter,pinterest_share',
+                            offset:{top:'38px'},
+                            desktop:true,
+                            mobile:true
+                        },
+                        mobile:{
+                            buttonBarPosition:'bottom',
+                            buttonBarTheme:'transparent',
+                            mobile:true
+                        },
+                        responsive: {
+                            maxWidth:'1200px',
+                            minWidth:'0px'
+                        }
+                    });
+                }
+            );
+        });
+    }
+<% end -%>

@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xml:lang="<%= @locale -%>" lang="<%= @locale -%>" 
+      xmlns:og="http://ogp.me/ns#"  
+      xmlns:fb="http://www.facebook.com/2008/fbml">
+  <head>
+    <title>Auf Wiedersehen bei <%= @host_full_name -%></title>
+    <meta http-equiv="refresh" content="0;URL=<%= @exit_url -%>" />
+    <meta http-equiv="Content-Language" content="<%= @locale -%>" />
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta name="robots" content="NOODP" />
+
+    <link href='/favicon.ico' type='image/x-icon' rel='shortcut icon' />
+    <!-- <%= app_version_string -%> -->
+
+    <%= stylesheet_link_tag(
+      # Blueprint CSS Framework
+      'bp_1/screen',
+      'bp_1/ie',
+
+      # Application CSS
+      'frontend/classes',
+      
+      :cache=>"#{GLOBAL_CONFIG[:cached_css_frontend_path]}fe_exit_styles"
+    ) -%>
+    
+  </head>
+  <body>
+    <div id="exit-box" class="container content-box-1">
+      <% redirection_to = @redirect_to_name.blank? ? 'zum Anbieter' : "zu #{@redirect_to_name}" -%>
+      <div>Auf Wiedersehen bei <%= @host_name -%></div>
+      <div>Sie werden <%= redirection_to -%> weitergeleitet.</div>
+      <div><%= link_to("Hier geht es #{@redirect_to_name}.", @exit_url, {:rel => 'nofollow blank'}) -%></div>
+    </div>
+  </body>
+</html>

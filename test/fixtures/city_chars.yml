@@ -1,0 +1,7 @@
+## YAML Template.
+---
+01:
+  id: 1
+  state_id: 1
+  start_char: c
+  number_of_locations: 1

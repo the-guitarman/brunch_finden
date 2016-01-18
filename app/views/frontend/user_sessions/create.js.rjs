@@ -1,0 +1,30 @@
+container = '#user-login'
+
+# remove all errors and messages from the form fields
+page << remove_messages_below(container)
+
+if @current_user_session.new_record? or not @current_user_session.errors.empty?
+  # there are registration errors, so append they to their fields
+  fields = @current_user_session.errors.keys.uniq
+  
+  if base = fields.delete(:base)
+    page << prepend_message_to(container, infobox_error(@current_user_session.errors[base]))
+  end
+  
+  fields.each do |field|
+    page << append_error_message_to(
+      "#frontend_user_session_#{field}",
+      text_message_error(@current_user_session.errors[field])
+    )
+  end
+  
+  page << uncheck_checkboxes_below(container)
+else
+  ## there's no registration error, so ... 
+  
+  # ... display the welcome message (logged in)
+  #page << show_communitybar_logged_in_content
+  
+  # ... display the communitybar (logged in)
+  #page << show_communitybar_logged_in_small
+end

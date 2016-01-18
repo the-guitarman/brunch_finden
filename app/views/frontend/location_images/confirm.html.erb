@@ -1,0 +1,27 @@
+<div class="content-box">
+  <p>
+    <% if @location_image -%>
+      <%= t('shared.location_image.confirmed.message', {:domain_name => @host_name}) -%>
+    <% else -%>
+      Das zu bestätigende Bild wurde nicht gefunden. 
+    <% end -%>
+  </p>
+  Hier geht's zur Brunch-Location: 
+  <%= link_to(@location.name, location_rewrite_url(create_rewrite_hash(@location.rewrite))) -%>
+  <br /><br />  
+  <% if @location_image and @location_image.published == true -%>
+    <% 
+      title = "Ich habe auf #{@host_name} ein Bild zu #{@location_image.location.name} hochgeladen. Jetzt ansehen:"
+    -%>
+    <%= render({
+          :partial => 'frontend/common/ct_share_links',
+          :locals  => {
+            :url => get_location_image_path(@location_image, {:size => :fancybox}), 
+            :title => title
+          }
+        })
+    -%>
+  <% end -%>
+  <br /><br />
+  <%= render :partial => 'frontend/common/ct_advertisement_336x280_large_rectangle' -%>
+</div>

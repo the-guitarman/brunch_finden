@@ -1,0 +1,6 @@
+# loaded via initializer config/initializers/i18n.rb
+de-AT:
+  activerecord:
+    errors:
+      messages:
+        invalid_amount_format: "'%{value}' hat ein ungültiges Format (%{format_example})"

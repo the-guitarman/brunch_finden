@@ -1,0 +1,20 @@
+1:
+  id: 1
+  review_template_id: 1
+  review_question_id: 1
+  priority: 1
+  obligation: true
+
+2:
+  id: 2
+  review_template_id: 1
+  review_question_id: 2
+  priority: 2
+  obligation: true
+
+3:
+  id: 3
+  review_template_id: 1
+  review_question_id: 3
+  priority: 3
+  obligation: false

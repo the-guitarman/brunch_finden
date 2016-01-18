@@ -1,0 +1,27 @@
+<% cache(mobile_index_ct_states) do -%>
+  <div class="row">
+    <% unless @states.empty? -%>
+      <div class="nav list-group states">
+        <% @states.each do |state| -%>
+            <% if state.number_of_locations > 0 -%>
+              <%
+                parameters = create_rewrite_hash(state.rewrite)
+                if cc = state.city_chars.first({:order => 'start_char', :limit => 1})
+                  parameters.merge!({city_char_parameter => cc.start_char.upcase})
+                end
+              -%>
+              <%= link_to(
+                    state.name + ' ' + content_tag(:span, state.number_of_locations, {:class => 'badge'}), 
+                    state_rewrite_url(parameters),
+                    {:class => 'list-group-item'}
+                  ) 
+              -%>
+              <%#= state.name + ' ' + content_tag(:span, state.number_of_locations, {:class => 'badge'}) -%>
+            <% else -%>
+              <%= content_tag(:span, state.name, {:class => 'list-group-item'}) -%>
+            <% end -%>
+        <% end -%>
+      </div>
+    <% end -%>
+  </div>
+<% end -%>

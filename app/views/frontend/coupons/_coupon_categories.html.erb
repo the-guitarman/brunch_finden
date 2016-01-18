@@ -1,0 +1,15 @@
+<% unless coupon_categories.empty? -%>
+  <div class="content-box coupon-categories">
+    <h2 class="headline"><%= headline -%></h2>
+    <ul class="list-columns">
+      <% coupon_categories.each_with_index do |cc, index| -%>
+        <li>
+          <%= link_to(cc.name, coupon_category_url(cc.rewrite)) -%> (<%= cc.number_of_coupons -%>)
+        </li>
+      <% end -%>
+    </ul>
+    <% if defined?(coupon_categories_url) and not coupon_categories_url.blank? -%>
+      <%= link_to(t_f_a(:index, :show_more_coupons), coupon_categories_url, {:class => 'bg-image more-link'}) -%>
+    <% end -%>
+  </div>
+<% end -%>

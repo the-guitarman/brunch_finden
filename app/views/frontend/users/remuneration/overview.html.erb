@@ -1,0 +1,152 @@
+<style>
+  .earning_payoffs{
+    width: 200px;
+  }
+
+  .earning_payoffs td.col2{
+    width: 50px;
+    text-align: right;
+  }
+
+  .earning_invites{
+    width: 600px;
+  }
+</style>
+<% earning_overview = @user.earning_overview_info -%>
+
+<h3>Überblick</h3>
+<table class="earning_reviews">
+  <tr>
+    <th>
+      Beschreibung
+    </th>
+    <th>
+      Gesamt
+    </th>
+  </tr>
+  <tr>
+    <td>Startguthaben</td><td><%= number_to_currency(earning_overview['start'], :precision=>2) -%></td>
+  </tr>
+  <tr>
+    <td>Testberichte</td><td><%= number_to_currency(earning_overview['review'], :precision=>2) -%></td>
+  </tr>
+  <tr>
+    <td>Geworbene Mitglieder</td><td><%= number_to_currency(earning_overview['invite'], :precision=>2) -%></td>
+  </tr>
+  <tr>
+    <td>Umfragen</td><td><%= number_to_currency(earning_overview['survey'], :precision=>2) -%></td>
+  </tr>
+  <tr>
+    <td>Sonderaktionen</td><td><%= number_to_currency(earning_overview['special'], :precision=>2) -%></td>
+  </tr>
+  <tr>
+    <td>Auszahlungen</td><td><%= number_to_currency(earning_overview['payoff'], :precision=>2) -%></td>
+  </tr>
+  <tr>
+    <td>Gesamt</td><td><%= number_to_currency(@user.earning_balance, :precision=>2) -%></td>
+  </tr>
+
+</table>
+
+<% pos = 0 -%>
+<h3>Testberichte</h3>
+<table class="earning_reviews">
+ <tr>
+   <th>No.</th>
+   <th>Testbericht</th>
+   <th>Produkt</th>
+   <th>Fixvergütung</th>
+   <th>Verdienst durch Bewertungen</th>
+   <th>Gesamt</th>
+ </tr>
+<%  @user.earning_review_info.each do |r| -%>
+  <tr>
+    <td><%=  pos+=1 -%></td>
+    <td><%=  r['subject'] -%></td>
+    <td><%=  r['product_id'] -%></td>
+    <td><%=  r['product_name'] -%></td>
+    <td><%=  r['review_credit_fixed'] -%></td>
+    <td><%=  r['review_credit_ratings'] -%></td>
+    <td><%=  r['rating_total'] -%></td>
+  </tr>
+<% end -%>
+  <tr><th colaps="2">Gesamt: <%= @user.earning_payoff_sum -%></th></tr>
+</table>
+
+<% pos = 0; invite_sum = 0 -%>
+<h3>Geworbene Mitglieder</h3>
+<table class="earnings earning_invites">
+  <tr>
+    <th></th><th>User ID</th>
+    <th>Mitglieder</th><th>Verdienst</th>
+    <th>Verdienst Allgemein</th><th>Gesamt</th>
+  </tr>
+<%  @user.earning_invite_info.each do |i| -%>
+  <tr>
+    <td><%=  pos+=1 -%></td>
+    <td><%=  i['user_id'] -%></td>
+    <td><%=  i['user_name'] -%></td>
+    <td><%=  i['invite_credit'] -%></td>
+    <td><%=  i['general_credit'] -%></td>
+    
+    <% invite_sum+= i['invite_credit']+i['general_credit'] -%>
+    <td><%=  i['invite_credit']+i['general_credit'] -%></td>
+  </tr>
+<% end -%>
+  <tr><td colspan="5">Gesamt</td><td><%=  invite_sum -%></td></tr>
+</table>
+
+<% pos = 0; survey_sum = 0 -%>
+<h3>Umfragen</h3>
+<table class="earnings earning_invites">
+  <tr>
+    <th></th>
+    <th>Datum</th>
+    <th>Umfragen</th>
+    <th>Gesamt</th>
+  </tr>
+<%  @user.earning_survey_info.each do |s| -%>
+  <tr>
+    <td><%=  pos+=1 -%></td>
+    <td><%=  s['date'] -%></td>
+    <td><%=  s['survey_name'] -%></td>
+    <td><%=  s['credit'] -%></td>
+
+    <% survey_sum+= s['credit']%>
+  </tr>
+<% end -%>
+  <tr><td colspan="3">Gesamt</td><td><%=  survey_sum -%></td></tr>
+</table>
+
+<% pos = 0; special_sum = 0 -%>
+<h3>Sonderaktionen</h3>
+<table class="earnings earning_invites">
+  <tr>
+    <th></th>
+    <th>Datum</th>
+    <th>Kommentar</th>
+    <th>Gesamt</th>
+  </tr>
+<%  @user.earning_special_info.each do |s| -%>
+  <tr>
+    <td><%=  pos+=1 -%></td>
+    <td><%=  s['ut_date'] -%></td>
+    <td><%=  s['comment'] -%></td>
+    <td><%=  number_to_currency(s['credit'], :precision=>3) -%></td>
+
+    <% special_sum+= s['credit']%>
+  </tr>
+<% end -%>
+  <tr><td colspan="3">Gesamt</td><td><%=  number_to_currency(special_sum, :precision=>3) -%></td></tr>
+</table>
+
+
+<h3>Auszahlungen</h3>
+<table class="earning_payoffs">
+ <tr><th>Datum</th><th>Gesamt</th</tr>
+<%  @user.earning_payoff_info.each do |pi| -%>
+  <tr><td><%=  I18n.localize(Date.parse(pi['ut_date'])) -%></td><td class="col2"><%=  pi['credit'] -%></td></tr>
+<% end -%>
+  <tr><th colaps="2">Gesamt: <%= @user.earning_payoff_sum -%></th></tr>
+</table>
+

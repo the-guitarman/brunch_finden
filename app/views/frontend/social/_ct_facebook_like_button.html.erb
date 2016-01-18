@@ -1,0 +1,11 @@
+<%
+  #<div id="fb-root"></div>
+  #<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+-%>
+
+<fb:like href="<%= side_url -%>" send="false" width="400" show_faces="false" font="">
+  <span>
+    <iframe src="http://www.facebook.com/plugins/like.php?href=<%= CGI.escape(side_url) -%>&amp;send=false&amp;layout=standard&amp;width=400&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:400px; height:35px;" allowTransparency="true">
+    </iframe>
+  </span>
+</fb:like>

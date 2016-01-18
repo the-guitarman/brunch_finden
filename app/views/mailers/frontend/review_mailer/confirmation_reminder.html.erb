@@ -1,0 +1,22 @@
+Hi,
+
+please confirm your rating for <%= @item.name -%>:
+
+<%#= confirm_review_url({
+      :id    => @review.id, 
+      :token => @review.confirmation_code
+    }).html_safe
+%>
+
+<%= render({
+      :partial => 'mailers/frontend/review_mailer/more_unconfirmed_reviews', 
+      :locals => {:reviews => @other_unpublished_reviews}
+    })
+%>
+
+Sincerely,
+The <%= @domain_name -%> Service Team
+
+<%#= render :partial => 'mailers/frontend/register_or_login' %>
+
+<%= render :partial => 'mailers/frontend/footer' -%>

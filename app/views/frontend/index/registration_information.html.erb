@@ -1,0 +1,9 @@
+<div class="content-page">
+  <h1 class="headline"><%= t('.headline') -%></h1>
+
+  <%= render({:partial => 'shared/registration_information'}) -%>
+  
+  <p>
+    <%= link_to(t('.privacy_notice'), privacy_notice_url) -%>
+  </p>
+</div>

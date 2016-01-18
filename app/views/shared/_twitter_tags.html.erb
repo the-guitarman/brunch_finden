@@ -1,0 +1,7 @@
+<% unless @twitter_tags.blank? -%>
+  <% @twitter_tags.each do |property, content| -%>
+    <% unless content.blank? -%>
+      <meta name="<%= property -%>" content="<%= content -%>" />
+    <% end -%>
+  <% end -%>
+<% end -%>

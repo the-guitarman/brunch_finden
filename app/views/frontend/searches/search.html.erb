@@ -1,0 +1,63 @@
+<div id="search-result">
+  <h1 class="headline"><%= link_to(t('shared.search.headline')) -%></h1>
+  <div class="content-box">
+    <% if @search.blank? -%>
+      <%= render :partial => 'shared/searches/ct_search_again_please' -%>
+      <br /><br />
+      <%= render :partial => 'frontend/common/ct_advertisement_300x250_rectangle' -%>
+    <% elsif @cities.empty? and @locations.empty? -%>
+      <h3><%= t('shared.search.no_result', {:search_string => params[:search]}) -%></h3>
+      <%= link_to t('.new_location'), new_location_url -%>
+      <br /><br />
+      <!--
+      <%# if @cities.suggestion? and not @cities.suggestion.blank? -%>
+        <div>
+          <%#= t('shared.search.did_you_mean') -%>: 
+          <%#= link_to(@cities.suggestion, search_url(:search => @cities.suggestion)) -%>
+        </div>
+      <%# end -%>
+      -->
+      <%= render :partial => 'shared/searches/ct_search_again_please' -%>
+      <br /><br />
+      <%= render :partial => 'frontend/common/ct_advertisement_300x250_rectangle' -%>
+    <% else -%>
+      <h2>
+        <%= t('shared.search.result_for', {
+              :search_string => params[:search],
+              :number => (@locations.total_entries + @cities.total_entries)
+            })
+        -%>
+      </h2>
+
+      <% unless @locations.empty? -%>
+        <div class="result">
+          <h3><%= t('shared.search.locations', {:number => @locations.total_entries}) -%></h3>
+          <% @locations.each do |location| -%>
+            <div class="location">
+              <%= link_to(location.name, location_rewrite_url(create_rewrite_hash(location.rewrite))) -%>
+            </div>
+          <% end -%>
+          <div class="pagination">
+            <%#= will_paginate(@locations) -%>
+          </div>
+        </div>
+      <% end -%>
+
+      <%= render :partial => 'frontend/common/ct_advertisement_300x250_rectangle' -%>
+
+      <% unless @cities.empty? -%>
+        <div class="result">
+          <h3><%= t('shared.search.cities', {:number => @cities.total_entries}) -%></h3>
+          <% @cities.each do |city| -%>
+            <div class="city">
+              <%= link_to(city.name, city_rewrite_url(create_rewrite_hash(city.rewrite))) -%>
+            </div>
+          <% end -%>
+          <div class="pagination">
+            <%#= will_paginate(@cities) -%>
+          </div>
+        </div>
+      <% end -%>
+    <% end -%>
+  </div>
+</div>

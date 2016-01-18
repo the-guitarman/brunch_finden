@@ -1,0 +1,21 @@
+<!-- ExtJS essential tool components -->
+
+<%= stylesheet_link_tag(
+      'backend/shared',
+      'backend/backend_menu',
+      
+      :cache => (Rails.env.development? ? false : "#{GLOBAL_CONFIG[:cached_css_backend_path]}extjs3_etc_css")
+    ) 
+-%>
+
+<%= javascript_include_tag(
+      'backend/login/a_index',
+      'backend/login/login',
+      
+      'backend/shared/',
+      'backend/shared/backend_user/',
+      'backend/shared/main_menu/',
+      
+      :cache => (Rails.env.development? ? false : "#{GLOBAL_CONFIG[:cached_js_backend_path]}extjs3_etc_js")
+    )
+-%>

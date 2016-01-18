@@ -1,0 +1,11 @@
+@viewport { zoom:1.0; width:device-width; }
+
+body { padding:60px 0 50px 0; }
+
+#breadcrumb { display:none; }
+#breadcrumb a:after {content:" >> "; position:relative; top:-1px; }
+.toggle-breadcrumb { display:inline-block; float:right; }
+
+.mobile-adspace { background-color:#FFFFFF; margin-bottom:5px; min-height:50px; text-align:center; width:100%; }
+.page-header { border:none; margin:0; padding:0; }
+.loading { background:url("/javascripts/frontend/show_loading/images/loading.gif") no-repeat scroll left center transparent; line-height:31px; margin-left:15px; padding:15px 0px 15px 40px; z-index:1; }

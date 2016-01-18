@@ -1,0 +1,27 @@
+<%
+  width, height = LocationImage::IMAGE_RENDER_SIZES[:list].split('x')
+-%>
+<div class="flex-images">
+  <% images.each_with_index do |image, idx| -%>
+    <div class="item" data-w="<%= width -%>" data-h="<%= height -%>">
+      <%#= get_location_image_tag(image, {:size => :list, :class => "image#{idx}"}) -%>
+      <% thumb_image = get_location_image_tag(image, {:size => :list, :class => "image#{idx}"}) -%>
+      <%= link_to(thumb_image, 'http://' + @frontend_config['DOMAIN']['FULL_NAME'] + get_location_image_path(image, {:size => :fancybox}), {:class => 'fancybox-image', :rel => 'location-image'}) -%>
+    </div>
+  <% end -%>
+</div>
+<% unless request.xhr? -%>
+  <% content_for :jquery_on_ready do -%>
+      jQuery(document).ready(function() {
+          //$('.flex-images').flexImages({rowHeight: <%= height -%>});
+          $('.flex-images a.fancybox-image').applyLightBox();
+      });
+  <% end -%>
+<% else -%>
+  <% javascript_tag({:defer => 'defer'}) do -%>
+      jQuery(document).ready(function() {
+          //$('.flex-images').flexImages({rowHeight: <%= height -%>});
+          $('.flex-images a.fancybox-image').applyLightBox();
+      });
+  <% end -%>
+<% end -%>

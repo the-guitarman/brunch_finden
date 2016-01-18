@@ -1,0 +1,7 @@
+# constants to configure the look and functioning of the frontend
+
+# common
+DEFAULT:
+  # 'backtrace' - shows the exception backtrace
+  # 'email' - shows a link, to send the exception backtrace by an email
+  REQUEST_EXCEPTION: 'backtrace'

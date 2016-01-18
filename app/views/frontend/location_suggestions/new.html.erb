@@ -1,0 +1,88 @@
+<% field_size = 25 -%>
+
+<div class="new-location-suggestion content-page">
+  <h1 class="headline"><%= t('.headline') -%></h1>
+  <% form_for(@location_suggestion, {:url => frontend_location_suggestions_url, :html => {:class => 'bf-form'}}) do |f| -%>
+    <% field_set_tag do -%>
+      <ol>
+        <%= form_entry(
+              :text_field,
+              f, @location_suggestion, :name, 
+              {:field_size => field_size, :field_class => :asterisk}
+            )
+        -%>
+        <% content_for :jquery_on_ready do -%>
+            <%#= observe_field(:location_suggestion_name,
+                  :url    => check_frontend_location_suggestions_url,
+                  :with   => "'check[name]=' + value;",
+                  :before => before_observe_field(
+                      :location_suggestion_name, 
+                      t(:blank, :scope => [:activerecord, :errors, :models, :location_suggestion, :attributes, :name])
+                  )
+                )
+            -%>
+            <%= check_asterisk_field(
+                  :location_suggestion_name, 
+                  t(:blank, :scope => [:activerecord, :errors, :models, :location_suggestion, :attributes, :name]),
+                  true
+                ) 
+            -%>
+        <% end -%>
+
+
+
+        <%= form_entry(
+              :text_field,
+              f, @location_suggestion, :city, 
+              {
+                :field_size => field_size, :field_class => :asterisk #, 
+                #:suggestion_options => {
+                #  :class => 'city-suggestions',
+                #  :url => search_by_name_frontend_cities_url
+                #}
+              }
+            )
+        -%>
+        <% content_for :jquery_on_ready do -%>
+            <%= check_asterisk_field(
+                  :location_suggestion_city, 
+                  t(:blank, :scope => [:activerecord, :errors, :models, :location_suggestion, :attributes, :city]),
+                  true
+                ) 
+            -%>
+        <% end -%>
+
+
+
+        <%= form_entry(
+              :text_area,
+              f, @location_suggestion, :information, 
+              {:field_size => field_size}
+            )
+        -%>
+
+
+
+        <%= render({:partial => 'frontend/common/captcha_spacer'}) -%>
+
+
+
+        <li class="form-entry submit">
+          <%= f.submit(t('.button_save'), {:class => 'primarybutton publishbutton', :name => nil}) -%>
+        </li>
+      </ol>
+    
+      <span class="note">
+        <strong><%= t('.note') -%>:</strong>
+        <p><%= t('.chapter_what_note_text') -%></p>
+      </span>
+    <% end -%>
+  <% end -%>
+  <p><%= asterisk_note -%></p>
+</div>
+
+
+
+<% content_for :jquery_on_ready do -%>
+    <%= focus_first_empty_field_within(:new_location_suggestion) -%>
+<% end -%>

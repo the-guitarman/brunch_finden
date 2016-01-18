@@ -1,0 +1,22 @@
+<% if (coordinates = map_coordinates(@location)).length > 0 -%>
+  <div id="map"></div>
+  <% javascript_tag({:defer => 'defer'}) do -%>
+      <% first_coordinates = coordinates.delete_at(0) -%>
+      <%= geo_map_js(first_coordinates, coordinates, {
+            :scale_control      => false,
+            :rotate_control     => false,
+            :pan_control        => true,
+            :navigation_control => false,
+            :map_type_control   => false,
+            :overview_map_control => false,
+            :street_view_control  => false,
+            :zoom_control         => true,
+            :zoom                 => 14
+          })
+      -%>
+      var locationAtMap = $('#map');
+      locationAtMap.css('height', locationAtMap.width()+'px');
+  <% end -%>
+<% else -%>
+  Es sind keine Geo-Informationen vorhanden.
+<% end -%>

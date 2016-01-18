@@ -1,0 +1,27 @@
+<% js = '' -%>
+<% if zip_codes and !zip_codes.empty? -%>
+  <ul>
+    <% 
+      zip_codes.each do |zip_code| 
+        if zip_code
+          suggestion_id = "zip-code-city-#{escape_javascript(zip_code.city.id.to_s)}-suggestion"
+          js += "
+            $('##{suggestion_id}').click(function() {
+                $('#location_zip_code_id').val('#{escape_javascript(zip_code.id.to_s)}');
+                $('#zip_code').val('#{escape_javascript(zip_code.code)}');
+                $('#city').val('#{escape_javascript(zip_code.city.name)}');
+                $('.search-suggestions').hide();
+            });"
+    -%>
+          <li id="<%= suggestion_id -%>">
+            <%= zip_code.city.name -%>
+          </li>
+    <% 
+        end
+      end
+    -%>
+  </ul>
+  <% unless js.blank? -%>
+    <%= javascript_tag(js) -%>
+  <% end -%>
+<% end -%>

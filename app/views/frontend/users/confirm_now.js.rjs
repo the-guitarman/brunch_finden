@@ -1,0 +1,30 @@
+container = '#user-confirmation'
+
+# remove all errors and messages from the form fields
+page << remove_messages_below(container)
+
+if @user and @user.confirmed?
+  # there's no registration error, so ...
+  if logged_in? and @user == current_user
+    # reload current user, because the application should know, 
+    # that he or she is confirmed
+    current_user.reload 
+    
+    # ... display the welcome message (logged in)
+    #page << show_communitybar_logged_in_content
+    # ... display the communitybar (logged in)
+    #page << show_communitybar_logged_in_small
+  else
+    # ... display the communitybar (logged out)
+    #page << show_communitybar_logged_out_small
+  end
+else
+  # there are registration errors, so append they to their fields
+  #page << "
+  #    if (communitybar.content.is(':hidden')) {
+  #        #{show_communitybar_logged_in_to_confirm_user_now}
+  #    } else {
+  #        #{append_error_message_to('confirmation_code', text_message_error(t_f_a(:confirm_now, '.confirmation_code_error')))}
+  #        $('#confirmation_code').select();
+  #    }"
+end

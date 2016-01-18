@@ -1,0 +1,13 @@
+<% form_for(@current_user_session, {:url => frontend_user_login_url, :html => {:id => 'user-login', :class => 'bf-form'}}) do |f| -%>
+  <%= render({
+        :partial => 'frontend/user_sessions/new_fields', 
+        :locals => {:f => f, :current_user_session => @current_user_session}
+      })
+  -%>
+<% end -%>
+
+
+
+<% content_for :jquery_on_ready do -%>
+    <%= focus_first_empty_field_within(:'user-login') -%>
+<% end -%>

@@ -1,0 +1,99 @@
+<div id="image-upload" class="content-box last only">
+  <h4 class="headline">Bild zu <%= @location.name -%> hochladen</h4>
+  <% field_size = 25 -%>
+  <% form_tag(
+       create_location_image_url(create_rewrite_hash(location.rewrite)), 
+       {
+         :id => 'new-location-image', :class => 'bf-form', 
+         :multipart => true, :accept => 'image/*' #:accept => 'image/png,image/gif,image/jpeg'
+       }
+     ) do 
+  -%>
+    <%# field_set_tag("1 - #{t('.chapter_where')}") do -%>
+      <ol>
+        <% unless logged_in? -%>
+          <%= form_entry(
+                :file_field,
+                nil, @location_image, :image_file, 
+                {:field_size => field_size, :field_class => :asterisk, :field_value => params.seek(:location_image, :image_file)}
+              )
+          -%>
+          <% javascript_tag({:defer => 'defer'}) do -%>
+              <%= check_file_field(
+                    :location_image_image_file, 
+                    t(:blank, :scope => [:activerecord, :errors, :models, :location_image, :attributes, :image_file]),
+                    t(:invalid, :scope => [:activerecord, :errors, :models, :location_image, :attributes, :image_file]),
+                    true,
+                    {:append => true, :events => 'blur change'}
+                  )
+              -%>
+          <% end -%>
+        <% else -%>
+          
+        <% end -%>
+        
+        
+        
+        <li id="progress">
+          <div id="progress-bar">
+            <div class="bar outer"><div class="bar inner" style="width:0%;"></div></div>
+            <div class="value">0 %</div>
+          </div>
+          <div id="image-to-upload"><%= get_location_image_tag(LocationImage.get_noimage_image, {:size => :list, :height => 50, :width => 50}) -%></div>
+        </li>
+        
+        
+        
+        <%= render({
+              :partial => 'frontend/common/unknown_author',
+              :locals  => {:field_size => field_size}
+            }) 
+        -%>
+
+
+
+        <% unless logged_in? -%>
+          <%= form_entry(
+                :check_box,
+                nil, @location_image, :general_terms_and_conditions, 
+                {
+                  :container_class => 'terms-and-conditions',
+                  :field_size => field_size, :label_class => :asterisk, 
+                  :field_value => '1',
+                  :checked => params.seek(:location_image, :general_terms_and_conditions) == '1',
+                  :check_box_text => t('shared.general_terms_and_conditions_confirmation', {
+                    :link => link_to(LocationImage.human_attribute_name(:general_terms_and_conditions), 
+                               general_terms_and_conditions_url,
+                               {:target => '_blank'}
+                             )
+                  })
+                }
+              )
+          -%>
+          <% javascript_tag({:defer => 'defer'}) do -%>
+              <%= check_asterisk_field(
+                    :location_image_general_terms_and_conditions, 
+                    t(:accepted, :scope => [:activerecord, :errors, :models, :location_image, :attributes, :general_terms_and_conditions]),
+                    true,
+                    {:append => true, :events => 'blur change'}
+                  )
+              -%>
+          <% end -%>
+        <% end -%>
+      </ol>
+    <%# end -%>
+
+    <%# field_set_tag("4 - #{t('.chapter_ready')}") do -%>
+      <ol>
+        <li class="form-entry submit">
+          <%= submit_tag(t('.button_image_upload'), {:class => 'primarybutton publishbutton', :name => nil}) -%>
+        </li>
+      </ol>
+    <%# end -%>
+  <% end -%>
+  <p><%= asterisk_note -%></p>
+  <!--<p>Mindest-Browser-Anforderung für Bild-Upload: Chrome 7+, Firefox(Gecko) 4.0(2.0), Internet Explorer 10+, Opera 12+ und Safari 5+</p>-->
+</div>
+<% if request.xhr? -%>
+  <%= javascript_tag("$('#new-location-image').ajaxifyForm();", {:defer => 'defer'}) -%>
+<% end -%>

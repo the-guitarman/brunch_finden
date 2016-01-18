@@ -1,0 +1,24 @@
+<% cache(frontend_index_ct_states) do -%>
+  <% unless @states.empty? -%>
+    <h3 class="headline">Alle Brunch-Locations</h3>
+    <ul class="states list-group">
+      <% @states.each do |state| -%>
+        <li class="list-group-item">
+          <% if state.number_of_locations > 0 -%>
+            <%
+              parameters = create_rewrite_hash(state.rewrite)
+              if cc = state.city_chars.first({:order => 'start_char', :limit => 1})
+                parameters.merge!({city_char_parameter => cc.start_char.upcase})
+              end
+            -%>
+          
+            <% a_content = state.name + ' ' + content_tag(:span, state.number_of_locations, {:class => 'badge'}) -%>
+            <%= link_to(a_content, state_rewrite_url(parameters)) -%>
+          <% else -%>
+            <%= state.name -%>
+          <% end -%>
+        </li>
+      <% end -%>
+    </ul>
+  <% end -%>
+<% end -%>

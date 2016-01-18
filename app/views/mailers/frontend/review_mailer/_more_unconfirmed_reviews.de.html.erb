@@ -1,0 +1,14 @@
+<% unless reviews.empty? -%>
+Sie haben weitere nicht bestätigte Bewertungen für:
+
+<% reviews.each do |review| -%>
+<%= review_title(review) -%>
+
+<%= confirm_review_url({
+      :id    => review.id, 
+      :token => review.confirmation_code
+    }).html_safe 
+%>
+
+<% end -%>
+<% end -%>

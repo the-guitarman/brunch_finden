@@ -1,0 +1,405 @@
+<% field_size = 25 -%>
+
+<div class="new-location-page content-page">
+  <h1 class="headline"><%= t('.headline') -%></h1>  
+  <% form_for(@location, {:url => frontend_locations_url, :html => {:id => 'new-location', :class => 'bf-form'}}) do |f| -%>
+    <% field_set_tag("1 - #{t('.chapter_where')}") do -%>
+      <ol class="left">
+        <%= f.hidden_field(:zip_code_id) -%>
+        <%= form_entry(
+              :text_field,
+              nil, @location, :zip_code, 
+              {
+                :container_class => 'zip-code',
+                :field_size => 6, :field_class => :asterisk, :field_name_format => :simple,
+                :suggestion_options => {
+                  :class  => 'zip-code-suggestions',
+                  :url    => search_by_zip_code_frontend_cities_url,
+                  :update_field => :location_zip_code_id,
+                  :update_value => :id,
+                  :before_check => {:length => 5, :match => '[0-9]{5,5}'}
+                }
+              }
+            )
+        -%>
+        <% content_for :jquery_on_ready do -%>
+            <%= check_asterisk_field(
+                  :zip_code, 
+                  t(:blank, :scope => [:activerecord, :errors, :models, :location, :attributes, :zip_code])
+                ) 
+            -%>
+        <% end -%>
+        
+        
+        
+        <%= form_entry(
+              :text_field,
+              f, @location, :street, 
+              {
+                :field_size => field_size, :field_class => :asterisk
+              }
+            )
+        -%>
+        <% content_for :jquery_on_ready do -%>
+            <%= check_asterisk_field(
+                  :location_street, 
+                  t(:blank, :scope => [:activerecord, :errors, :models, :location, :attributes, :street]),
+                  true
+                ) 
+            -%>
+        <% end -%>
+      </ol>
+      <span class="note">
+        <strong><%= t('.note') -%>:</strong>
+        <p><%= t('.chapter_where_note_text') -%></p>
+      </span>
+    <% end -%>
+  
+    <% field_set_tag("2 - #{t('.chapter_what')}") do -%>
+      <ol class="columns">
+        <%= form_entry(
+              :text_field,
+              f, @location, :name, 
+              {:field_size => field_size, :field_class => :asterisk}
+            )
+        -%>
+        <% content_for :jquery_on_ready do -%>
+            <%#= observe_field(:location_name,
+                  :url    => check_frontend_locations_url,
+                  :with   => "'check[name]='+encodeURIComponent(value)+'&check[zip_code_id]='+$('#location_zip_code_id').val();",
+                  :before => before_observe_field(
+                      :location_name, 
+                      t(:blank, :scope => [:activerecord, :errors, :models, :location, :attributes, :name])
+                  ),
+                  :complete => complete_observe_field(:location_name)
+                )
+            -%>
+            <%= check_asterisk_field(
+                  :location_name, 
+                  t(:blank, :scope => [:activerecord, :errors, :models, :location, :attributes, :name]),
+                  true
+                ) 
+            -%>
+        <% end -%>
+        
+        
+        
+        <li>
+          <%= form_entry(
+                :amount_field,
+                f, @location, :price, 
+                {
+                  :container_type => :div, :container_class => 'left-col', 
+                  :field_size => field_size, :field_class => :asterisk
+                }
+              )
+          -%>
+          <% content_for :jquery_on_ready do -%>
+              <%= observe_field(:location_price,
+                    :url    => check_frontend_locations_url,
+                    :with   => "'check[amount_field_price]='+encodeURIComponent(value);",
+                    :before => before_observe_field(
+                        :location_price, 
+                        t(:blank, :scope => [:activerecord, :errors, :models, :location, :attributes, :price])
+                    ),
+                    :complete => complete_observe_field(:location_price)
+                  )
+              -%>
+              <%= check_asterisk_field(
+                    :location_price, 
+                    t(:blank, :scope => [:activerecord, :errors, :models, :location, :attributes, :price]),
+                    false,
+                    {:append => true}
+                  ) 
+              -%>
+          <% end -%>
+
+
+
+          <%= form_entry(
+                :text_field,
+                f, @location, :price_information, 
+                {
+                  :container_type => :div, :container_class => 'right-col', 
+                  :field_size => field_size
+                }
+              )
+          -%>
+        </li>
+        
+        
+        <li>
+          <%= form_entry(
+                :text_field,
+                f, @location, :phone, 
+                {
+                  :container_type => :div, :container_class => 'left-col', 
+                  :field_size => field_size, :field_class => :asterisk
+                }
+              )
+          -%>
+          <% content_for :jquery_on_ready do -%>
+              <%= observe_field(:location_phone,
+                    :url    => check_frontend_locations_url,
+                    :with   => "'check[phone]='+encodeURIComponent(value);",
+                    :before => before_observe_field(
+                        :location_phone, 
+                        t(:blank, :scope => [:activerecord, :errors, :models, :location, :attributes, :phone])
+                    ),
+                    :complete => complete_observe_field(:location_phone)
+                  )
+              -%>
+              <%= check_asterisk_field(
+                    :location_phone, 
+                    t(:blank, :scope => [:activerecord, :errors, :models, :location, :attributes, :phone])
+                  ) 
+              -%>
+          <% end -%>
+        
+        
+        
+          <%= form_entry(
+                :text_field,
+                f, @location, :fax, 
+                {
+                  :container_type => :div, :container_class => 'right-col', 
+                  :field_size => field_size
+                }
+              )
+          -%>
+        </li>
+        
+        
+        <li>
+          <%= form_entry(
+                :text_field,
+                f, @location, :email, 
+                {
+                  :container_type => :div, :container_class => 'left-col', 
+                  :field_size => field_size
+                }
+              )
+          -%>
+          <% content_for :jquery_on_ready do -%>
+              <%= observe_field(:location_email,
+                    :url    => check_frontend_locations_url,
+                    :with   => "'check[email]='+encodeURIComponent(value);",
+                    :before => before_observe_field(
+                        :location_email, 
+                        t(:blank, :scope => [:activerecord, :errors, :models, :location, :attributes, :email])
+                    ),
+                    :complete => complete_observe_field(:location_email)
+                  )
+              -%>
+              <%= check_asterisk_field(
+                    :location_email, 
+                    t(:blank, :scope => [:activerecord, :errors, :models, :location, :attributes, :email])
+                  ) 
+              -%>
+          <% end -%>
+        
+        
+        
+          <%= form_entry(
+                :text_field,
+                f, @location, :website, 
+                {
+                  :container_type => :div, :container_class => 'right-col', 
+                  :field_size => field_size
+                }
+              )
+          -%>
+        </li>
+        
+        
+        <li>
+          <%= form_entry(
+                :text_area,
+                f, @location, :opening_hours, 
+                {
+                  :container_type => :div, :container_class => 'left-col', 
+                  :field_size => field_size
+                }
+              )
+          -%>
+        
+        
+        
+          <%= form_entry(
+                :text_area,
+                f, @location, :brunch_time, 
+                {
+                  :container_type => :div, :container_class => 'right-col', 
+                  :field_size => field_size
+                }
+              )
+          -%>
+        </li>
+        
+        
+        
+        <li>
+          <%= form_entry(
+                :text_area,
+                f, @location, :service, 
+                {
+                  :container_type => :div, :container_class => 'left-col', 
+                  :field_size => field_size
+                }
+              )
+          -%>
+        
+        
+        
+          <%= form_entry(
+                :text_area,
+                f, @location, :description, 
+                {
+                  :container_type => :div, :container_class => 'right-col', 
+                  :field_size => field_size
+                }
+              )
+          -%>
+        </li>
+      </ol>
+      <span class="note">
+        <strong><%= t('.note') -%>:</strong>
+        <p><%= t('.chapter_what_note_text') -%></p>
+      </span>
+    <% end -%>
+  
+    <% field_set_tag("3 - #{t('.chapter_about_you')}") do -%>
+      <ol>
+        <%= form_entry(
+              :text_field,
+              nil, @frontend_user, :email, 
+              {:field_size => field_size, :field_class => :asterisk, :field_value => params.seek(:frontend_user, :email)}
+            )
+        -%>
+        <% content_for :jquery_on_ready do -%>
+            <%= observe_field(:frontend_user_email,
+                  :url    => check_frontend_locations_url,
+                  :with   => "'check[frontend_user[email]]='+encodeURIComponent(value);",
+                  :before => before_observe_field(
+                      :frontend_user_email, 
+                      t(:blank, :scope => [:activerecord, :errors, :models, :frontend_user, :attributes, :email])
+                  ),
+                  :complete => complete_observe_field(:frontend_user_email)
+                )
+            -%>
+            <%= check_asterisk_field(
+                  :frontend_user_email, 
+                  t(:blank, :scope => [:activerecord, :errors, :models, :frontend_user, :attributes, :email])
+                ) 
+            -%>
+        <% end -%>
+          
+          
+          
+          
+        <%= form_entry(
+              :text_field,
+              nil, @frontend_user, :name, 
+              {
+                :field_size => field_size, :field_class => :asterisk, 
+                :field_value => params.seek(:frontend_user, :name),
+                :label_name => :_name
+              }
+            )
+        -%>
+        <% content_for :jquery_on_ready do -%>
+            <%= observe_field(:frontend_user_name,
+                  :url    => check_frontend_locations_url,
+                  :with   => "'check[frontend_user[name]]='+encodeURIComponent(value);",
+                  :before => before_observe_field(
+                      :frontend_user_name, 
+                      t(:blank, :scope => [:activerecord, :errors, :models, :frontend_user, :attributes, :name])
+                  ),
+                  :complete => complete_observe_field(:frontend_user_name)
+                )
+            -%>
+            <%= check_asterisk_field(
+                  :frontend_user_name, 
+                  t(:blank, :scope => [:activerecord, :errors, :models, :frontend_user, :attributes, :name])
+                ) 
+            -%>
+        <% end -%>
+        
+        
+        
+        <%= form_entry(
+              :check_box,
+              f, @location, :general_terms_and_conditions_confirmed, 
+              {
+                :field_size => field_size, :label_class => :asterisk, 
+                :field_value => params.seek(:location, :name),
+                :check_box_text => t('shared.general_terms_and_conditions_confirmation', {
+                  :link => link_to(Location.human_attribute_name(:general_terms_and_conditions_confirmed), 
+                             general_terms_and_conditions_url,
+                             {:target => '_blank'}
+                           )
+                })
+              }
+            )
+        -%>
+        <% content_for :jquery_on_ready do -%>
+            <%= check_asterisk_field(
+                  :location_general_terms_and_conditions_confirmed, 
+                  t(:accepted, :scope => [:activerecord, :errors, :models, :location, :attributes, :general_terms_and_conditions_confirmed]),
+                  true,
+                  {:append => true, :events => 'blur change'}
+                ) 
+            -%>
+        <% end -%>
+      </ol>
+      <span class="note">
+        <strong><%= t('.note') -%>:</strong>
+        <p><%= t('.chapter_about_you_note_text') -%></p>
+      </span>
+    <% end -%>
+  
+    <%# field_set_tag("4 - #{t('.chapter_ready')}") do -%>
+      <ol>
+        <li class="form-entry submit">
+          <%= f.submit(t('.button_save'), {:class => 'primarybutton publishbutton', :name => nil}) -%>
+        </li>
+      </ol>
+    <%# end -%>
+  <% end -%>
+
+  <% content_for :jquery_on_ready do -%>
+      var fieldErrors = {
+          no: '<%= escape_javascript(field_message('', true)) -%>',
+          zipCodeBlank: '<%= escape_javascript(field_message(t(:blank, :scope => [:activerecord, :errors, :models, :location, :attributes, :zip_code]))) -%>',
+          zipCodeInvalid: '<%= escape_javascript(field_message(t(:invalid, :scope => [:activerecord, :errors, :models, :location, :attributes, :zip_code]))) -%>',
+          cityBlank: '<%= escape_javascript(field_message(t(:blank, :scope => [:activerecord, :errors, :models, :location, :attributes, :city]))) -%>',
+          streetBlank: '<%= escape_javascript(field_message(t(:blank, :scope => [:activerecord, :errors, :models, :location, :attributes, :street]))) -%>',
+          priceBlank: '<%= escape_javascript(field_message(t(:blank, :scope => [:activerecord, :errors, :models, :location, :attributes, :price]))) -%>',
+          phoneBlank: '<%= escape_javascript(field_message(t(:blank, :scope => [:activerecord, :errors, :models, :location, :attributes, :phone]))) -%>',
+          emailBlank: '<%= escape_javascript(field_message(t(:blank, :scope => [:activerecord, :errors, :models, :location, :attributes, :email]))) -%>',
+
+
+          userNameBlank: '<%= escape_javascript(field_message(t(:blank, :scope => [:activerecord, :errors, :models, :frontend_user, :attributes, :name]))) -%>',
+          userEmailBlank: '<%= escape_javascript(field_message(t(:blank, :scope => [:activerecord, :errors, :models, :frontend_user, :attributes, :email]))) -%>',
+          locationTaCAccepted: '<%= escape_javascript(field_message(t(:accepted, :scope => [:activerecord, :errors, :models, :location, :attributes, :general_terms_and_conditions_confirmed]))) -%>',
+      };
+
+
+      function onBlurOrClickUserTaC() {
+          if (!$(this).is(':checked')) {
+              $('#location_general_terms_and_conditions_confirmed_message').html(fieldErrors.locationTaCAccepted);
+          } else {
+              $('#location_general_terms_and_conditions_confirmed_message').html(fieldErrors.no);
+          }
+      }
+      $('#location_general_terms_and_conditions_confirmed').blur(onBlurOrClickUserTaC);
+      $('#location_general_terms_and_conditions_confirmed').click(onBlurOrClickUserTaC);
+  <% end -%>
+  <p><%= asterisk_note -%></p>
+</div>
+
+
+
+<% content_for :jquery_on_ready do -%>
+    <%= focus_first_empty_field_within(:'new-location') -%>
+<% end -%>

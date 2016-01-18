@@ -1,0 +1,36 @@
+<div class="content-page">
+  <h1 class="headline"><%= t('.headline') -%></h1>
+  
+  <h2>Wer wir sind.</h2>
+  <p>
+    Wir sind zwei junge Chemnitzer, die meinen, dass Brunchen eine der besten 
+    Sachen ist, die man auf diesem Planeten machen kann. Deswegen haben 
+    wir diese Platform ins Leben gerufen. Sie soll unseren Nutzern kostenlose Informationen 
+    zu Brunch-Locations liefern und ein frei zugänglicher Brunch-Location-Vergleich sein. 
+  </p>
+  
+  <h2>Der Anfang</h2>
+  <p>
+    Angefangen hat das ganze natürlich mit unserer Heimatstadt Chemnitz, 
+    weil wir unsere Stadt mögen und es hier einige empfehlenswerte Locations zum Brunchen gibt. 
+    Es war nicht immer leicht neue Locations zu finden. Schnell hatten wir einen kleinen Index, 
+    in dem wir uns Name, Adresse, Telefonnummer und ein paar kurze Bemerkungen zu jeder besuchten
+    Location notierten. Daraus erwuchs die Idee noch detailiertere Informationen für andere 
+    interessierte Bruncher bereitzustellen. 
+  </p>
+  
+  <h2>Einfach soll es sein!</h2>
+  <p>
+    Wir möchten es Euch so einfach wie möglich machen, die richtige Location zu finden. 
+    Die Liste neuer Ideen und Verbesserungen, die diese Seiten noch bereichern sollen, ist lang. 
+    Einerseits entwickeln wir weiterhin neue Funktionen für diesen Service, andererseits
+    sind wir stets auf der Suche nach neuen Brunch-Locations. Wir würden uns sehr freuen, 
+    wenn Ihr euch daran beteiligt und Brunch-Locations in eurem Ort 
+    <%= link_to('eintragt', new_location_url) -%>. Alternativ könnt Ihr uns 
+    <%= link_to('Vorschläge', new_location_suggestion_url) -%> für neue Locations machen. 
+    Dann werden wir versuchen mehr Informationen zuammen zu tragen. 
+  </p>
+
+  Wir wünschen Euch viel Spaß auf unseren Seiten!<br />
+  Das Team von <%= @frontend_config['DOMAIN']['FULL_NAME'] -%>
+</div>

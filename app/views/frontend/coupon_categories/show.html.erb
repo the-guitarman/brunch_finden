@@ -1,0 +1,30 @@
+<% 
+  link_parameters = {:rewrite => @coupon_category.rewrite} 
+  link_parameters.merge!({:page => @page}) if @page.to_i > 1
+  headline = t('.all_category_coupons', {:category => @coupon_category.name, :page => @page})
+-%>
+
+<div id="coupon-category-page" class="coupons content-box last only">
+  <h1>
+    <%= link_to(
+          content_tag(:span, headline, {:itemprop => 'name'}), 
+          coupon_category_url(link_parameters)
+        ) 
+    -%>
+  </h1>
+  <%= content_tag(:span, coupon_category_url(link_parameters), {:itemprop => 'url', :class => 'meta-data'}) -%>
+  <%= content_tag(:span, 'Descending', {:itemprop => 'itemListOrder', :class => 'meta-data'}) -%>
+  <%= content_tag(:span, 'Offer', {:itemprop => 'about', :class => 'meta-data'}) -%>
+  <% unless @coupons.empty? -%>
+    <h2 class="headline">
+      <%= link_to(headline, coupon_category_url(link_parameters)) -%>
+    </h2>
+    <%= render :partial => 'frontend/coupons/coupon', :collection => @coupons -%>
+    <%= will_paginate(@coupons) -%>
+    <h3>
+      <%= link_to(headline, coupon_category_url(link_parameters)) -%>
+    </h3>
+  <% else -%>
+    <%= t('.no_coupons_available') -%>
+  <% end -%>
+</div>

@@ -1,0 +1,82 @@
+if @image.has_image?
+  @image.operate do |image|
+    # resize image
+    image.resize(@size, {
+      :alignment => :center,
+      :padding => Fleximage::Operator::Base.color(255, 255, 255, 255)
+    })
+
+    # watermark after resize, to see it on small images
+    if @image.set_watermark > 0
+#      watermark_image = Magick::Image.read(@watermark_file_name).first
+      size = @size.split('x')
+#
+#      # don't stretch overlay image larger, than it is
+#      if size[0].to_i > watermark_image.columns and
+#         size[1].to_i > watermark_image.rows
+#        @overlay_size = nil
+#      else
+#        @overlay_size = @size
+#      end
+#
+#      image.image_overlay(@watermark_file_name, {
+#        :alignment => :center, #:bottom_right
+#        #:offset => '30x30',
+#        :blending => :screen,
+#        :size => @overlay_size
+#      })
+      
+      text = LocationImage::SET_WATERMARK[@image.set_watermark].call(@image)
+      text = text.is_a?(Proc) ? text.call(@image) : text
+      
+      font_size = ((size[0].to_i * size[1].to_i) * 20 / 36100).round
+      font_size = 8 if font_size > 8
+      
+      ## text_angle
+      #c = Math::sqrt(size[0].to_i*size[0].to_i + size[1].to_i*size[1].to_i)
+      #alpha = Math.asin(size[0].to_i / c.to_f).to_degrees.round
+      #beta = 180 - 90 - alpha
+    
+      image.text(text, {
+        :alignment  => :center, #(@shop.id > 0 ? :top : :center),
+        :color      => Fleximage::Operator::Base.color(153, 0, 0, 0),
+        #:font       => 'vendor/fonts/arial.ttf',
+        :font_size  => font_size,
+        :text_align => :center,
+        #:offset => '0x15',
+        #:shadow => {
+        #  :blur => 1,
+        #  :opacity => 0.5,
+        #}#,
+        :offset => "0x#{(size[1].to_i / 2).to_i - (5 + 8)}",
+        #:antialias => true,
+        #:rotate => -1 * beta,
+        #:stroke => {
+        #  :width => 1,
+        #  :color => Fleximage::Operator::Base.color(240, 240, 240),
+        #}
+      })
+    end
+
+    #image.shadow :opacity=>0.1
+  end
+else
+  # no image
+  no_image = Magick::Image.read("#{Rails.root}/public/images/#{LocationImage::NO_IMAGE}").first
+  size = @size.split('x')
+
+  # don't stretch overlay image larger, than it is
+  if size[0].to_i > no_image.columns and
+     size[1].to_i > no_image.rows
+    @overlay_size = nil
+  else
+    @overlay_size = @size
+  end
+
+  Fleximage::Blank.new(@size).operate do |image|
+    image.image_overlay("#{Rails.root}/public/images/#{LocationImage::NO_IMAGE}",
+      :size => @overlay_size,
+      :alignment => :center
+    )
+  end
+end

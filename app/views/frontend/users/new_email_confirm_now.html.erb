@@ -1,0 +1,19 @@
+<div class="user-authentication new-frontend-user-confirmation">
+  <h1 class="blockhead"><%= t_f_a(:confirm_new_email, '.confirm_now_headline') -%></h1>
+  <p class="confirmation-note"><%= t_f_a(:confirm_new_email, '.confirm_now_hint') -%></p>
+  <% form_tag(frontend_user_confirm_new_email_now_url) do -%>
+    <div class="form-entry<%= @confirmation_code_blank.blank? ? '' : ' error' -%>">
+      <%= label_tag(:confirmation_code, FrontendUser.human_attribute_name(:confirmation_code)) -%>
+      <%= text_field_tag(:confirmation_code, params[:confirmation_code]) -%>
+      <% unless @confirmation_code_blank.blank? -%>
+        <%= text_message_error(@confirmation_code_blank) -%>
+      <% end -%>
+    </div>
+    <div class="form-entry submit">
+      <div class="label"></div>
+      <div class="input-area">
+        <%= submit_tag(t_f_a(:confirm_new_email, '.confirm_now_button_activate'), {:class => :primarybutton, :name => nil}) -%>
+      </div>
+    </div>
+  <% end -%>
+</div>

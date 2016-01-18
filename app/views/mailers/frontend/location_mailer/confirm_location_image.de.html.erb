@@ -1,0 +1,39 @@
+Guten Tag <%= @frontend_user.name -%>,
+
+Sie erhalten diese E-Mail, weil sie ein neues Bild zur Brunch-Location (<%= @location_image.location.name -%>) auf <%= @domain_full_name -%> hochgeladen haben.
+
+Klicken Sie bitte auf den nachfolgenden Link um das Bild zu bestätigen und den Vorgang abzuschließen.
+
+<%= @location_image.location.name -%>:
+<%= confirm_frontend_location_image_url({
+      :id => @location_image.id, 
+      :token => @location_image.confirmation_code
+    }+@location_rewrite_hash) 
+%>
+
+Ohne Bestätigung werden wir das Bild nach ca. <%= LocationImage::UNPUBLISHED_VALID_FOR %> Stunden löschen.
+
+Falls Sie das Bild nicht hochgeladen haben, dann hat eine andere Person Ihre E-Mail-Adresse benutzt. 
+In diesem Fall löschen Sie bitte das Bild mit folgendem Link und anschließend diese E-Mail. 
+Sie erhalten keine weitere Nachricht von uns.
+Bild löschen: 
+<%= delete_frontend_location_image_url({
+      :id => @location_image.id, 
+      :token => @location_image.confirmation_code
+    }+@location_rewrite_hash) 
+%>
+
+Vielen Dank
+Das Team von <%= @domain_name %>
+
+<% unless @location_images_unconfirmed.empty? -%>
+Weitere noch nicht bestätigte Bilder von Ihnen:
+<% @location_images_unconfirmed.each do |li| -%>
+<%= li.location.name %>
+<%= confirm_frontend_location_image_url({
+      :id => li.id, 
+      :token => li.confirmation_code
+    }+create_rewrite_hash(li.location.rewrite)) 
+%>
+<% end -%>
+<% end -%>

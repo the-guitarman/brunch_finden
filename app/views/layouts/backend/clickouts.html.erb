@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <%= render(:partial=>"backend/title_and_description") -%>
+    
+    <meta http-equiv="Content-Language" content="en" />
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta name="robots" content="noindex" />
+    <link href="/favicon.ico?<%=(Time.now+1.month).to_i-%>" type='image/x-icon' rel='shortcut icon' />
+
+    <% if protect_against_forgery? -%>
+      <meta id="authenticity_token" name="authenticity_token" content="<%= form_authenticity_token -%>" />
+    <% end -%>
+
+    <%= render(:partial=>"backend/extjs3") -%>
+    <%= render(:partial=>"backend/extjs3_extensions_and_overrides") -%>
+    <%= render(:partial=>"backend/extjs3_essential_tool_components") -%>
+
+    <%#= GMap.header({:host => request.host}) -%>
+
+    <!-- Tool -->
+    <%= stylesheet_link_tag(
+      'backend/clickouts',
+      :cache=>"#{GLOBAL_CONFIG[:cached_css_backend_path]}clickouts"
+    ) -%>
+
+    <%= javascript_include_tag(
+      'backend/clickouts/',
+      :cache=>"#{GLOBAL_CONFIG[:cached_js_backend_path]}clickouts"
+    ) -%>
+    <%=
+      update_page_tag do |page|
+        standard_extjs_tool_constants(page)
+      end
+    -%>
+  </head>
+  <body>
+    <%#= yield -%>
+  </body>
+</html>

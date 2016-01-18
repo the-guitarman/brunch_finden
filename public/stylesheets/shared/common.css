@@ -1,0 +1,10 @@
+.to-display-version { display:block; height:40px; line-height:40px; padding-left:50px;}
+.to-display-version.desktop-version { background:url('/images/desktop_small.png') transparent left center no-repeat; }
+.to-display-version.mobile-version { background:url('/images/mobile_small.png') transparent left center no-repeat; }
+
+.directions-map {}
+.directions-panel {overflow-y:scroll;}
+
+.location-direction-controls { padding-bottom:10px; }
+.location-direction-controls div > div { padding-left:20px; }
+.location-directions { margin:0 2px; }

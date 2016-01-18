@@ -1,0 +1,13 @@
+Hi,
+
+you changed your account email address at <%= @domain_name -%>.
+Please follow this link to confirm it:
+<%= frontend_user_confirm_new_email_url({:confirmation_code => @user.perishable_token}) %>
+
+Or visit <%= frontend_user_confirm_new_email_now_url %> and type in your confirmation code below:
+
+Confirmation code: <%= @user.perishable_token %>
+
+Thanks!
+
+<%= render :partial => 'mailers/frontend/footer' -%>

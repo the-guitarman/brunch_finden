@@ -1,0 +1,25 @@
+<div class="content-page">
+  <p>
+    <% if @location and @location.errors.empty? -%>
+      <%
+        url = location_rewrite_url(create_rewrite_hash(@location.rewrite))
+        title = "Ich habe auf #{@host_name} eine neue Brunch-Location '#{@location.name}' veröffentlicht. Jetzt ansehen:"
+      -%>
+      <%= t('.text', {
+            :name => h(@location.name),
+            :link => link_to(h(@location.name), url)
+          })
+      -%>
+      <br /><br />
+      <%= render({
+            :partial => 'frontend/common/ct_share_links',
+            :locals  => {:url => url, :title => title}
+          }) 
+      -%>
+    <% else -%>
+      <%= t('.error', {:domain_name => @host_name}) -%>
+    <% end -%>
+  </p>
+  <br />
+  <%= render :partial => 'frontend/common/ct_advertisement_336x280_large_rectangle' -%>
+</div>

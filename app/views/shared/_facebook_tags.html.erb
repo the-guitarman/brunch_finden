@@ -1,0 +1,7 @@
+<% unless @facebook_tags.blank? -%>
+  <% @facebook_tags.each do |property, content| -%>
+    <% unless content.blank? -%>
+      <meta property="<%= property -%>" content="<%= content -%>" />
+    <% end -%>
+  <% end -%>
+<% end -%>

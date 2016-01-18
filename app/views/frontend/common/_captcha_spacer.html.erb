@@ -1,0 +1,12 @@
+<li class="form-entry captcha"></li>
+<% unless request.xhr? -%>
+  <% content_for :jquery_on_ready do -%>
+    $('.captcha').applyCaptcha('<%= new_captcha_url -%>');
+    <%= check_asterisk_field(:captcha, t('shared.captcha.error'), true, {:append => true}) -%>
+  <% end -%>
+<% else -%>
+  <% javascript_tag({:defer => 'defer'}) do -%>
+    $('.captcha').applyCaptcha('<%= new_captcha_url -%>');
+    <%= check_asterisk_field(:captcha, t('shared.captcha.error'), true, {:append => true}) -%>
+  <% end -%>
+<% end -%>

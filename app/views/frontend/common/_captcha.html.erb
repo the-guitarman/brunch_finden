@@ -1,0 +1,29 @@
+<li class="form-entry captcha">
+  <div>
+    <%= yacaph_label(t('shared.captcha.label')) -%>
+    <%= yacaph_text({:autocomplete => :off, :class => :asterisk}) -%>
+    <%= yacaph_hidden_text -%>
+    <%= link_to(t('shared.captcha.reload'), new_captcha_url, {:class => 'bg-image reload-captcha'}) -%>
+    <% 
+      captcha_error = ''
+      unless params[:captcha_validation].blank?
+        captcha_error = (yacaph_validated? ? '' : t('shared.captcha.error')) 
+      end
+    -%>
+  </div>
+
+  <div class="captcha-image">
+    <%= yacaph_image -%>
+    <div class="description"><%= t('shared.captcha.description') -%></div>
+  </div>
+  <%= text_message_error(captcha_error) -%>
+</li>
+<% unless request.xhr? -%>
+  <% content_for :jquery_on_ready do -%>
+    <%= check_asterisk_field(:captcha, t('shared.captcha.error'), true, {:append => true}) -%>
+  <% end -%>
+<% else -%>
+  <% javascript_tag({:defer => 'defer'}) do -%>
+    <%= check_asterisk_field(:captcha, t('shared.captcha.error'), true, {:append => true}) -%>
+  <% end -%>
+<% end -%>

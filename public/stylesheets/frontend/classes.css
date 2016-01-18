@@ -1,0 +1,48 @@
+input[type="button"],
+input[type="text"],
+input[type="password"],
+input[type="submit"],
+textarea { border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; -o-border-radius:5px; -ms-border-radius:5px; }
+
+input[type="text"],
+input[type="password"],
+textarea { background:none repeat scroll 0 0 #FFFFFF; border:1px solid #BCBBBB; box-shadow:0 1px 2px rgba(0, 0, 0, 0.2) inset; outline:medium none; }
+
+.button-level1 {
+    background: #990000; /* Old browsers */
+    background: linear-gradient(top, #CC8080 0%,#990000 100%); /* W3C */
+    background: -moz-linear-gradient(center top, #CC8080, #990000) repeat scroll 0 0 transparent; /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#CC8080), color-stop(100%,#990000)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #CC8080 0%,#990000 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #CC8080 0%,#990000 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #CC8080 0%,#990000 100%); /* IE10+ */
+    border: 1px solid #BCBBBB;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) inset;
+    cursor: pointer;
+    color: #FFFFFF;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
+}
+
+.button-level1:hover {
+    background: linear-gradient(top, #990000 0%,#CC8080 100%); /* W3C */
+    background: -moz-linear-gradient(center top, #990000, #CC8080) repeat scroll 0 0 transparent; /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#990000), color-stop(100%,#CC8080)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #990000 0%,#CC8080 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #990000 0%,#CC8080 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #990000 0%,#CC8080 100%); /* IE10+ */
+}
+
+.form-entry { padding:5px 0; }
+.form-entry.zip-code { overflow:visible; }
+
+.form-entry.error { background-color:#ffffff; border:none; margin:0; }
+
+.form-entry.error input[type=text], 
+.form-entry.error input[type=password],
+.form-entry.error textarea { border:1px solid #990000; box-border:2px 2px 2px rgba(0, 0, 0, 0.3); }
+
+.text-message p { margin: 0; }
+
+.text-message.error { background-color:#ffffff; border:none; color:#990000; margin-left:100px; padding:0; }
+.input-area .text-message.error { margin-bottom:0; margin-left:0; }

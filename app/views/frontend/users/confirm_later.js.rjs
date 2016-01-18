@@ -1,0 +1,5 @@
+# display the welcome message (logged in)
+#page << show_communitybar_logged_in_content
+
+# display the communitybar (logged in)
+#page << show_communitybar_logged_in_small

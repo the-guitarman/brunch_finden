@@ -1,0 +1,12 @@
+<div class="coupons">
+  <%= render({
+        :partial => 'frontend/coupons/coupon', 
+        :locals => {
+          :coupon => coupon,
+          :coupon_counter => coupon_counter
+        }, 
+        :layout => false, 
+        :content_type => Mime::HTML
+      })
+  -%>
+</div>

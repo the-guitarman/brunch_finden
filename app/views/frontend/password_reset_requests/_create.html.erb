@@ -1,0 +1,26 @@
+<div class="user-authentication">
+  <% if @user -%>
+    <h4 class="textgreen">Das hat geklappt!</h4>
+    <p class="textblock">
+      Innerhalb der nächsten Minuten erhalten Sie eine E-Mail mit einem Link.
+      Klicken Sie diesen Link, um ein neues Passwort für Ihr Nutzerkonto bei
+      <%= @host_name -%> zu vergeben.
+    </p>
+  <% else -%>
+    <h4 class="textred">Ups, das hat nicht geklappt!</h4>
+    <p class="textblock">
+      Leider können wir Ihre E-Mail-Adresse oder Ihren Nutzernamen nicht zuordnen.
+      Haben Sie sich vertippt? Dann probieren Sie es noch einmal:
+    </p>
+    
+    <%= render({:partial => 'frontend/password_reset_requests/new_form'}) -%>
+    
+    <p class="well">
+      <strong>Haben Sie vergessen, mit welcher E-Mail-Adresse oder welchem Nutzernamen
+      Sie bei <%= @host_name -%> registriert sind?</strong><br />
+      Schreiben Sie uns eine E-Mail an
+      <%= mail_to("info@#{@host_name.downcase}", nil, {:encode => :hex}) -%>,
+      wir helfen Ihnen gerne weiter!
+    </p>
+  <% end -%>
+</div>

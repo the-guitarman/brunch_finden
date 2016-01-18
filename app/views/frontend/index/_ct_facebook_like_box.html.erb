@@ -1,0 +1,10 @@
+<% cache 'frontend_index_ct_facebook_like_box' do -%>
+  <h3 class="headline"><%= t('.facebook_like_box', {:domain_name => @host_name}) -%></h3>
+  <div id="<%= 'facebook_like_box'.to_crc32 -%>">
+    <%= social_plugin_loader(:facebook_like_box) -%>
+  </div>
+<% end -%>
+<% content_for :jquery_on_ready do -%>
+  var pluginTag = $('#<%= 'facebook_like_box'.to_crc32 -%>');
+  pluginTag.socialize({loading:pluginTag.parent()});
+<% end -%>

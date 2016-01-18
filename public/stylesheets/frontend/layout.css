@@ -1,0 +1,41 @@
+body { font-family:"Trebuchet MS",Arial,verdana,tahoma,sans-serif; color:#000000; }
+
+ul { margin:0; padding:0; }
+li { margin:0; padding:0; list-style:none outside none; }
+
+a { color:#FFFFFF; text-decoration:none; }
+a:hover { color:#FFFFFF; text-decoration:underline; }
+
+h1 a, h2 a, h3 a { color:#000000 !important; text-decoration:none !important; }
+h1 a:hover, h2 a:hover, h3 a:hover { color:#000000 !important; text-decoration:none !important; }
+
+.grey-link { color:#444444 !important; text-decoration:none !important; }
+.grey-link:hover { color:#444444 !important; text-decoration:underline !important; }
+
+.gmap-link { color:#000000; text-decoration:none; }
+.gmap-link:hover { color:#000000; text-decoration:underline; }
+
+h1 { font-size:1.5em; font-weight:bold; margin-bottom:10px; }
+h2 { font-size:1.2em; font-weight:bold; margin-bottom:10px; }
+p { margin-bottom:10px; }
+
+.input { background-color:#F9F9F9; border:1px solid #C0C0C0; box-shadow:2px 2px 2px rgba(0, 0, 0, 0.3); color:#303030; font-size:8pt; }
+.required-field { color:#FF0000; }
+
+.formError { color:#FF0000; }
+.fieldWithErrors { display:inline-block; }
+.fieldWithErrors .input { border:1px solid #FF0000; box-shadow:2px 2px 2px rgba(0, 0, 0, 0.3); }
+
+.field-message { display:inline-block; padding-right:5px; vertical-align:middle; width:85%; }
+.field-message .icon { float:left; width:20px; }
+.field-message-icon { float:left; width:20px;}
+
+.facebook .description, .addthis .description {
+    text-align:right;
+    font-size:11px;
+}
+
+.item-is-loading { text-align:center; display:inline-block; }
+
+
+

@@ -1,0 +1,10 @@
+<div class="content-box">
+  <p>
+    <%= t('shared.location_image.created.message', {
+          :domain_name => @host_name,
+          :unpublished_valid_for => LocationImage::UNPUBLISHED_VALID_FOR
+        }) 
+    -%>
+  </p>
+  <%= render :partial => 'frontend/common/ct_advertisement_336x280_large_rectangle' -%>
+</div>

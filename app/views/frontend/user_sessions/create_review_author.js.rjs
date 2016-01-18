@@ -1,0 +1,46 @@
+container = 'new-review-user-login'
+
+# remove all errors and messages from the form and fields
+page << remove_messages_below(container)
+
+if @current_user_session.new_record?
+  # there are errors, so ...
+  fields = @current_user_session.errors.keys.uniq
+  
+  # ... prepend to container
+  if base = fields.delete(:base)
+    page << prepend_message_to(container, infobox_error(@current_user_session.errors[base]))
+  end
+  
+  # ... append to field
+  fields.each do |field|
+    page << append_error_message_to("frontend_user_session_#{field}", 
+              text_message_error(@current_user_session.errors[field]))
+  end
+else
+  # change the partial
+  page << slide_remove_elements('.login-form')
+  
+  fu = @current_user_session.frontend_user
+  if s = fu.settings and s['frontend/reviews'] and s['frontend/reviews']['always_show_full_review']
+    view_config = cookies['always_show_full_review'] = s['frontend/reviews']['always_show_full_review']
+    page << "
+        if ((typeof toggleReviewFormViewConfig) == 'function') {
+            toggleReviewFormViewConfig(#{view_config});
+        }
+        var pinLink = $('a.pin');
+        if (pinLink.length > 0 && #{view_config}) {
+            if (!pinLink.hasClass('active')) {
+                pinLink.toggleClass('active');
+            }
+        } else {
+            if (pinLink.hasClass('active')) {
+                pinLink.toggleClass('active');
+            }
+        }
+    "
+  end
+  
+  # there's no error, so display communitybar footer
+  #page << show_communitybar_logged_in_small
+end

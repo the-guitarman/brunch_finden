@@ -1,0 +1,48 @@
+<!-- ExtJS extensions and overrides -->
+
+<%= stylesheet_link_tag(      
+      #'backend/shared/extjs2/patches',
+      
+      'backend/shared/extjsX/extensions/button_combo_box',
+      'backend/shared/extjsX/extensions/column_tree',
+      'backend/shared/extjsX/extensions/file_upload_field',
+      'backend/shared/extjsX/extensions/images_data_view',
+      'backend/shared/extjsX/extensions/portal',
+      'backend/shared/extjsX/extensions/row_action_plugin',
+      'backend/shared/extjsX/extensions/row_expander',
+      'backend/shared/extjsX/extensions/spinner',
+      
+      'backend/shared/extjsX/extensions/gridfilters/grid_filters',
+      'backend/shared/extjsX/extensions/gridfilters/range_menu',
+      
+      :cache => (Rails.env.development? ? false : "#{GLOBAL_CONFIG[:cached_css_backend_path]}extjs3_eao_css")
+    )
+-%>
+
+<%= javascript_include_tag(
+      'backend/shared/',
+      
+      'backend/shared/extjs3/',
+      'backend/shared/extjs3/extensions/',
+      'backend/shared/extjs3/extensions/data/',
+      'backend/shared/extjs3/extensions/data_view/',
+      'backend/shared/extjs3/extensions/form/',
+      'backend/shared/extjs3/extensions/grid/',
+      'backend/shared/extjs3/extensions/gridfilters/',
+      'backend/shared/extjs3/extensions/gridfilters/css/',
+      'backend/shared/extjs3/extensions/gridfilters/filter/Filter',
+      'backend/shared/extjs3/extensions/gridfilters/filter/',
+      'backend/shared/extjs3/extensions/gridfilters/images/',
+      'backend/shared/extjs3/extensions/gridfilters/menu/',
+      'backend/shared/extjs3/extensions/portal/',
+      'backend/shared/extjs3/extensions/tree/',
+      'backend/shared/extjs3/extensions/util/',
+      
+      'backend/shared/extjs3/overrides/',
+      'backend/shared/extjs3/overrides/data/',
+      'backend/shared/extjs3/overrides/gridfilters/',
+      'backend/shared/extjs3/overrides/tree/',
+      
+      :cache => (Rails.env.development? ? false : "#{GLOBAL_CONFIG[:cached_js_backend_path]}extjs3_eao_js")
+    )
+-%>

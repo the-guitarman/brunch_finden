@@ -1,0 +1,35 @@
+<h1><%= link_to(t('.headline_h1'), all_coupon_merchants_url) -%></h1>
+<h2 class="headline"><%= link_to(t('.headline_h2'), all_coupon_merchants_url) -%></h2>
+<div class="first-letters">
+  <% @first_letters.each do |fl| -%>
+    <% if fl.first != @first_letter and fl.last > 0 -%>
+      <%
+        parameters = {}
+        parameters[first_letter_parameter] = fl.first unless @first_letters.first == fl
+      -%>
+      <%= link_to(
+            fl.first, all_coupon_merchants_url(parameters), 
+            {:class => (fl.first == @first_letter ? :current : nil), :title => "#{fl.last} Gutschein-Anbieter"}
+          ) 
+      -%>
+    <% else -%>
+      <span<%= (fl.first == @first_letter ? ' class="current"' : '') -%>><%= fl.first -%></span>
+    <% end -%>
+  <% end -%>
+</div>
+<div id="all-coupon-merchants" class="content-box only last all-coupon-merchants">
+  <% unless @coupon_merchants.empty? -%>
+    <ul>
+      <% @coupon_merchants.each_with_index do |merchant, index| -%>
+        <li>
+          <%= coupon_merchant_link(merchant, {:title => "#{merchant.name} (#{merchant.number_of_coupons} #{Coupon.human_name({:count => merchant.number_of_coupons})})"}) -%>
+          <span><%= merchant.name -%></span>
+        </li>
+      <% end -%>
+    </ul>
+  <% else -%>
+    Es sind keine Gutscheinanbieter verfügbar.
+  <% end -%>
+</div>
+<%= will_paginate(@coupon_merchants) -%>
+<h3><%= link_to(t('.headline_h3'), all_coupon_merchants_url) -%></h3>

@@ -1,0 +1,785 @@
+--- 
+de: 
+  activerecord: 
+    attributes: 
+      coupon: 
+        code: Gutschein-Code
+        minimum_order_value: Mindestbestellwert
+        only_new_customer: "Nur für Neukunden"
+        valid: gültig
+      frontend_user: 
+        _general_terms_and_conditions: "Ich habe die %{general_terms_and_conditions} gelesen, verstanden und akzeptiert."
+        _name: Name
+        about_user_long: "Über mich"
+        about_user_short: Motto
+        author: Name
+        birthday: Geburtstag
+        confirmation_code: Bestätigungscode
+        email: E-Mail
+        first_name: Vorname
+        general_terms_and_conditions: AGB
+        login: Mitgliedsname
+        login_or_email: "E-Mail oder Login"
+        name: Nachname
+        password: Passwort
+        password_confirmation: "Passwort wiederholen"
+        remember_me: "Beim nächsten Mal automatisch anmelden"
+      location: 
+        brunch_time: Brunch-Zeiten
+        description: Beschreibung
+        email: E-Mail
+        general_terms_and_conditions_confirmed: AGB
+        name: Name
+        opening_hours: Öffnungszeiten
+        phone: Telefon
+        price: "Preis pro Person"
+        price_information: "Infos zum Preis"
+        service: Service
+        street: "Straße + Hausnr."
+        website: Webseite
+        zip_code: Postleitzahl
+        zip_code_id: PLZ
+      location_image: 
+        general_terms_and_conditions: AGB
+        image_file: "Bild auswählen"
+      location_suggestion: 
+        city: Ort
+        information: "Weitere Informationen"
+        name: Name
+      review: 
+        general_terms_and_conditions: AGB
+    errors: 
+      messages: 
+        accepted: "muss akzeptiert werden"
+        blank: "muss ausgefüllt werden"
+        confirmation: "stimmt nicht mit der Bestätigung überein"
+        email_domain_exclusion: "Die E-Mail-Adresse mit der Domain '%{domain}' ist nicht zulässig."
+        empty: "muss ausgefüllt werden"
+        equal_to: "muss genau %{count} sein"
+        even: "muss gerade sein"
+        exclusion: "ist nicht verfügbar"
+        greater_than: "muss größer als %{count} sein"
+        greater_than_or_equal_to: "muss größer oder gleich %{count} sein"
+        inclusion: "ist kein gültiger Wert"
+        invalid: "ist nicht gültig"
+        invalid_image: "Bitte wählen Sie eine gültige Bild-Datei (JPG, PNG oder GIF)."
+        less_than: "muss kleiner als %{count} sein"
+        less_than_or_equal_to: "muss kleiner oder gleich %{count} sein"
+        missing_image: "Bitte wählen Sie das Bild (JPG, PNG oder GIF)."
+        not_a_number: "ist keine Zahl"
+        odd: "muss ungerade sein"
+        taken: "ist bereits vergeben"
+        too_long: "ist zu lang (nicht mehr als %{count} Zeichen)"
+        too_short: "ist zu kurz (nicht weniger als %{count} Zeichen)"
+        wrong_length: "hat die falsche Länge (muss genau %{count} Zeichen haben)"
+      models: 
+        frontend_user: 
+          attributes: 
+            birthday: 
+              invalid: "Bitte geben Sie ein gültiges Geburtsdatum ein."
+            email: 
+              bad_word: "Ihre E-Mail enthält ein Wort unserer Schwarzen Liste (%{word})."
+              blank: "Wie ist Ihre E-Mail?"
+              taken: "Es existiert bereits ein Mitglied mit dieser Adresse."
+              too_long: "Ihre E-Mail ist zu lang (nicht mehr als %{count} Zeichen)."
+              too_short: "Ihre E-Mail ist zu kurz (nicht weniger als %{count} Zeichen)."
+            first_name: 
+              bad_word: "Ihr Vorname enthält ein Wort unserer Schwarzen Liste (%{word})."
+              blank: "Bitte geben Sie Ihren Vornamen ein."
+            general_terms_and_conditions: 
+              accepted: "Bitte bestätigen Sie, dass Sie die AGB gelesen, verstanden und akzeptiert haben."
+            login: 
+              bad_word: "Ihre Benutzername enthält ein Wort unserer Schwarzen Liste (%{word})."
+              blank: "Bitte wählen Sie einen Benutzernamen."
+              taken: "Es existiert bereits ein Mitglied mit diesem Name."
+            name: 
+              bad_word: "Ihr Name enthält ein Wort unserer Schwarzen Liste (%{word})."
+              blank: "Wie ist Ihr Name?"
+              too_long: "Ihr Name ist zu lang (nicht mehr als %{count} Zeichen)."
+              too_short: "Ihr Name ist zu kurz (nicht weniger als %{count} Zeichen)."
+            new_email: 
+              bad_word: "Ihre E-Mail-Adresse enthält ein Wort unserer Schwarzen Liste (%{word})."
+              blank: "Bitte geben Sie die neue E-Mail-Adresse ein."
+              taken: "Diese E-Mail-Adresse ist bereits vergeben."
+            password: 
+              bad_word: "Ihr Passwort enthält ein Wort unserer Schwarzen Liste (%{word})."
+              confirmation: "Das Passwort stimmt nicht mit der Wiederholung überein."
+              too_short: "Das Passwort muss mindestens %{count} Zeichen lang sein."
+            password_confirmation: 
+              too_short: "Das Passwort muss mindestens %{count} Zeichen lang sein."
+        location: 
+          attributes: 
+            _changes: 
+              blank: "Welche Änderungen möchten Sie uns mitteilen?"
+            city: 
+              blank: "Bitte wähle den Ort der Brunch-Location aus."
+            email: 
+              blank: "Wie lautet die E-Mail?"
+              taken: "Es ist bereits eine Brunch-Location mit dieser E-Mail gespeichert."
+              too_long: "Die E-Mail ist zu lang (nicht mehr als %{count} Zeichen)."
+              too_short: "Die E-Mail ist zu kurz (nicht weniger als %{count} Zeichen)."
+            general_terms_and_conditions_confirmed: 
+              accepted: "Bitte bestätigen Sie, dass Sie unsere AGB gelesen und verstanden haben."
+            name: 
+              blank: "Wie heißt die Brunch-Location?"
+              taken: "Diese Brunch-Location ist bereits gespeichert."
+            phone: 
+              blank: "Wie ist die Telefonnummer?"
+            price: 
+              blank: "Der Preis zum Brunchen wird benötigt."
+              invalid_amount_format: "Der Preis hat ein falsches Format (%{format_example})."
+            street: 
+              blank: "Die Straße wird benötigt."
+            zip_code: 
+              blank: "Wie ist die Postleitzahl?"
+              invalid: "Die Postleitzahl ist nicht gültig?"
+            zip_code_id: 
+              blank: "Wie ist die Postleitzahl?"
+              invalid: "Die Postleitzahl ist nicht gültig?"
+        location_changes: 
+          attributes: 
+            changes: 
+              blank: "Welche Änderungen sollen wir vornehmen?"
+        location_image: 
+          attributes: 
+            general_terms_and_conditions: 
+              accepted: "Bitte bestätigen Sie, dass Sie unsere AGB gelesen und verstanden haben."
+            image_file: 
+              blank: "Bitte wählen Sie das Location-Image (JPG, PNG oder GIF)."
+              invalid: "Bitte wählen Sie eine gültige Bild-Datei (JPG, PNG oder GIF)."
+        location_suggestion: 
+          attributes: 
+            city: 
+              blank: "Bitte geben Sie den Ort der Brunch-Location ein."
+              invalid: "Der Ort ist leider nicht in unserer Datenbank enthalten."
+            name: 
+              blank: "Bitte geben Sie den Name der Brunch-Location ein."
+        rating: 
+          attributes: 
+            value: 
+              blank: "Bitte treffen Sie eine Auswahl."
+              not_a_number: "Bitte treffen Sie eine Auswahl."
+        review: 
+          attributes: 
+            base: 
+              destroy: "Bitte geben Sie den Grund für das Löschen des Testberichts an."
+            frontend_user: 
+              blank: "Bitte geben Sie Ihre E-Mail-Adresse und Ihren Namen ein."
+              invalid: "Bitte geben Sie Ihre E-Mail-Adresse und Ihren Namen ein."
+              taken: "Sie haben bereits eine Meinung geschrieben."
+            frontend_user_id: 
+              blank: "Bitte geben Sie Ihre E-Mail-Adresse und Ihren Namen ein."
+              invalid: "Bitte geben Sie Ihre E-Mail-Adresse und Ihren Namen ein."
+              taken: "Sie haben bereits eine Meinung geschrieben."
+            general_terms_and_conditions: 
+              accepted: "Bitte bestätigen Sie, dass Sie die AGB gelesen, verstanden und akzeptiert haben."
+            review_locking: 
+              reason_required: "Bitte geben Sie den Grund für das Sperren des Testberichts an."
+            state: 
+              no_revert: "Der Bericht wurde bereits veröffentlicht. Das kann nicht rückgängig gemacht werden."
+            text: 
+              blank: "Bitte geben Sie Ihre Meinung ein."
+              too_short: "Bitte schreiben Sie mindestens %{count} Worte."
+              too_short_note: 
+                one: "Bitte schreiben Sie noch <span class='text-words-to-write'>%{count}</span> Wort."
+                other: "Bitte schreiben Sie noch <span class='text-words-to-write'>%{count}</span> Worte."
+              too_similar: "Der Text hat zu viele Übereinstimmungen mit einem zuvor von Ihnen geschriebenen Bericht."
+            value: 
+              blank: "Bitte wählen Sie die Anzahl der Sterne."
+              not_a_number: "Bitte wählen Sie die Anzahl der Sterne."
+      template: 
+        body: "Bitte überprüfen Sie die folgenden Felder:"
+        header: 
+          one: "Konnte %{model} nicht speichern: ein Fehler."
+          other: "Konnte %{model} nicht speichern: %{count} Fehler."
+    models: 
+      aggregated_review:
+        one: Gesamtbewertung
+        other: Gesamtbewertungen
+      city: 
+        one: Ort
+        other: Orte
+      coupon: 
+        one: Gutschein
+        other: Gutscheine
+      coupon_category: 
+        one: Gutschein-Kategorie
+        other: Gutschein-Kategorien
+      frontend_user: 
+        one: User
+        other: Users
+      geo_location: 
+        one: "Geo Location"
+        other: "Geo Locations"
+      location: 
+        one: Brunch-Location
+        other: Brunch-Locations
+      location_image: 
+        one: Bild
+        other: Bilder
+      review:
+        one: Bewertung
+        other: Bewertungen
+      state: 
+        one: Bundesland
+        other: Bundesländer
+      zip_code: 
+        one: Postleitzahl
+        other: Postleitzahlen
+  authlogic: 
+    attributes: 
+      frontend_user_session: 
+        email: E-Mail
+        login: Login
+        login_or_email: "Login oder E-Mail"
+        password: Passwort
+        remember_me: "Beim nächsten Mal automatisch anmelden"
+    error_messages: 
+      blocked: "Das Benutzerkonto ist momentan gesperrt."
+      consecutive_failed_logins_limit_exceeded: "Es traten aufeinander folgende Loginfehler auf. Der Zugang wurde gesperrt."
+      email_invalid: "Die E-Mail-Adresse ist nicht gültig."
+      login_blank: "Das Login muss ausgefüllt werden."
+      login_invalid: "Das Login kann nur Buchstaben, Zahlen, Leerzeichen, und .-_@ enthalten."
+      login_not_found: "Das Login ist nicht gültig."
+      no_authentication_details: "Sie haben keine Informationen zur Authentifizierung angegeben."
+      not_active: "Das Benutzerkonto ist nicht aktiv."
+      not_approved: "Das Benutzerkonto wurde nicht freigegeben."
+      not_confirmed: "Das Benutzerkonto wurde nicht bestätigt."
+      password_blank: "Das Passwort muss ausgefüllt werden."
+      password_invalid: "Das Passwort ist nicht gültig."
+    models: 
+      backend_user_session: "User Session"
+      frontend_user_session: "User Session"
+  config: 
+    background: 
+      coupon_handler: 
+        answer_types: 
+          data: "Daten im Detailformat"
+          detailed: "Daten im Detailformat"
+          empty: "Leeres Ergebnis"
+          error: "Sonstiger Fehler"
+          forbidden: "Nutzer-ID uid passt nicht zur IP-Adresse"
+          format_error: "Falsches Format angefordert"
+          list: "Daten im Übersichtsformat"
+  date: 
+    abbr_day_names: 
+      - So
+      - Mo
+      - Di
+      - Mi
+      - Do
+      - Fr
+      - Sa
+    abbr_month_names: 
+      - ~
+      - Jan
+      - Feb
+      - Mär
+      - Apr
+      - Mai
+      - Jun
+      - Jul
+      - Aug
+      - Sep
+      - Okt
+      - Nov
+      - Dez
+    day_names: 
+      - Sonntag
+      - Montag
+      - Dienstag
+      - Mittwoch
+      - Donnerstag
+      - Freitag
+      - Samstag
+    formats: 
+      default: "%d.%m.%Y"
+      long: "%e. %B %Y"
+      only_day: "%e"
+      short: "%e. %b"
+    month_names: 
+      - ~
+      - Januar
+      - Februar
+      - März
+      - April
+      - Mai
+      - Juni
+      - Juli
+      - August
+      - September
+      - Oktober
+      - November
+      - Dezember
+    order: 
+      - !ruby/symbol day
+      - !ruby/symbol month
+      - !ruby/symbol year
+  datetime: 
+    distance_in_words: 
+      about_x_hours: 
+        one: "etwa eine Stunde"
+        other: "etwa %{count} Stunden"
+      about_x_months: 
+        one: "etwa ein Monat"
+        other: "etwa %{count} Monate"
+      about_x_years: 
+        one: "etwa ein Jahr"
+        other: "etwa %{count} Jahre"
+      almost_x_years: 
+        one: "fast ein Jahr"
+        other: "fast %{count} Jahre"
+      half_a_minute: "eine halbe Minute"
+      less_than_x_minutes: 
+        one: "weniger als eine Minute"
+        other: "weniger als %{count} Minuten"
+      less_than_x_seconds: 
+        one: "weniger als eine Sekunde"
+        other: "weniger als %{count} Sekunden"
+      over_x_years: 
+        one: "mehr als ein Jahr"
+        other: "mehr als %{count} Jahre"
+      x_days: 
+        one: "ein Tag"
+        other: "%{count} Tage"
+      x_minutes: 
+        one: "eine Minute"
+        other: "%{count} Minuten"
+      x_months: 
+        one: "ein Monat"
+        other: "%{count} Monate"
+      x_seconds: 
+        one: "eine Sekunde"
+        other: "%{count} Sekunden"
+    prompts: 
+      day: Tag
+      hour: Stunden
+      minute: Minuten
+      month: Monat
+      second: Sekunden
+      year: Jahr
+  frontend: 
+    cities: 
+      show: 
+        all_locations: "Brunchvergleich %{city_name}"
+        brunch_h1: "Brunchen %{city_name}"
+        brunch_h2: "Brunchen in %{city_name} in %{number_of_locations} Locations"
+        brunch_h3: "Brunchen in %{city_name}"
+        new_location: "Location eintragen"
+        no_locations: "Für %{city_name} haben wir leider noch keine Brunch-Locations."
+    common: 
+      responsive_footer: 
+        advertising_opportunities: Werbemöglichkeiten
+        general_terms_and_conditions: AGB
+        privacy_notice: Datenschutz
+        registration_information: Impressum
+      responsive_navbar: 
+        about_us: "Über uns"
+        general_terms_and_conditions: AGB
+        new_location: "Location eintragen"
+        new_location_suggestion: "Location vorschlagen"
+        registration_information: Impressum
+        privacy_notice: Datenschutz
+    coupon_categories: 
+      index: 
+        coupon_categories: "Alle Gutschein-Kategorien"
+        new_coupons: "Neue Gutscheine aus allen Kategorien"
+      show: 
+        all_category_coupons: "Alle Gutscheine in %{category} - Seite %{page}"
+        no_coupons_available: "In dieser Kategorie sind derzeit keine Gutscheine verfügbar."
+    coupons: 
+      all_coupon_merchants: 
+        headline_h1: "Alle Gutschein-Anbieter von 0-9 und A-Z"
+        headline_h2: "Alle Gutschein-Anbieter von 0-9 und A-Z"
+        headline_h3: "Alle Gutschein-Anbieter von 0-9 und A-Z"
+      all_merchant_coupons: 
+        headline_h1: "Alle Gutscheine von %{merchant_name} - Seite %{page}"
+        headline_h2: "Alle Gutscheine von %{merchant_name} - Seite %{page}"
+        headline_h3: "Alle Gutscheine von %{merchant_name} - Seite %{page}"
+        no_merchant_coupons_available: "Für %{merchant_name} sind derzeit keine Gutscheine verfügbar."
+      index: 
+        coupon_merchants: "Alle Gutschein-Anbieter"
+        show_more_coupons: "Alle Gutschein-Kategorien anzeigen"
+    errors: 
+      show: 
+        error_404: "Seite nicht gefunden"
+        error_500: "Es ist ein Fehler aufgetreten."
+        error_unknown: "Es ist ein Fehler aufgetreten."
+    index: 
+      about_us: 
+        headline: "Über uns"
+      advertising_opportunities: 
+        headline: "Werbemöglichkeiten auf %{domain_name}"
+      ct_city_with_most_locations: 
+        cities_with_most_locations: "Orte mit vielen Locations"
+      ct_facebook_like_box: 
+        facebook_like_box: "%{domain_name} auf Facebook"
+      general_terms_and_conditions: 
+        headline: AGB
+      index: 
+        headline_latest_locations: "Neueste Brunch-Locations"
+        headline_latest_reviews: "Neueste Bewertungen"
+        lastest_coupons: "Neue Gutscheine"
+        show_more_coupons: "Mehr Gutscheine anzeigen"
+      privacy_notice: 
+        headline: Datenschutz
+      registration_information: 
+        headline: Impressum
+        privacy_notice: Datenschutz
+    location_images: 
+      new: 
+        button_image_upload: "Bild hochladen"
+    location_suggestions: 
+      create: 
+        text: "Wir haben Ihren Brunch-Location-Vorschlag erhalten und werden ihn schnellstmöglich bearbeiten.<br /><br />Vielen Dank."
+      new: 
+        button_preview: Vorschau
+        button_save: Abschicken
+        chapter_what_note_text: "Sie vermissen eine Brunch-Location? <br /><br />Dann teilen Sie uns bitte den Namen mit, nennen uns den Ort und weitere wichtige Informationen zur Location und wir versuchen sie in unsere Datenbank aufzunehmen."
+        headline: "Eine Neue Brunch-Location Vorschlagen"
+        note: Hinweis
+    locations: 
+      confirm: 
+        error: "Entschuldigung, da ist etwas schief gegangen. Wir konnten die zu bestätigende Brunch-Location nicht finden.<br /><br />Das Team von %{domain_name} wurde über den Fehler informiert."
+        text: "Die neue Brunch-Location '%{name}' wurde erfolgreich freigeschaltet.<br /><br />Vielen Dank für Ihre Unterstützung.<br /><br />Hier geht's zum neuen Eintrag: %{link}"
+      create: 
+        text: "Die Brunch-Location wurde gespeichert.<br /><br />Wir haben eine E-Mail an die von Ihnen angegebene Adresse geschickt.<br />Folgen Sie bitte dem Link in dieser E-Mail, um die neue Location freizuschalten.<br /><br />Vielen Dank."
+      new: 
+        button_preview: Vorschau
+        button_save: Abschicken
+        chapter_about_you: "Wer trägt diese Location ein?"
+        chapter_about_you_note_text: "Wir müssen wissen, wer Sie sind, um diesen Service vor Spam und rechtwidrigen Inhalten zu schützen. Diese Daten werden von uns nicht an Dritte weitergegeben und nur zur Freischaltung der neuen Brunch-Location verwendet. Sie erhalten dazu eine E-Mail, der garantiert keine weiteren folgen."
+        chapter_ready: Fertig
+        chapter_what: "Infos zur Brunch-Location"
+        chapter_what_note_text: "Was sollten Brunch-Interessenten zu dieser Location wissen? Wieviel kostet das Brunchen? Zu welchen Zeiten kann man Brunchen? Welcher zusätzliche Service wird geboten?"
+        chapter_where: "Wo ist die Brunch-Location?"
+        chapter_where_note_text: "Geben Sie eine PLZ ein und wählen Sie einen der geladenen Orte aus. Geben Sie anschließend die Straße ein. (diese Angaben werden zur Geocodierung der neuen Brunch-Location genutzt)."
+        headline: "Neue Brunch-Location Eintragen"
+        note: Hinweis
+      show: 
+        address: Adresse
+        at_the_map: "%{name} auf der Karte"
+        more_locations: "Weitere Brunch-Locations"
+    password_reset_requests: 
+      create: 
+        headline: "Passwort vergessen?"
+      edit: 
+        headline: "Ihr neues Passwort"
+      new: 
+        headline: "Passwort vergessen?"
+      update: 
+        headline: "Passwort geändert!"
+    reviews: 
+      confirm: 
+        error: "Entschuldigung, da ist etwas schief gegangen. Wir konnten die zu bestätigende Bewertung nicht finden.<br /><br />Das Team von %{domain_name} wurde über den Fehler informiert."
+        text: "Die neue Bewertung für '%{name}' wurde erfolgreich freigeschaltet.<br /><br />Vielen Dank für Ihre Unterstützung.<br /><br />Hier geht's zum neuen Eintrag: %{link}"
+      new: 
+        headline: "Neue Bewertung schreiben"
+    searches: 
+      search: 
+        new_location: "Jetzt eine neue Location eintragen ..."
+    states: 
+      show: 
+        brunch_h1: "Brunchen %{state_name} - Orte mit %{start_char}"
+        brunch_h2: "Brunchen in %{state_name} in %{number_of_locations} Locations - %{current_number_of_locations} %{location} in Orten mit %{start_char}"
+        brunch_h3: "Brunchen %{state_name} - Orte mit %{start_char}"
+        number_of_locations_for_char: "%{number_of_locations} Brunch-Locations"
+  mobile:
+    index: 
+      general_terms_and_conditions: 
+        headline: AGB
+      privacy_notice: 
+        headline: Datenschutz
+      registration_information: 
+        headline: Impressum
+        privacy_notice: Datenschutz
+    locations:
+      show:
+        address: 'Adresse'
+  layouts: 
+    mobile: 
+      standard: 
+        general_terms_and_conditions: AGB
+        new_location_suggestion: "Location vorschlagen"
+        privacy_notice: Datenschutz
+        registration_information: Impressum
+  i18n:
+    transliterate: 
+      rule:
+        ä: ae
+        Ä: Ae
+        ö: oe
+        Ö: Oe
+        ü: ue
+        Ü: Ue
+        ß: ss
+  mailers: 
+    admin_mailer: 
+      report_error: 
+        subject: "Fehler auf %{domain_name}"
+      report_search_queries:
+        subject: "Gesuchte Wörter und Phrasen auf %{domain_name}"
+    frontend: 
+      frontend_user_mailer: 
+        confirmation_code: 
+          subject: "Ihre Anmeldung bei %{domain_name}"
+        confirmation_reminder: 
+          subject: "%{number}. Erinnerung - Ihre Anmeldung bei %{domain_name}"
+        email_confirmation_code: 
+          subject: "Änderung Ihrer E-Mail-Adresse bei %{domain_name}"
+        password_reset_instructions: 
+          subject: "Ihr neues Passwort für %{domain_name}"
+      location_mailer: 
+        confirm_location: 
+          subject: "Ihr Brunch-Location-Eintrag auf %{domain_name}"
+        confirm_location_image: 
+          subject: "Ihr Bild-Upload auf %{domain_name}"
+        report_changes: 
+          subject: "Brunch-Location-Änderung gemeldet"
+      location_suggestion_mailer: 
+        location_suggestion: 
+          subject: Brunch-Location-Vorschlag
+      review_mailer: 
+        confirmation_code: 
+          subject: "Bewertung für %{item_name} bestätigen"
+        confirmation_reminder: 
+          subject: "Erinnerung zur Bestätigung Ihrer Bewertung für %{item_name}"
+  number: 
+    currency: 
+      format: 
+        delimiter: "."
+        format: "%n %u"
+        iso_code: EUR
+        precision: 2
+        separator: ","
+        unit: €
+    format: 
+      delimiter: "."
+      precision: 2
+      separator: ","
+    human: 
+      format: 
+        delimiter: ""
+        precision: 1
+      storage_units: 
+        format: "%n %u"
+        units: 
+          byte: 
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage: 
+      format: 
+        delimiter: ""
+    precision: 
+      format: 
+        delimiter: ""
+  page_header_tags: 
+    defaults: 
+      frontend: 
+        logged_in: 
+          description: "Preisvergleich, Testberichte und Verbrauchermeinungen zu über 1 Mio Produkten und Dienstleistungen finden Sie bei %{domain_name} - dem Verbraucherportal."
+          keywords: "Preisvergleich, Shopping, Test, Testberichte, Erfahrungsberichte, Verbrauchermeinungen, Preise, kaufen, Computer, Hardware, PC, Software, Elektronik, TV, Handy, Digitalkameras, Bücher, CD, DVD, Filme, Musik, Yopi"
+          title: Community
+        logged_out: 
+          description: "Preisvergleich, Testberichte und Verbrauchermeinungen zu über 1 Mio Produkten und Dienstleistungen finden Sie bei %{domain_name} - dem Verbraucherportal."
+          keywords: "Preisvergleich, Shopping, Test, Testberichte, Erfahrungsberichte, Verbrauchermeinungen, Preise, kaufen, Computer, Hardware, PC, Software, Elektronik, TV, Handy, Digitalkameras, Bücher, CD, DVD, Filme, Musik, Yopi"
+          title: "%{domain_name} - Alles über Produkte und Angebote mit Tests und Bewertungen"
+      mobile: 
+        logged_in: 
+          description: "Preisvergleich, Testberichte und Verbrauchermeinungen zu über 1 Mio Produkten und Dienstleistungen finden Sie bei %{domain_name} - dem Verbraucherportal."
+          keywords: "Preisvergleich, Shopping, Test, Testberichte, Erfahrungsberichte, Verbrauchermeinungen, Preise, kaufen, Computer, Hardware, PC, Software, Elektronik, TV, Handy, Digitalkameras, Bücher, CD, DVD, Filme, Musik, Yopi"
+          title: Community
+        logged_out: 
+          description: "Preisvergleich, Testberichte und Verbrauchermeinungen zu über 1 Mio Produkten und Dienstleistungen finden Sie bei %{domain_name} - dem Verbraucherportal."
+          keywords: "Preisvergleich, Shopping, Test, Testberichte, Erfahrungsberichte, Verbrauchermeinungen, Preise, kaufen, Computer, Hardware, PC, Software, Elektronik, TV, Handy, Digitalkameras, Bücher, CD, DVD, Filme, Musik, Yopi"
+          title: "%{domain_name} - Alles über Produkte und Angebote mit Tests und Bewertungen"
+    states: 
+      title_addition: "Orte mit %{start_char}"
+  shared: 
+    advertisement: Anzeige
+    all: Alle
+    asterisk_note: "Erforderliche Felder sind mit einem Sternchen %{image} gekennzeichnet."
+    breadcrumb: 
+      controller: 
+        cities: 
+          compare_prices: Brunch-Location-Vergleich
+          show: Brunch-Locations
+        index: 
+          about_us: "Über uns"
+          advertising_opportunities: Werbemöglichkeiten
+          general_terms_and_conditions: AGB
+          privacy_notice: Datenschutz
+          registration_information: Impressum
+        location_images: 
+          confirm: "Neu hochgeladenes Bild bestätigen"
+          create: "Neues Bild hochladen"
+          new: "Neues Bild hochladen"
+        location_suggestions: 
+          new: "Neue Brunch Location verschlagen"
+        locations: 
+          confirm: "Location Confirmation"
+          create: "Neue Brunch Location eintragen"
+          new: "Neue Brunch Location eintragen"
+        reviews: 
+          new: "Neue Bewertung schreiben"
+        searches: 
+          search: Suche
+        states: 
+          show: Orte
+      controllers: 
+        errors: Fehler
+    captcha: 
+      description: "Bitte geben Sie die Zeichen aus dem Bild ein. Das stellt sicher, dass diese Eingabe von einem Mensch gemacht wird."
+      error: "Der eingegebene Code ist falsch."
+      label: Sicherheitscode
+      reload: "neuen Code anfordern"
+    close: 
+      text_message: Schließen
+    countries: 
+      austria: Österreich
+      belgium: Belgien
+      denmark: Dänemark
+      france: Frankreich
+      germany: Deutschland
+      hong_kong: "Hong Kong"
+      ireland: Irland
+      liechtenstein: Liechtenstein
+      netherlands: Niederlande
+      norway: Norwgen
+      poland: Polen
+      portugal: Portugal
+      spain: Spanien
+      switzerland: Schweiz
+      united_kingdom: England
+    coupons: 
+      by: bei
+      coupon_not_found: "Der gewünschte Gutschein ist nicht mehr verfügbar."
+      kind: 
+        competition: Gewinnspiel
+        discount: Rabatt
+        gratis: "Gratis oder Produktprobe"
+        offer: Angebot
+      only_valid_for: "nur noch %{remaining_days} gültig!"
+      remaining_days: 
+        one: "1 Tag"
+        other: "%{count} Tage"
+        zero: heute
+      valid_for: "noch %{remaining_days} gültig!"
+    for: für
+    frontend_user: 
+      image: 
+        exemplary: "Abbildung beispielhaft"
+      small_notes: 
+        email: "(nicht öffentlich sichtbar)"
+        name: "(öffentlich sichtbar)"
+    general_terms_and_conditions_confirmation: "Ja, ich habe die %{link} gelesen."
+    geokit: 
+      current_unit: km
+      default_units: kms
+    location: 
+      report_changes: 
+        changes_received: "Vielen Dank, wir haben die Änderungen erhalten und werden sie umgehend bearbeiten.<br />Das Team von %{domain_name}"
+    location_image: 
+      confirmed:
+        message: "Ihr Bild-Upload wurde bestätigt.<br /><br />Um Missbrauch zu vermeiden wird das Team von %{domain_name} dennoch alle hochgeladen Bilder prüfen.<br /><br />Vielen Dank<br />Das Team von %{domain_name}"
+      created: 
+        message: "Ihr Bild wurde gespeichert und ist sofort sichtbar.<br /><br />Wir haben eine E-Mail an die von Ihnen angegebene Adresse geschickt.<br />Folgen Sie bitte dem Link in dieser E-Mail, um Ihr Bild freizuschalten und zu bestätigen. Ohne Bestätigung werden wir das Bild nach ca. %{unpublished_valid_for} Stunden wieder entfernen.<br /><br />Um Missbrauch zu vermeiden wird das Team von %{domain_name} alle hochgeladen Bilder prüfen. Sie können jetzt ein weiters Bild hochladen."
+      deleted:
+        message: "Das Bild wurde gelöscht.<br /><br />Vielen Dank für Ihre Hilfe<br />Das Team von %{domain_name}"
+      submit: 
+        publish: Hochladen
+    login_required: "Sie müssen angemeldet sein, um diese Seite sehen zu können."
+    logout_required: "Sie müssen abgemeldet sein, um diese Seite sehen zu können."
+    na: "&nbsp;"
+    new_review: 
+      created: 
+        logged_out: "Wir haben eine E-Mail an die von Ihnen angegebene Adresse geschickt.<br />Folgen Sie bitte dem Link in dieser E-Mail, um Ihre Bewertung freizuschalten.<br /><br />Vielen Dank."
+        message: "Ihre Bewertung wurde gespeichert."
+      please_select: "Bitte auswählen"
+      submit: 
+        publish: Veröffentlichen
+      value: Gesamtbewertung
+    ? "no"
+    : "No"
+    page: Seite
+    pagination: 
+      entries: 
+        one: "Ein Treffer"
+        other: "Alle %{count} Treffer"
+        zero: "Kein Treffer"
+      next_label: Weiter
+      previous_label: Zurück
+    password_strength: 
+      bad: niedrig
+      good: gut
+      medium: mittel
+      passwort_and_confirmation_not_equal: "Die Kennwortbestätigung muss mit dem Kennwort übereinstimmen."
+      very_good: "sehr gut"
+    price: 
+      changes_possible: "Die zwischenzeitliche Änderung der Preise ist möglich. Alle Angaben erfolgen ohne Gewähr."
+    read_less_text: verbergen
+    read_more_text: weiterlesen
+    routes: 
+      about_us: ueber-uns
+      advertising_opportunities: werbemoeglichkeiten
+      compare_prices_in_city: brunchvergleich
+      coupon: gutschein
+      coupon_categories: alle-gutschein-kategorien
+      coupon_category: gutschein-kategorie
+      coupons: gutscheine
+      general_terms_and_conditions: agb
+      new_captcha: neues-captcha
+      new_location: neue-brunch-location-eintragen
+      new_location_suggestion: neue-brunch-location-vorschlagen
+      privacy_notice: datenschutz
+      registration_information: impressum
+      rewrite_prefix_city: brunchen
+    salutations: 
+      - Frau
+      - Herr
+    saved_successfully: "Erfolgreich gespeichert."
+    search: 
+      cities: "Gefundene Orte (%{number})"
+      did_you_mean: "Meinten Sie"
+      headline: Suche
+      locations: "Gefundene Brunch-Locations (%{number})"
+      button_text: Suchen
+      field_default_value: "Name, Ort, PLZ"
+      no_search_phrase_error: "Bitte geben Sie einen Suchbegriff ein."
+      no_result: "Ihre Suche nach <span class=\"search-string\">\"%{search_string}\"</span> brachte leider keinen Treffer."
+      no_search_string: "Ups, ohne Suchbegriff können wir leider nichts finden."
+      no_search_string_options: "Sie können unsere Datenbank nach folgenden Dingen durchsuchen."
+      no_search_string_try_again: "Probieren Sie es einfach noch einmal."
+      result_for: "Ihre Suche nach <span class=\"search-string\">\"%{search_string}\"</span> ergab %{number} Treffer."
+      reporter:
+        no_searches: "Es wurden keine Suchen ausgeführt."
+    stars: 
+      ? "no"
+      : "Keine Bewertung für %{destination_name} vorhanden"
+      out_of_stars_1: "%{count} von %{total} Sterne"
+      out_of_stars_2: "%{count} von %{total} Sternen"
+    the_service_team_of: "Das Service Team von %{domain_name}"
+    the_team_of: "Das Team von %{domain_name}"
+    where_i_am: "Wo bin ich?"
+    wizardly: 
+      button_back: Zurück
+      button_cancel: Abbrechen
+      button_finish: Abschicken
+      button_next: Weiter
+    ? "yes"
+    : "Yes"
+  time: 
+    am: vormittags
+    formats: 
+      date: "%d.%m.%Y"
+      default: "%A, %d. %B %Y, %H:%M Uhr"
+      latest_reviews: "%d.%m.%Y, %H:%M:%S Uhr"
+      log_file: "%d.%m.%Y, %H:%M:%S Uhr"
+      long: "%A, %d. %B %Y, %H:%M Uhr"
+      short: "%d. %B, %H:%M Uhr"
+      time: "%H:%M"
+    pm: nachmittags

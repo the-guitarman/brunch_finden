@@ -1,0 +1,202 @@
+<%
+  if Rails.env.production?
+    @info_email = image_tag('info_email.png', {:class => 'info-email'})
+  end
+-%>
+<p>
+  <strong>1. Geltung der AGB</strong><br />
+  <br />
+  Die nachfolgenden Nutzungsbedingungen gelten in der jeweils aktuellen Fassung
+  für die gesamte Benutzung unserer Seiten. Allgemeine Geschäftsbedingungen unserer
+  Nutzer werden nicht anerkannt.
+</p>
+
+<p>
+  <strong>2. Leistungsumfang</strong><br />
+  <br />
+  <%= @host_name -%> bietet seinen Nutzern Informationen zu Brunch-Locations.
+  Nutzer können Locations bewerten, Kommentare schreiben und neue Locations eintragen. 
+  Das Eintragen von neuen Locations geschieht freiwillig und wird nicht vergütet.
+</p>
+
+<p>
+  <strong>3. Datenschutz, Werbung per E-Mail</strong><br />
+  <br />
+  Ihr Vertrauen ist uns wichtig. Alle Informationen, die <%= @host_name -%> bei 
+  Erbringung der Dienstleistung über die Nutzer sammelt,
+  werden von <%= @host_name -%> mit äußerster Sorgfalt behandelt. <br />
+  <br />
+  Das Eintragen von neuen Brunch-Locations erfordert nutzerbezogene Daten (Name und E-Mail).
+  Zum Zwecke der Freischaltung erhält der Nutzer eine E-Mail mit einem Freischalt-Link.
+  Erst nach der Bestätigung dieses Links wird die neue Location veröffentlicht.
+  Der Nutzer erhält anschließend keine weitere E-Mail.<br />
+  <br />
+  <%= @host_name -%> wird keine E-Mails an nicht registrierte Nutzer verschicken, außer, 
+  sie haben der Zusendung zugestimmt oder sich aktiv für den Newsletter eingetragen.
+  Die Zustimmung kann widerrufen werden.<br />
+</p>
+
+<p>
+  <strong>4. Inhalte und Nutzungsrechte</strong><br />
+  <br />
+  Sie erklären sich damit einverstanden, dass alle von Ihnen verfassten Inhalte
+  (Meinungen, Bewertungen, Kommentare, Texte, Bilder, und sonstigen Inhalte) 
+  in der alleinigen Verantwortung der Person(-en) oder Institutionen stehen,
+  die diese Inhalte zur Wiedergabe auf <%= @host_name -%> übertragen haben.
+
+  Als Voraussetzung für die Übertragung von Inhalten an <%= @host_name -%> garantieren Sie, dass
+  <ul>
+    <li>
+      Sie der Inhaber aller Rechte an den übertragenen Inhalten sind oder
+      die zur Übertragung und Wiedergabe der Inhalte auf <%= @host_name -%>
+      erforderlichen Rechte des Inhabers erworben haben,
+    </li>
+    <li>
+      die Nutzung solcher Inhalte durch <%= @host_name -%> keine Verletzung
+      der Urheberrechte oder sonstiger Rechte Dritter darstellt.
+    </li>
+  </ul>
+
+  Als Voraussetzung für die Übertragung von Inhalten an <%= @host_name -%>
+  übertragen Sie (oder garantieren die Gewährung durch den Besitzer der Inhalte)
+  das uneingeschränkte und zeitlich nicht begrenzte Nutzungsrecht für diese Inhalte
+  an <%= @host_name -%>. Das betrifft u.a. alle Rechte zur Veröffentlichung,
+  Veränderung, Vervielfältigung, Verteilung, Übersendung, öffentlichen Wiedergabe,
+  Weiterentwicklung, Verkauf oder sonstigen Nutzung der übertragenen Inhalte
+  ohne jeglichen Anspruch auf Vergütung durch Sie oder Dritte.
+  Sie erklären sich auch damit einverstanden, dass <%= @host_name -%> das uneingeschränkte Recht
+  (aber in keiner Weise eine Verpflichtung) dazu hat,
+  übertragene Inhalte ganz oder in Teilen zu prüfen, zu editieren, zurückzuweisen,
+  oder von der Wiedergabe auszuschließen.
+</p>
+
+<p>
+  <strong>5. Bedingungen zur Veröffentlichung von Brunch-Location-Bildern</strong><br />
+  <br />
+  Mit der Veröffentlichung (durch Hochladen oder Verlinkung aus anderen Portalen)
+  von eigenen Brunch-Location-Bildern (im Folgenden Bilder) erklären Sie,
+  dass Sie alle notwendigen Rechte zur Veröffentlichung des entsprechenden Bildes besitzen.
+  Insbesondere garantieren Sie, dass durch die Veröffentlichung auf <%= @host_name -%>
+  keinerlei Urheberrechte, Patent- und Markenrechte, Copyrights oder sonstige Rechte Dritter
+  verletzt werden. Sie gewähren <%= @host_name -%> das zeitlich unbegrenzte,
+  nicht widerrufliche Recht zur Speicherung, Weiterverarbeitung, Veröffentlichung,
+  Vermarktung und uneingeschränkten Nutzung für dieses Bild.
+  Weiterhin garantieren Sie, dass von Ihnen hochgeladene oder verknüpfte Inhalte nicht
+  gegen geltendes Recht verstoßen, keine Persönlichkeitsrechte Dritter verletzen und
+  nicht gegen die guten Sitten und den guten Geschmack verstoßen.
+  Insbesondere erklären Sie, dass das Bild frei von Darstellungen rechtsradikaler,
+  pornografischer, verfassungsfeindlicher oder jugendgefährdender Inhalte ist.
+</p>
+
+<p>
+  <strong>6. Nutzerverhalten</strong><br />
+  <br />
+  Der Nutzer erklärt, dass er keinen der von <%= @host_name -%> angebotenen Dienste
+  für pornographische oder sittenwidrige Zwecke nutzen wird.
+  Der Gebrauch der von <%= @host_name -%> angebotenen Dienste zur Veröffentlichung
+  oder sonstigen Verbreitung von Material mit pornographischem, strafbarem,
+  verleumderischem oder sonstigem verbotenen Inhalt ist untersagt.
+  Ebenso untersagt ist die Verbreitung von Material verfassungsfeindlicher,
+  extremistischer und/oder verbotener Gruppierungen.
+  <%= @host_name -%> behält sich bei Missachtung der Geschäftsbedingungen
+  durch den Nutzer oder Dritte, die mit seinem Einverständnis Dienste von <%= @host_name -%> nutzen,
+  die Geltendmachung von Schadensersatzansprüchen vor.
+
+  Der Nutzer verpflichtet sich, keine Inhalte an <%= @host_name -%> zu übertragen,
+  die Software, Anwendungen, Programme, Viren, Würmer, Trojaner oder vergleichbares enthalten,
+  die die Funktion der Hardware und Software von <%= @host_name -%>
+  beeinträchtigt oder beschädigt. Weiterhin verpflichtet sich der Nutzer
+  bei der Eintragung von neuen Brunch-Locations, deren Bewertung oder Kommentierung
+  keine falschen oder missverständlichen Angaben zu machen oder
+  dies unter Vorgabe einer falschen Identität zu tun, keine Legenden oder
+  sonstigen Quellenangaben von Inhalten, die er <%= @host_name -%> zur Wiedergabe überträgt,
+  zu fälschen oder zu löschen, andere nicht zu verleumden oder in irgendeiner Weise zu belästigen und
+  an den von <%= @host_name -%> angebotenen Diensten nicht gegen Gesetze oder
+  sonstige Regulierungen zu verstoßen.
+</p>
+
+<p>
+  <strong>7. Freistellung</strong><br />
+  <br />
+  Der Nutzer stellt <%= @host_name -%> von allen Ansprüchen Dritter frei,
+  die diese gegen <%= @host_name -%> wegen der Verletzung ihrer Rechte,
+  insbesondere von Urheber- oder sonstigen Schutzrechten,
+  aufgrund der von dem Nutzer übermittelten Inhalte geltend machen.
+  Das Gleiche gilt für aufgrund der vom Nutzer übermittelten Inhalte
+  gegen <%= @host_name -%> geltend gemachte wettbewerbsrechtliche Ansprüche.
+  Die Verteidigung gegen vorgenannte Ansprüche bleibt <%= @host_name -%> vorbehalten.
+  Der Nutzer erstattet <%= @host_name -%> die aufgrund der rechtsverletzenden Inhalte
+  des Nutzers entstehenden Kosten der Rechtsverfolgung.
+  Er wird <%= @host_name -%> nach Kräften bei der Begegnung sämtlicher
+  auf seinen Inhalten beruhender Ansprüche Dritter unterstützen und
+  <%= @host_name -%> insbesondere alle zur Verteidigung von <%= @host_name -%>
+  erforderlichen Dokumente übergeben.
+</p>
+
+<p>
+  <strong>8. Vervielfältigung</strong><br />
+  <br />
+  Die Vervielfältigung - auch auszugsweise - insbesondere für kommerzielle Werbung oder
+  Nutzung bedürfen der vorherigen schriftlichen Genehmigung seitens <%= @host_name -%>.
+  Erlaubt ist die Anfertigung von Kopien von Meinungen, Bewertungen, Kommentaren,
+  Texten, Bildern und sonstigen Inhalten als Speicherung oder Druck ausschließlich
+  zur persönlichen, nicht-gewerblichen Nutzung unter der Voraussetzung,
+  dass Legenden oder sonstige Quellenangaben nicht gefälscht oder gelöscht werden.
+  Jede weitere Vervielfältigung, Verteilung oder Veröffentlichung von Inhalten ohne
+  die vorherige schriftliche Genehmigung von <%= @host_name -%> ist untersagt.
+  Die Genehmigung zur Vervielfältigung kann erbeten werden unter <%= @info_email -%>.
+</p>
+
+<p>
+  <strong>9. Gewährleistungsausschluss</strong><br />
+  <br />
+  <%= @host_name -%> übernimmt keinerlei Gewähr für die Aktualität, Korrektheit,
+  Vollständigkeit oder Qualität der bereitgestellten Informationen. Der Nutzer
+  erklärt sich damit einverstanden, dass er die auf <%= @host_name -%> enthaltenen
+  Inhalte auf eigenes Risiko benutzt, sich auf eigenes Risiko auf diese Inhalte verlässt und
+  keine Gewährleistungsansprüche gegen <%= @host_name -%> wegen dieser Inhalte
+  geltend machen wird.
+</p>
+
+<p>
+  <strong>10. Haftungsbeschränkung</strong><br />
+  <br />
+  Haftungsansprüche gegen <%= @host_name -%>, die durch die Nutzung oder
+  Nichtnutzung der dargebotenen Informationen bzw. durch die Nutzung fehlerhafter und
+  unvollständiger Informationen verursacht wurden, sind grundsätzlich ausgeschlossen,
+  sofern seitens <%= @host_name -%> kein nachweislich vorsätzliches oder grob fahrlässiges
+  Verschulden vorliegt. <%= @host_name -%> haftet nicht für technische Störungen,
+  die ihre Ursache nicht im Verantwortungsbereich von <%= @host_name -%> haben,
+  ferner nicht für Schäden, die auf höherer Gewalt beruhen. Alle Angebote sind freibleibend und
+  unverbindlich. <%= @host_name -%> behält sich das Recht vor,
+  Teile der Seiten oder das gesamte Angebot ohne gesonderte Ankündigung zu verändern,
+  zu ergänzen, zu löschen oder die Veröffentlichung zeitweise oder endgültig einzustellen.
+  Bei Einstellung des Angebotes, besteht seitens <%= @host_name -%> keine Erfüllungspflicht
+  der zugesicherten Leistungen und Vergütungen mehr.
+</p>
+
+<p>
+  <strong>11. Änderungen der Allgemeinen Geschäftsbedingungen</strong><br />
+  <br />
+  <%= @host_name -%> behält sich das Recht vor, die Allgemeinen Geschäftsbedingungen zu ändern.
+</p>
+
+<p>
+  <strong>12. Teilunwirksamkeit</strong><br />
+  <br />
+  Sollte eine Bestimmung dieses Vertrages ungültig sein oder werden,
+  bleiben die übrigen Bestimmungen davon unberührt. Die beanstandete Klausel
+  ist durch eine solche zu ersetzen, die dem wirtschaftlichen Zweck der ursprünglichen
+  möglichst nahe kommt.
+</p>
+
+<p>
+  <strong>13. Rechtswahl und Gerichtsstand</strong><br />
+  <br />
+  Erfüllungsort für alle Leistungen ist Chemnitz.<br />
+  Ist der Kunde Kaufmann, gilt als Gerichtsstand Chemnitz.
+</p>
+
+<p>
+  Stand 01/2011
+</p>

@@ -1,0 +1,31 @@
+#!/usr/bin/ruby
+
+$base_repo="svn://192.168.100.25/r_evolution/base/trunk/"
+
+get_string=`svn propget svn:externals`
+get_hash={}
+get=get_string.split "\n"
+get.each do |line|
+  s=line.split
+  get_hash[s[0]]=s[1]
+end
+
+def add(get_hash,new_dir)
+  get_hash[new_dir]=$base_repo+new_dir
+  set_string=""
+  get_hash.each_pair{ |k,v| set_string<<"#{k} #{v}\n"}
+  set=`svn propset svn:externals "#{set_string}" .`
+  print set;print "\n\n"
+  `rm -rfI #{new_dir}`
+end
+
+cmd=ARGV[0] || ""
+dir=ARGV[1] if ARGV[1]
+
+case cmd
+when "show": print get_string.sort
+when "add": add get_hash,dir
+else print "\nusage (show |set dir)\n\n" 
+end
+
+

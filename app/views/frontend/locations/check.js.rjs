@@ -1,0 +1,8 @@
+unless @attribute.blank?
+  page << remove_error_message_from(@attribute)
+  unless @result.blank?
+    page << append_error_message_to(@attribute, text_message_error(@result), {:append => true})
+  else
+    page << add_check_mark_to(@attribute)
+  end
+end

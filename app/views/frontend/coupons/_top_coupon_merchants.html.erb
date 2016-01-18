@@ -1,0 +1,15 @@
+<% unless top_coupon_merchants.empty? -%>
+  <div class="content-box right last top-coupon-merchants">
+    <h2 class="headline"><%= headline -%></h2>
+    <ul>
+      <% top_coupon_merchants.each_with_index do |merchant, index| -%>
+        <li>
+          <%= coupon_merchant_link(merchant, {:title => "#{merchant.name} (#{merchant.number_of_coupons} #{Coupon.human_name({:count => merchant.number_of_coupons})})"}) -%>
+        </li>
+      <% end -%>
+    </ul>
+    <% if defined?(all_coupon_merchants_url) and not all_coupon_merchants_url.blank? -%>
+      <%= link_to(t_f_a(:index, :coupon_merchants), all_coupon_merchants_url, {:class => 'bg-image more-link'}) -%>
+    <% end -%>
+  </div>
+<% end -%>

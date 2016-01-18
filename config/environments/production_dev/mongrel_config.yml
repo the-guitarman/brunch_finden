@@ -1,0 +1,8 @@
+--- 
+log_file: log/mongrel.log
+address: 127.0.0.1
+port: 3000
+environment: production_dev
+pid_file: tmp/pids/mongrel.pid
+servers: 2
+cwd: /home/gswww/sites/brunch_finden_de/current

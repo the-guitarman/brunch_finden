@@ -1,0 +1,13 @@
+Hi,
+
+please confirm your registration at <%= @domain_name -%>:
+
+<%= frontend_user_confirmation_url({:confirmation_code => @user.perishable_token}) %>
+
+Or visit <%= frontend_user_confirm_now_url %> an type in your confirmation code below:
+
+Confirmation code: <%= @user.perishable_token %>
+
+Thanks!
+
+<%= render :partial => 'mailers/frontend/footer' -%>

@@ -1,0 +1,32 @@
+<div id="report-changes" class="content-box last only">
+  <h4 class="headline">Änderungen zu <%= @location.name -%> melden</h4>
+  <% form_tag(
+       report_location_changes_url(create_rewrite_hash(location.rewrite)),
+       {:id  => 'report-location-changes', :class => 'bf-form', :rel => :nofollow}
+     ) do
+  -%>
+    <ol>  
+      <li class="form-entry">
+        <%= label_tag(:changes, 'Änderungen') -%>
+        <%= text_area_tag(:changes, params[:changes].to_s, {:class => :asterisk}) -%>
+        <% javascript_tag({:defer => 'defer'}) do -%>
+          <%= check_asterisk_field(
+                :changes, 
+                t(:blank, :scope => [:activerecord, :errors, :models, :location, :attributes, :_changes]),
+                true
+              )
+          -%>
+        <% end -%>
+      </li>
+  
+      <%= render({:partial => 'frontend/common/captcha'}) -%>
+    
+      <li class="form-entry submit">
+        <%= submit_tag(:Abschicken, {:class => :primarybutton, :name => nil}) -%>
+      </li>
+    </ol>
+  <% end -%>
+</div>
+<% if request.xhr? -%>
+  <%= javascript_tag("$('#report-location-changes').ajaxifyForm();", {:defer => 'defer'}) -%>
+<% end -%>

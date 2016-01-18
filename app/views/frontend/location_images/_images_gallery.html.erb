@@ -1,0 +1,38 @@
+<div id="gallery" class="ad-gallery">
+  <div class="ad-image-wrapper">
+  </div>
+  <div class="ad-controls">
+  </div>
+  <div class="ad-nav">
+    <div class="ad-thumbs">
+      <ul class="ad-thumb-list">
+        <% images << nil if images.empty? -%>
+        <% images.each_with_index do |image, idx| -%>
+          <li>
+            <% thumb_image = get_location_image_tag(image, {:size => :list, :class => "image#{idx}"}) -%>
+            <%= link_to(thumb_image, get_location_image_path(image, {:size => :location}), {:class => 'fancybox-image'}) -%>
+          </li>
+        <% end -%>
+      </ul>
+    </div>
+  </div>
+</div>
+<% unless request.xhr? -%>
+  <% content_for :jquery_on_ready do -%>
+      jQuery(document).ready(function() {
+          $('.ad-gallery').initImagesGallery(
+              <%= images.compact.length > 1 ? 'true' : 'false' -%>,
+              <%= images.compact.length > 1 ? 'false' : 'true' -%>
+          );
+      });
+  <% end -%>
+<% else -%>
+  <% javascript_tag({:defer => 'defer'}) do -%>
+      jQuery(document).ready(function() {
+          $('.ad-gallery').initImagesGallery(
+              <%= images.compact.length > 1 ? 'true' : 'false' -%>,
+              <%= images.compact.length > 1 ? 'false' : 'true' -%>
+          );
+      });
+  <% end -%>
+<% end -%>

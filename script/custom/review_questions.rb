@@ -1,0 +1,35 @@
+rq1 = ReviewQuestion.create({:text => 'Preis', :answer_type => 'list', :analyzable => true})
+rq1_ra2 = ReviewAnswer.create({:review_question => rq1, :text => 'teuer', :position => 1, :score => 0.2})
+rq1_ra3 = ReviewAnswer.create({:review_question => rq1, :text => 'annehmbar', :position => 2, :score => 0.4})
+rq1_ra4 = ReviewAnswer.create({:review_question => rq1, :text => 'ok', :position => 3, :score => 0.6})
+rq1_ra5 = ReviewAnswer.create({:review_question => rq1, :text => 'günstig', :position => 4, :score => 0.8})
+rq1_ra6 = ReviewAnswer.create({:review_question => rq1, :text => 'super', :position => 5, :score => 1.0})
+
+rq2 = ReviewQuestion.create({:text => 'Geschmack', :answer_type => 'list', :analyzable => true})
+rq2_ra1 = ReviewAnswer.create({:review_question => rq2, :text => 'geht gar nicht', :position => 1, :score => 0.2})
+rq2_ra2 = ReviewAnswer.create({:review_question => rq2, :text => 'geht so', :position => 2, :score => 0.4})
+rq2_ra3 = ReviewAnswer.create({:review_question => rq2, :text => 'ok', :position => 3, :score => 0.6})
+rq2_ra4 = ReviewAnswer.create({:review_question => rq2, :text => 'gut', :position => 4, :score => 0.8})
+rq2_ra5 = ReviewAnswer.create({:review_question => rq2, :text => 'sehr gut', :position => 5, :score => 1.0})
+
+rq3 = ReviewQuestion.create({:text => 'Angebot', :answer_type => 'list', :analyzable => true})
+rq3_ra1 = ReviewAnswer.create({:review_question => rq3, :text => 'wenig Auswahl', :position => 1, :score => 0.2})
+rq3_ra2 = ReviewAnswer.create({:review_question => rq3, :text => 'akzeptabel', :position => 2, :score => 0.4})
+rq3_ra3 = ReviewAnswer.create({:review_question => rq3, :text => 'ok', :position => 3, :score => 0.6})
+rq3_ra5 = ReviewAnswer.create({:review_question => rq3, :text => 'vielfältig', :position => 4, :score => 0.8})
+rq3_ra6 = ReviewAnswer.create({:review_question => rq3, :text => 'große Auswahl', :position => 5, :score => 1.0})
+
+rq4 = ReviewQuestion.create({:text => 'Service', :answer_type => 'list', :analyzable => true})
+rq4_ra1 = ReviewAnswer.create({:review_question => rq4, :text => 'sehr schlecht', :position => 1, :score => 0.2})
+rq4_ra2 = ReviewAnswer.create({:review_question => rq4, :text => 'schlecht', :position => 2, :score => 0.4})
+rq4_ra3 = ReviewAnswer.create({:review_question => rq4, :text => 'ok', :position => 3, :score => 0.6})
+rq4_ra4 = ReviewAnswer.create({:review_question => rq4, :text => 'gut', :position => 4, :score => 0.8})
+rq4_ra6 = ReviewAnswer.create({:review_question => rq4, :text => 'hervorragend', :position => 5, :score => 1.0})
+
+rt = ReviewTemplate.create({:name => 'Location', :destination_type => 0})
+
+rtq1 = ReviewTemplateQuestion.create({:review_template => rt, :review_question => rq1, :priority => 1, :obligation => true})
+rtq2 = ReviewTemplateQuestion.create({:review_template => rt, :review_question => rq2, :priority => 2, :obligation => true})
+rtq3 = ReviewTemplateQuestion.create({:review_template => rt, :review_question => rq3, :priority => 3, :obligation => true})
+rtq4 = ReviewTemplateQuestion.create({:review_template => rt, :review_question => rq4, :priority => 4, :obligation => true})
+

@@ -1,0 +1,24 @@
+<div>
+  <p>
+    Sie haben sich viel Arbeit gemacht? Sagen Sie es doch Ihren Freunden bei Facebook,
+    Twitter oder Google+ und machen Sie Ihren Eintrag noch bekannter.
+  </p>
+  <a class="bg-image share-link facebook facebook-26" href="https://www.facebook.com/sharer/sharer.php?u=<%= URI.encode(url) -%>&t=<%= URI.encode(title) -%>" target="_blank">auf Facebook teilen</a>
+  <a class="bg-image share-link twitter twitter-26" href="https://twitter.com/share?url=<%= URI.encode(url) -%>&text=<%= URI.encode(title) -%>" target="_blank">auf Twitter posten</a>
+  <a class="bg-image share-link google-plus google-plus-26" href="https://plus.google.com/share?url=<%= URI.encode(url) -%>" target="_blank">auf Google+ teilen</a>
+  <% content_for :jquery_on_ready do -%>
+      var shareLink = $('a.share-link');
+      shareLink.removeAttr('target');
+      shareLink.click(function(){
+          var self = $(this);
+          if (self.hasClass('facebook')) {
+              window.open(self.attr('href'), 'Facebook', 'height=500,width=700');
+          } else if (self.hasClass('twitter')) {
+              window.open(self.attr('href'), 'Twitter', 'height=500,width=700');
+          } else if (self.hasClass('google-plus')) {
+              window.open(self.attr('href'), 'Google+', 'height=600,width=800');
+          }
+          return false;
+      });
+  <% end -%>
+</div>

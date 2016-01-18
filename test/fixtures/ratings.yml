@@ -1,0 +1,15 @@
+1:
+  id: 1
+  review_id: 1
+  review_question_id: 1
+  value: 1.0
+2:
+  id: 2
+  review_id: 2
+  review_question_id: 1
+  value: 0.8
+3:
+  id: 3
+  review_id: 3
+  review_question_id: 1
+  value: 1.0

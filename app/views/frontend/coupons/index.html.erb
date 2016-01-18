@@ -1,0 +1,76 @@
+<div id="coupons-page">  
+  <%= render({
+        :partial => 'frontend/coupons/coupon_categories', 
+        :locals => {
+          :headline => 'Top Gutschein-Kategorien',
+          :coupon_categories => @coupon_categories
+        }
+      })
+  -%>
+  
+  <%= render({
+        :partial => 'frontend/coupons/top_coupon_merchants', 
+        :locals => {
+          :headline => 'Top Gutschein-Anbieter',
+          :top_coupon_merchants => @top_coupon_merchants
+        }
+      })
+  -%>
+  
+  <div id="popular-coupons" class="content-box coupons">
+    <h2 class="headline">Beliebte Gutscheine</h2>
+    <%= render({
+          :partial => 'frontend/coupons/coupon', 
+          :collection => @top_coupons,
+          :locals => {
+            :link_to_local => true,
+            :show_description => false#,
+            #:truncate_name => 45
+          }
+        })
+    -%>
+  </div>
+  
+  <div id="latest-coupons" class="content-box coupons right last">
+    <h2 class="headline">Die neuesten Gutscheine</h2>
+    <%= render({
+          :partial => 'frontend/coupons/coupon', 
+          :collection => @latest_coupons,
+          :locals => {
+            :link_to_local => true,
+            :show_description => false#,
+            #:truncate_name => 45
+          }
+        })
+    -%>
+  </div>
+  
+  <div id="gratis-coupons" class="content-box coupons">
+    <h2 class="headline">Gratis/Kostenlos Gutscheine</h2>
+    <%= render({
+          :partial => 'frontend/coupons/coupon', 
+          :collection => @gratis_coupons,
+          :locals => {
+            :link_to_local => true,
+            :show_description => false#,
+            #:truncate_name => 45
+          }
+        })
+    -%>
+  </div>
+  
+  <div id="last-minute-coupons" class="content-box coupons right last">
+    <h2 class="headline">Last Minute Gutscheine</h2>
+    <%= render({
+          :partial => 'frontend/coupons/coupon', 
+          :collection => @last_minute_coupons,
+          :locals => {
+            :link_to_local => true,
+            :show_description => false,
+            :truncate_name => 45#,
+            #:show_remaining_days => true
+          }
+        })
+    -%>
+  </div>
+</div>

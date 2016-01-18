@@ -1,0 +1,37 @@
+<% text = '<strong>Datenschutz-Hinweis:</strong><br />Wenn Sie auf diese Schaltfläche klicken, 
+     werden Verknüpfungen zu einigen Sozialmedien-Netzwerken 
+     (Google, Facebook, Twitter) angeboten. Dadurch kann eine 
+     Datenübermittlung an diese Netzwerke oder Dritte erfolgen. 
+     Erst dadurch wird eine Schaltfläche angezeigt, 
+     die eine Verknüpfung zu diesem Netzwerk ermöglicht. 
+     (siehe Datenschutzerklärung).'
+-%>
+
+<div class="social-plugins">
+  <p id="<%= id = 'google_plus'.to_crc32 -%>" class="cooltip">
+    <%= link_to_remote(
+          css_tooltip('Google +1 Plugin laden', text, :info, 'social-plugin google-plus'),
+          {:url => social_url(id)}
+        ) 
+    -%>
+  </p>
+  <span id="googlePlusOne"></span>
+
+  <p id="<%= id = 'facebook_sidebar'.to_crc32 -%>" class="cooltip">
+    <%= link_to_remote(
+          css_tooltip('Facebook Plugin laden', text, :info, 'social-plugin facebook'),
+          {:url => social_url(id)}
+        ) 
+    -%>
+  </p>
+  
+  <!--
+  <p id="<%= id = 'twitter'.to_crc32 -%>" class="cooltip">
+    <%#= link_to_remote(
+          css_tooltip('Twitter Plugin laden', text, :info, 'social-plugin twitter'),
+          {:url => social_url(id)}
+        ) 
+    -%>
+  </p>
+  -->
+</div>

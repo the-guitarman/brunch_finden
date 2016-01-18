@@ -1,0 +1,20 @@
+Hallo <%=h @user.login -%>,
+
+Sie möchten Ihre E-Mail-Adresse bei <%= @domain_name -%> ändern. Um die Änderung
+zu bestätigen, klicken Sie bitte auf den folgenden Link:
+
+<%= frontend_user_confirm_new_email_url({:confirmation_code => @user.perishable_token}) %>
+
+Der Link funktioniert nicht? Dann kopieren Sie bitte folgenden Link
+in die Adresszeile Ihres Browsers und fügen Sie den Bestätigungscode
+in das betreffende Feld:
+
+<%= frontend_user_confirm_new_email_now_url %>
+Bestätigungscode: <%= @user.perishable_token %>
+
+Herzliche Grüße,
+
+Ihr <%= @domain_name -%> Team
+
+--
+<%= render :partial => 'mailers/frontend/footer' -%>

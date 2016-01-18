@@ -1,0 +1,28 @@
+1:
+  id: 1
+  review_question_id: 1
+  text: "kinderleicht & hilfreich"
+  position: 1
+  score: 1.00
+
+2:
+  id: 2
+  review_question_id: 1
+  text: "einfach & übersichtlich"
+  position: 2
+  score: 0.75
+
+3:
+  id: 3
+  review_question_id: 1
+  text: "verständlich"
+  position: 3
+  score: 0.50
+
+4:
+  id: 4
+  review_question_id: 1
+  text: "recht kompliziert"
+  position: 4
+  score: 0.25
+

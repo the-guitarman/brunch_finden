@@ -1,0 +1,72 @@
+container = '#new-location-image'
+
+# remove all errors and messages from the form fields
+page << remove_messages_below(container)
+
+unless @all_valid
+  # display errors
+  base_errors = []
+  field_errors = {}
+  
+  # collect all error messages
+  @objects_to_validate.each do |object|
+    type = object.class.name.underscore
+    if Rails.version >= '3.0.0'
+      fields = object.errors.keys.uniq
+    else
+      fields = object.errors.map{|k,v| k.to_sym}
+    end
+    [:base, :frontend_user, :frontend_user_id].each do |field|
+      if base = fields.delete(field)
+        base_errors << object.errors[base]
+      end
+    end
+    fields.each do |field|
+      field_errors["##{type}_#{field}"] = object.errors[field]
+    end
+  end
+  
+  # prepend/append the errors
+  base_errors = base_errors.flatten.compact.uniq
+  unless base_errors.empty?
+    page << prepend_message_to(container, infobox_error(base_errors))
+  end
+  field_errors.each do |field, messages|
+    page << append_error_message_to(field, text_message_error(messages), {:append => true})
+  end
+  
+  page << scroll_to_first_error(container)
+  
+  page << "
+    $('#progress .bar.inner').css('width', '0%');
+    $('#progress .value').html('0%');"
+  
+else
+  # success, so ...
+  
+  # ... reset/replace the form and ...
+  page << empty_form_entries(container)
+  page << prepend_message_to(
+            container, 
+            infobox(I18n.t('shared.location_image.created.message', {
+                      :domain_name => @host_name, 
+                      :unpublished_valid_for => LocationImage::UNPUBLISHED_VALID_FOR
+                    }), '', true)
+          )
+  page << "simpleScrollTo('#{container} .infobox');"
+  
+  # ... show the new image
+  images = @location.images.showable
+  page << "
+    window.location.href = '#ad-image-#{(images.count - 1)}';
+    $('#location-images').html('#{escape_javascript(
+      render({
+        :partial => 'frontend/locations/images', 
+        :locals => {:images => images}
+      })
+    )}');"
+  
+  page << "
+    $('#progress .bar.inner').css('width', '100%');
+    $('#progress .value').html('100%');"
+end

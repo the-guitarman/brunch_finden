@@ -1,0 +1,75 @@
+<% field_size = 25 -%>
+
+<ol>
+  <%= render({
+        :partial => 'frontend/reviews/fields_destination_stars',
+        :locals  => {:review => review}
+      })
+  -%>
+  
+  <%= render({
+        :partial => 'frontend/reviews/fields_review_questions',
+        :locals  => {
+          :review_template_questions => review_template_questions,
+          :review_questions => review_questions
+        }
+      }) 
+  -%>
+
+  <%= form_entry(
+        :text_area,
+        f, review, :text, 
+        {:field_size => field_size, :field_class => :asterisk}
+      )
+  -%>
+  <% javascript_tag({:defer => 'defer'}) do -%>
+    <%= check_asterisk_field(
+          :review_text, 
+          t(:blank, :scope => [:activerecord, :errors, :models, :review, :attributes, :text]),
+          true
+        )
+    -%>
+  <% end -%>
+
+    
+
+  <%= render({
+        :partial => 'frontend/common/unknown_author',
+        :locals  => {:field_size => field_size}
+      }) 
+  -%>
+
+
+
+  <% unless logged_in? -%>
+    <%= form_entry(
+          :check_box,
+          f, review, :general_terms_and_conditions, 
+          {
+            :container_class => 'terms-and-conditions',
+            :field_size => field_size, :label_class => :asterisk, 
+            :field_value => params.seek(:location, :general_terms_and_conditions),
+            :check_box_text => t('shared.general_terms_and_conditions_confirmation', {
+              :link => link_to(Review.human_attribute_name(:general_terms_and_conditions), 
+                         general_terms_and_conditions_url,
+                         {:target => '_blank'}
+                       )
+            })
+          }
+        )
+    -%>
+    <% javascript_tag({:defer => 'defer'}) do -%>
+        <%= check_asterisk_field(
+              :review_general_terms_and_conditions, 
+              t(:accepted, :scope => [:activerecord, :errors, :models, :review, :attributes, :general_terms_and_conditions]),
+              true,
+              {:append => true, :events => 'blur change'}
+            ) 
+        -%>
+    <% end -%>
+  <% end -%>
+    
+  <li class="form-entry submit">
+    <%= f.submit(t('shared.new_review.submit.publish'), {:class => 'primarybutton publishbutton', :name => nil}) -%>
+  </li>
+</ol>

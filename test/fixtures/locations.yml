@@ -1,0 +1,26 @@
+1:
+  id: 1
+  zip_code_id: 1
+  frontend_user_id: 1
+  rewrite: sachsen/chemnitz/alex-chemnitz
+  confirmation_code: "jTFmPKsZaMt8FV7TlS2L"
+  name: ALEX Chemnitz
+  description:
+  street: Neumarkt 2
+  email: 'axel-haar@alex-chemnitz.de'
+  phone: '0371 9837433'
+  price: 6.5
+  general_terms_and_conditions_confirmed: true
+2:
+  id: 2
+  zip_code_id: 1
+  frontend_user_id: 2
+  rewrite: sachsen/chemnitz/next-alex-chemnitz
+  confirmation_code: "6XB3Z2TwQHOCk9U2JYfV"
+  name: Next ALEX Chemnitz
+  description:
+  street: Neumarkt 4
+  email: 'axel.schweiss@next-alex-chemnitz.de'
+  phone: '0371 9837433'
+  price: 6.5
+  general_terms_and_conditions_confirmed: true

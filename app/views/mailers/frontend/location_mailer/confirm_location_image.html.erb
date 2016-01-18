@@ -1,0 +1,36 @@
+Hi <%= @frontend_user.name -%>!
+
+Your image upload was sccessfull at <%= @domain_full_name -%>. To publish it please follow the link below and confirm it.
+
+<%= @location_image.location.name -%>
+<%= confirm_frontend_location_image_url({
+      :id => @location_image.id, 
+      :token => @location_image.confirmation_code
+    }+@location_rewrite_hash) 
+%>
+
+Without confirmation, we will delete the image after about <%= LocationImage::UNPUBLISHED_VALID_FOR %> hours. 
+
+You did not upload the image at <%= @domain_name %>? 
+So please delete the image at <%= @domain_name %> with the next link and ignore or delete this email. 
+There will be no more email.
+Delete the image: 
+<%= delete_frontend_location_image_url({
+      :id => @location_image.id, 
+      :token => @location_image.confirmation_code
+    }+@location_rewrite_hash)
+%>
+
+Thank you
+The team of <%= @domain_name %>
+
+<% unless @location_images_unconfirmed.empty? -%>
+More unconfirmed images from you:
+<% @location_images_unconfirmed.each do |li| -%>
+<%= li.location.name %>
+<%= confirm_frontend_location_image_url({
+      :id => li.id, 
+      :token => li.confirmation_code
+    }+create_rewrite_hash(li.location.rewrite)) %>
+<% end -%>
+<% end -%>

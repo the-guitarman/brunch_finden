@@ -1,0 +1,16 @@
+1:
+  id: 1
+  merchant_id: 1
+  number_of_coupons: 1
+  name: sheego
+  logo_url: http://www.coupons4u.de/images/mer_logo_437.jpg
+  description: 
+  updated_at: <%= DateTime.now.yesterday.end_of_day %>
+2:
+  id: 2
+  merchant_id: 2
+  number_of_coupons: 1
+  name: simyo
+  logo_url: http://www.coupons4u.de/images/mer_logo_437.jpg
+  description: 
+  updated_at: <%= DateTime.now.yesterday.end_of_day %>

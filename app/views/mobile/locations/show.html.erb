@@ -1,0 +1,252 @@
+<% 
+  #reviews_count = @location.reviews.showable.count 
+  location_rewrite_hash = create_rewrite_hash(@location.rewrite)
+-%>
+<% content_for :jquery_mobile_on_ready do -%>
+    var ajaxifyPanelHeadingLink = function(collapseCtId, url) {
+        $('a[href="#collapseCt' + collapseCtId + '"]').click(function(){
+            var self = $(this);
+            var parentEl = self.parents('.panel').first();
+            var bodyEl = parentEl.children('.panel-collapse').first();
+            //parentEl.showLoading();
+            bodyEl.html('<%= image_tag("/javascripts/frontend/show_loading/images/loading.gif", {:alt => nil}) -%> Loading ...');
+            $.ajax({
+                url: url, 
+                type: 'GET',
+                success: function(data, status, xhr) {
+                    $(bodyEl).html(data);
+                },
+                complete: function(data, status, xhr) {
+                    //$(parentEl).hideLoading();
+                    self.unbind('click');
+                }
+            });
+            //return false;
+        });
+    };
+<% end -%>
+
+<div class="location">
+  <h1 class="headline">
+    <%= link_to(@location.name, mobile_location_rewrite_url(location_rewrite_hash)) -%>
+  </h1>
+  
+  <div class="row panel-group" id="accordion">
+    <% if @location.price? -%>
+      <%= bs_panel({:with_collapse_ct_id => true}) do
+            result = bs_collapsible_panel_heading('collapseCt', 'accordion') do 
+              "#{bs_single_glyphicon('glyphicon-euro')} #{Location.human_attribute_name(:price)}"
+            end
+            result += bs_collapsible_panel_body('collapseCt', 'panel-collapse collapse', false) do
+              ret = ''
+              if @location.price?
+                ret += number_to_currency(@location.price) + ' ' + price_mark
+                if @location.price_information?
+                  if @location.price?
+                    ret += '<br />'
+                  end
+                  ret += content_tag(:span, @location.price_information + ' ' + price_mark)
+                end
+                if @location.price? or @location.price_information?
+                  ret += '<br /><br />'
+                  ret += price_mark_description
+                end
+              end
+              ret
+            end
+            result
+          end
+      -%>
+    <% end -%>
+    
+    <%= bs_panel({:with_collapse_ct_id => true}) do
+          result = bs_collapsible_panel_heading('collapseCt', 'accordion') do 
+            "#{bs_single_glyphicon('glyphicon-star')} #{AggregatedReview.human_name}"
+          end
+          result += bs_collapsible_panel_body('collapseCt', 'panel-collapse collapse') do
+            ret = aggregated_review_stars(@location, {:show_label => false, :show_raters => false, :split_stars => 2})
+            ret += '<br />'
+            aggregated_review = @location.aggregated_review
+            review_value = aggregated_review ? aggregated_review.value : nil
+            ret += review_stars_title(@location.name, review_value, true)
+            ret
+          end
+        end
+    -%>
+    
+    <% if @location.brunch_time? or @location.opening_hours? -%>
+      <%= bs_panel({:with_collapse_ct_id => true}) do
+            result = bs_collapsible_panel_heading('collapseCt', 'accordion') do 
+              "#{bs_single_glyphicon('glyphicon-time')} Brunch- und Öffnungszeiten"
+            end
+            result += bs_collapsible_panel_body('collapseCt', 'panel-collapse collapse') do
+              ret = "<strong>#{Location.human_attribute_name(:brunch_time)}</strong><br />"
+              if @location.brunch_time?
+                ret += @location.brunch_time
+              else
+                ret += 'keine Angabe'
+              end
+              ret += '<br /><br />'
+              ret += "<strong>#{Location.human_attribute_name(:opening_hours)}</strong><br />"
+              if @location.opening_hours?
+                ret += @location.opening_hours
+              else
+                ret += 'keine Angabe'
+              end
+              ret
+            end
+            result
+          end
+      -%>
+    <% end -%>
+    
+    <% if (images_total = @location.images.showable.count) > 0 -%>
+      <%= bs_panel({:with_collapse_ct_id => true}) do
+            result = bs_collapsible_panel_heading('collapseCt', 'accordion') do 
+              "#{bs_single_glyphicon('glyphicon-time')} #{images_total} #{LocationImage.human_name({:count => images_total})}"
+            end
+            result += bs_collapsible_panel_body('collapseCt', 'panel-collapse collapse') do
+              '<div class="loading">Loading ...</div>'
+            end
+            result
+          end
+      -%>
+      <% content_for :jquery_mobile_on_ready do -%>
+          ajaxifyPanelHeadingLink(<%= @collapse_ct_id -%>, '<%= mobile_location_images_gallery_url({:id => @location.id}) -%>');
+      <% end -%>
+    <% end -%>
+  
+    <%= bs_panel({:with_collapse_ct_id => true}) do
+          result = bs_collapsible_panel_heading('collapseCt', 'accordion') do 
+            "#{bs_single_glyphicon('glyphicon-user')} Kontakt"
+          end
+          result += bs_collapsible_panel_body('collapseCt', 'panel-collapse collapse') do
+            ret = "<strong>#{t('.address')}</strong>:<br />"
+            ret += link_to(@location.name, location_rewrite_url(location_rewrite_hash)) + '<br />'
+            ret += @location.street + '<br />'
+            ret += @location.zip_code.code + ' ' + @location.zip_code.city.name
+            ret += '<br /><br />'
+            if @location.phone?
+              ret += "<strong>#{Location.human_attribute_name(:phone)}</strong>: #{link_to(@location.phone, 'tel:' + @location.phone.gsub(/[^\d]/,''))}<br />"
+            end
+            if @location.fax?
+              ret += "<strong>#{Location.human_attribute_name(:fax)}</strong>: #{link_to(@location.fax, 'fax:' + @location.fax.gsub(/[^\d]/,''))}<br />"
+            end
+            if @location.email?
+              ret += "<strong>#{Location.human_attribute_name(:email)}</strong>: #{mail_to(@location.email, @location.email.gsub('@', '[AT]'), {:encode => :hex})}<br />"
+            end
+            if @location.website?
+              ret += "<strong>#{Location.human_attribute_name(:website)}</strong>: #{link_to(@location.website, @location.website, {:target => :_blank})}<br />"
+            end
+            ret
+          end
+          result
+        end
+    -%>
+    
+    <% if @location.description? or @location.service? -%>
+      <%= bs_panel({:with_collapse_ct_id => true}) do
+            result = bs_collapsible_panel_heading('collapseCt', 'accordion') do 
+              "#{bs_single_glyphicon('glyphicon-info-sign')} Informationen"
+            end
+            result += bs_collapsible_panel_body('collapseCt', 'panel-collapse collapse') do
+              ret = ''
+              if @location.description?
+                ret += "<strong>#{Location.human_attribute_name(:description)}</strong>:"
+                ret += @location.description.gsub("\n", '<br />')
+              end
+              if @location.service?
+                if @location.description?
+                  ret += '<br /><br />'
+                end
+                ret += "<strong>#{Location.human_attribute_name(:service)}</strong>:"
+                ret += @location.service.to_s
+              end
+              ret
+            end
+            result
+          end
+      -%>
+    <% end -%>
+  
+    <% if @location.geo_location -%>
+      <%= bs_panel({:with_collapse_ct_id => true}) do
+            result = bs_collapsible_panel_heading('collapseCt', 'accordion') do 
+              "#{bs_single_glyphicon('glyphicon-map-marker')} Karte"
+            end
+            result += bs_collapsible_panel_body('collapseCt', 'panel-collapse collapse') do
+              
+            end
+            result
+          end
+      -%>
+      <% content_for :jquery_mobile_on_ready do -%>
+          //ajaxifyPanelHeadingLink(<%= @collapse_ct_id -%>, '<%= mobile_location_at_map_url({:id => @location.id}) -%>');
+          $('a[href="#collapseCt<%= @collapse_ct_id -%>"]').click(function(){
+              var self = $(this);
+              var parentEl = self.parents('.panel').first();
+              var bodyEl = parentEl.children('.panel-collapse').children('.panel-body').first();
+              if (bodyEl.html().trim().length <= 0) {
+                  bodyEl.html('<div id="map"></div>');
+                  geoMap(<%= map_marker_data(@location, true).to_json.to_s -%>, {'zoom':14});
+                  $('#map').css('height', (parentEl.width() - 30)+'px').css('width', (parentEl.width() - 30)+'px');
+              }
+              self.unbind('click');
+          });
+      <% end -%>
+      
+      <%= bs_panel({:with_collapse_ct_id => true}) do
+            result = bs_collapsible_panel_heading('collapseCt', 'accordion') do 
+              "#{bs_single_glyphicon('glyphicon-road')} Wegbeschreibung"
+            end
+            result += bs_collapsible_panel_body('collapseCt', 'panel-collapse collapse') do
+              render({:partial => 'shared/directions/location_direction_controls'})
+            end
+            result
+          end
+      -%>
+    <% end -%>
+          
+    <% if @location.geo_location and not @locations_close_to_this.empty? -%>
+      <%= bs_panel({:with_collapse_ct_id => true}) do
+            result = bs_collapsible_panel_heading('collapseCt', 'accordion') do 
+              "#{bs_single_glyphicon('glyphicon-cutlery')} Andere Locations in der Nähe"
+            end
+            result += bs_collapsible_panel_body('collapseCt', 'panel-collapse collapse') do
+              ret = ''
+              @locations_close_to_this.each_with_geodist do |location, distance|
+                  ret += link_to(
+                    location.name + ' ' + content_tag(:span, number_with_precision(distance / 1000) + ' ' + t('shared.geokit.current_unit'), {:class => 'badge'}), 
+                    mobile_location_rewrite_url(create_rewrite_hash(location.rewrite)),
+                    {:class => 'list-group-item'}
+                  )
+              end
+              ret
+            end
+            result
+          end
+      -%>
+    <% end -%>
+  </div>
+  
+  <%= link_to('Desktop Version', location_rewrite_url(create_rewrite_hash(@location.rewrite).merge({:mobile => 'off'})), {:class => 'to-display-version desktop-version', :rel => :nofollow}) -%>
+
+  <% content_for :jquery_mobile_on_ready do -%>
+      $('a.remote-link').click(function(){
+          var self = $(this);
+          var parentEl = self.parents('.panel-body').first();
+          parentEl.showLoading();
+          $.ajax({
+              url: self.attr('href'), 
+              type: 'GET',
+              success: function(data, status, xhr) {
+                  $(parentEl).html(data);
+              },
+              complete: function(data, status, xhr){
+                  $(parentEl).hideLoading();
+              }
+          });
+          return false;
+      }).hide().removeClass('hidden').slideDown('slow');
+  <% end -%>
+</div>

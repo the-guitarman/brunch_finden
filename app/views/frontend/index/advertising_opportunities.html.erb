@@ -1,0 +1,14 @@
+<div class="content-page">
+  <h1 class="headline"><%= t('.headline', {:domain_name => @host_full_name}) -%></h1>
+  <p>
+    <%
+      ao = @advertising_opportunities
+      ao = ao.gsub('__DOMAIN_FULL_NAME__', @host_full_name)
+      #ao = ao.gsub('__LEADERBOARD_728x90__', render(:partial => 'frontend/common/???'))
+      ao = ao.gsub('__BANNER_468x60__', render(:partial => 'frontend/common/ct_advertisement_468x60_banner'))
+      ao = ao.gsub('__INFO_EMAIL__', @info_email)
+      ao = nl2br(ao)
+    %>
+    <%= ao -%>
+  </p>
+</div>

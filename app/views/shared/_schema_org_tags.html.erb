@@ -1,0 +1,7 @@
+<% unless @schema_org_tags.blank? -%>
+  <% @schema_org_tags.each do |property, content| -%>
+    <% unless content.blank? -%>
+      <meta itemprop="<%= property -%>" content="<%= content -%>" />
+    <% end -%>
+  <% end -%>
+<% end -%>

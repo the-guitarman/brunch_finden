@@ -1,0 +1,14 @@
+<% unless reviews.empty? -%>
+There are more unconfirmed reviews from you:
+
+<% reviews.each do |review| -%>
+<%= review_title(review) -%>
+
+<%= confirm_review_url({
+      :id    => review.id, 
+      :token => review.confirmation_code
+    }).html_safe 
+%>
+
+<% end -%>
+<% end -%>

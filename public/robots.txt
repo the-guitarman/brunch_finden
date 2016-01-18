@@ -1,0 +1,40 @@
+
+User-Agent: Yandex
+Crawl-delay: 5
+
+User-Agent: *
+Disallow: /exit/
+Disallow: /javascripts/
+Disallow: /mobile.html
+Disallow: /mobile/
+Disallow: /param/
+Disallow: /stylesheets/
+Disallow: /advertising-opportunities.html
+
+User-Agent: SEOkicks-Robot
+Disallow: /
+
+User-Agent: AhrefsBot
+Disallow: /
+
+User-Agent: Speedy
+Crawl-delay: 20
+
+User-Agent: AdsBot-Google*
+Disallow: 
+
+User-Agent: WebReaper
+Disallow: /
+
+User-Agent: Wget
+Disallow: index.html
+
+User-Agent: Mediapartners-Google*
+Disallow: 
+
+User-Agent: Slurp
+Crawl-delay: 30
+
+User-Agent: suggybot
+Disallow: /
+

@@ -1,0 +1,12 @@
+<% javascript_tag do -%>
+    document.getElementById('<%= node_id -%>').style.display='none';
+    var anzeigeKnoten = document.createElement('g:plusone');
+    anzeigeKnoten.setAttribute('size','standard');
+    anzeigeKnoten.setAttribute('annotation','none');
+    document.getElementById('<%= node_id -%>').appendChild(anzeigeKnoten);
+    var skriptKnoten = document.createElement('script');
+    skriptKnoten.setAttribute('type','text/javascript');
+    skriptKnoten.setAttribute('src','https://apis.google.com/js/plusone.js');
+    document.getElementById('<%= node_id -%>').appendChild(skriptKnoten);
+    document.getElementById('<%= node_id -%>').style.display='inline';
+<% end -%>

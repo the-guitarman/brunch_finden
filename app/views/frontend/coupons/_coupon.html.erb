@@ -1,0 +1,67 @@
+<% 
+  position = coupon_counter + 1 
+  track_fields = {:position => position, :template => template_partial_path}
+  coupon_class = coupon_counter.odd? ? 'odd' : 'even'
+  if @coupons and @coupons.last == coupon
+    coupon_class += ' last'
+  end
+  coupon_merchant = coupon.coupon_merchant
+  description = defined?(show_description) ? show_description : true
+  coupon_name = "#{h(coupon.name)} #{t('shared.coupons.by')} #{h(coupon_merchant.name)}"
+  if defined?(truncate_name)
+    coupon_name = truncate(coupon_name, {:length => truncate_name})
+  end
+-%>
+<div class="row">
+  <div class="coupon <%= coupon_class -%> col-xs-12"<%= schema_org_attributes_string(:product) -%>>
+    <div class="c-image">
+      <div class="c-type"><%= Coupon::TRANSLATIONS[coupon.read_attribute(:kind)] -%></div>
+      <div class="c-name">
+        <% unless defined?(show_logo) or (defined?(show_logo) and show_logo != false) -%>
+          <%= coupon_merchant_link(coupon_merchant, {:title => "#{coupon_merchant.name} (#{coupon_merchant.number_of_coupons} #{Coupon.human_name({:count => coupon_merchant.number_of_coupons})})"}) -%>
+        <% end -%>
+        <% unless defined?(link_to_local) -%>
+          <%= link_to_coupon_exit(coupon_name, coupon, track_fields) -%>
+        <% else -%>
+          <%= link_to(coupon_name, coupon_url({:id => coupon.id}.merge(track_fields)), {:class => 'local', :rel => :nofollow}) -%>
+        <% end -%>
+        <%# TODO: itemprop => image content => url %>
+        <%= content_tag(:span, coupon.name, {:itemprop => 'name', :class => 'meta-data'}) -%>
+        <%= content_tag(:span, coupon_exit_url(coupon, track_fields), {:itemprop => 'url', :class => 'meta-data'}) -%>
+        <% if defined?(show_remaining_days) and not show_remaining_days.blank? -%>
+          <p class="remaining-days"><%= remaining_days(coupon) -%></p>
+        <% end -%>
+      </div>
+    </div>
+    <% if description -%>
+      <div class="c-description">
+        <% if coupon.code? -%>
+          <p><strong><%= Coupon.human_attribute_name(:code) -%>:</strong> <%= coupon.code -%></p>
+        <% end -%>
+        <% if coupon.minimum_order_value? -%>
+          <p><strong><%= Coupon.human_attribute_name(:minimum_order_value) -%>:</strong> <%= number_to_currency(coupon.minimum_order_value) -%></p>
+        <% end -%>
+        <% if coupon.only_new_customer? -%>
+          <p><strong><%= Coupon.human_attribute_name(:only_new_customer) -%></strong></p>
+        <% end -%>
+        <% unless coupon.coupon_categories.empty? %>
+          <p>
+            <strong><%= CouponCategory.human_name -%>:</strong> 
+            <%= coupon.coupon_categories.map{|cc| content_tag(:span, cc.name, {:itemprop => 'category'})}.join(', ') -%>
+          </p>
+        <% end -%>
+        <p>
+          <%= Coupon.human_attribute_name(:valid) -%>: 
+          <strong><%= l(coupon.valid_from.to_date) -%></strong> - 
+          <strong><%= l(coupon.valid_to.to_date) -%></strong>
+          <%= content_tag(:span, coupon.valid_from.iso8601, {:itemprop => 'validFrom', :class => 'meta-data'}) -%>
+          <%= content_tag(:span, coupon.valid_to.iso8601, {:itemprop => 'validThrough', :class => 'meta-data'}) -%>
+        </p>
+        <p>
+          <strong>Hinweis:</strong> <%= content_tag(:span, coupon.hint.sanitize, {:itemprop => 'description'}) -%>
+        </p>
+        <div><%= link_to_coupon_exit('zum Anbieter', coupon, track_fields, {:class => 'primarybutton location'}) -%></div>
+      </div>
+    <% end -%>
+  </div>
+</div>

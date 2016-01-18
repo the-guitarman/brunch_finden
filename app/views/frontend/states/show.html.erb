@@ -1,0 +1,92 @@
+<% 
+  current_start_char = @city_char.start_char.upcase
+  current_url = state_rewrite_url(create_rewrite_hash(@state.rewrite).merge({
+    city_char_parameter => current_start_char
+  }))
+-%>
+<div class="content-box last only">
+  <div id="cities">
+    <h1>
+      <%= link_to(
+            t('.brunch_h1', {:state_name => @state.name, :start_char => current_start_char}), 
+            current_url
+          ) 
+      -%>
+    </h1>
+
+    <h2 class="headline">
+      <%= link_to(
+            t('.brunch_h2', {
+              :state_name => @state.name,
+              :number_of_locations => @state.number_of_locations,
+              :current_number_of_locations => @city_char.number_of_locations,
+              :location => Location.human_name({:count => @city_char.number_of_locations}),
+              :start_char => current_start_char
+            }), current_url
+          )
+      -%>
+    </h2>
+    
+    <div class="first-letters">
+      <%
+         @city_chars.each do |city_char|
+           link_class = city_char.number_of_locations > 0 ? '': 'grey-link'
+           unless city_char == @city_char
+             link_options = {
+               :title => t('.number_of_locations_for_char', {:number_of_locations => city_char.number_of_locations}),
+               :class => link_class
+             }
+      -%>
+          <%= link_to(city_char.start_char.upcase,
+                state_rewrite_url(create_rewrite_hash(@state.rewrite).merge({
+                  city_char_parameter => city_char.start_char.upcase})
+                ),
+                link_options
+              )
+          -%>
+        <% else -%>
+          <span class="current"><%= city_char.start_char.upcase -%></span>
+        <% end -%>
+      <% end -%>
+    </div>
+
+    <div class="cities">
+      <%# add_shown = false -%>
+        <% if @city_char.cities.count > 0 -%>
+          <ul>
+            <% @city_char.cities.find_each({
+                 :batch_size => GLOBAL_CONFIG[:find_each_batch_size],
+                 :conditions => "number_of_locations > 0"
+               }) do |city| -%>
+              <li>
+                <%= link_to(city.name, city_rewrite_url(create_rewrite_hash(city.rewrite))) -%>
+                <span>(<%= city.number_of_locations -%>)</span>
+              </li>
+            <% end -%>
+            <% @city_char.cities.find_each({
+                 :batch_size => GLOBAL_CONFIG[:find_each_batch_size],
+                 :conditions => "number_of_locations = 0"
+               }) do |city| -%>
+              <li>
+                <% link_class = 'grey-link' -%>
+                <%= link_to(city.name, city_rewrite_url(create_rewrite_hash(city.rewrite)), {:class => link_class}) -%>
+                <span class="<%= link_class -%>">(<%= city.number_of_locations -%>)</span>
+              </li>
+            <% end -%>
+          </ul>
+          <!--
+          <%# if index == 0 or index > 0 and add_shown == false -%>
+            <%#= render :partial => 'frontend/common/ct_advertisement_300x250_rectangle' -%>
+            <%# add_shown = true -%>
+          <%# else -%>
+            <br />
+          <%# end -%>
+          -->
+        <% end -%>
+    </div>
+
+    <h3>
+      <%= link_to(t('.brunch_h3', {:state_name => @state.name, :start_char => current_start_char}), current_url) -%>
+    </h3>
+  </div>
+</div>

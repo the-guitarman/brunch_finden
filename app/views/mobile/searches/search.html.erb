@@ -1,0 +1,42 @@
+<div class="page-header">
+  <h1 class="headline"><%= link_to(t('shared.search.headline')) -%></h1>
+</div>
+<div class="row">
+  <% if @search.blank? -%>
+    <%= render :partial => 'shared/searches/ct_search_again_please' -%>
+  <% elsif @search_error -%>
+    Es ist ein Fehler aufgetreten. Das Service Team wurde informiert.
+  <% else -%>
+    <% if @locations and @locations.length > 0 -%>
+      <div class="panel-body">
+        <div>
+          <%= t('shared.search.result_for', {
+                :search_string => params[:search],
+                :number => (@locations.total_entries) # + @cities.total_entries)
+              })
+          -%>
+        </div>
+        <div>
+          <%= t('shared.search.locations', {:number => @locations.total_entries}) -%>
+        </div>
+      </div>
+      <div class="nav list-group locations">
+        <% @locations.each do |location| -%>
+          <% parameters = create_rewrite_hash(location.rewrite) -%>
+          <%= link_to(location.name, mobile_location_rewrite_url(parameters), {:class => 'list-group-item'}) -%>
+        <% end -%>
+      </div>
+    <% else -%>
+      <h2><%= t('shared.search.no_result', {:search_string => params[:search]}) -%></h2>
+      <!--
+      <%# if @cities.suggestion? and not @cities.suggestion.blank? -%>
+        <div>
+          <%#= t('shared.search.did_you_mean') -%>: 
+          <%#= link_to(@cities.suggestion, search_url(:search => @cities.suggestion)) -%>
+        </div>
+      <%# end -%>
+      -->
+      <%= render :partial => 'shared/searches/ct_search_again_please' -%>
+    <% end -%>
+  <% end -%>
+</div>

@@ -1,0 +1,39 @@
+Hi,
+
+you wrote a rating at <%= @domain_full_name %> 
+about <%= @item.name -%> (url: <%= location_rewrite_url(@location_rewrite_hash) -%>).
+
+Please confirm your rating now:
+<%= confirm_review_url({
+      :id    => @review.id, 
+      :token => @review.confirmation_code
+    }).html_safe 
+%>
+
+Your Rating:
+<%
+  if @review_template_questions
+    @review_template_questions.each do |rtq|
+      if rating = @review.ratings.find(:first, {:conditions => {:review_question_id => rtq.review_question_id}})
+        review_answer = ReviewAnswer.find(:first, {:conditions => {:review_question_id => rtq.review_question_id, :score => rating.value}})
+-%>
+<%= rating.review_question.text -%>: <%= review_answer.text %>
+<%
+      end
+    end
+  end
+-%>
+Text: <%= @review.text %>
+
+<%= render({
+      :partial => 'mailers/frontend/review_mailer/more_unconfirmed_reviews', 
+      :locals => {:reviews => @other_unpublished_reviews}
+    })
+%>
+
+Sincerely,
+The <%= @domain_name -%> Service Team
+
+<%#= render :partial => 'mailers/frontend/register_or_login' %>
+
+<%= render :partial => 'mailers/frontend/footer' -%>

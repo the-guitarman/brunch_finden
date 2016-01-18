@@ -1,0 +1,10 @@
+production:
+  encoding: utf8
+  username: webistranosql
+  adapter: mysql
+  wait_timeout: 10
+  database: webistrano
+  pool: 50
+  host: localhost
+  password: web1stran0_sql
+

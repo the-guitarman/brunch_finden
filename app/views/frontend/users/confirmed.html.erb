@@ -1,0 +1,13 @@
+<h1 class="blockhead"><%= t_f_a(:confirm, '.headline', {:domain_name => @host_name}) -%></h1>
+<div>
+  <p><%= t_f_a(:confirm, '.success_message', {:domain_name => @host_name}) -%></p>
+  <% unless logged_in? %>
+    <p><%= t_f_a(:confirm, '.todo_now', {:domain_name => @host_name}) -%></p>
+    <%= render({
+          :partial => 'frontend/user_sessions/new', 
+          :locals => {:headline_off => true}
+        })
+    -%>
+  <% end -%>
+  <p><%= t_f_a(:confirm, '.enjoy_now', {:domain_name => @host_name}) -%></p>
+</div>

@@ -1,0 +1,23 @@
+# INIT
+page << remove_messages_below("#image_upload_login")
+
+# ERROR HANDLING
+unless @current_user_session.errors.empty?
+  @current_user_session.errors.each do |attr|
+    if attr == :base
+      page["#image_upload_login"].prepend("#{infobox_error(@current_user_session.errors[attr])}")
+    else
+      page["#image_upload_login_#{attr.to_s}"].parent.append("#{text_message_error(@current_user_session.errors[attr])}")
+      page["#image_upload_login_#{attr.to_s}"].parent.addClass('error')
+    end
+  end
+end
+
+# SUCCESS HANDLING
+if @current_user_session.errors.empty?
+  page["#image-upload-login"].fadeOut('slow')
+  page["#image-upload-form"].fadeIn('slow')
+  
+  # there's no error, so display communitybar footer
+  #page << show_communitybar_logged_in_small  
+end

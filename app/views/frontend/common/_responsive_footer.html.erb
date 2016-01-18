@@ -1,0 +1,19 @@
+<% cache 'frontend-common-responsive_footer' do -%>
+  <footer class="footer">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">   
+        <ul class="row">
+          <li class="col-xs-12"><%= link_to t('.general_terms_and_conditions'), general_terms_and_conditions_url -%></li>
+          <li class="col-xs-12"><%= link_to t('.privacy_notice'), privacy_notice_url -%></li>
+          <li class="col-xs-12"><%= link_to t('.registration_information'), registration_information_url -%></li>
+          <li class="col-xs-12"><%= link_to t('.advertising_opportunities'), advertising_opportunities_url -%></li>
+        </ul>
+      </div>
+      <div class="col-xs-12 col-sm-6">  
+        <ul class="row">
+          <li class="col-xs-12 copyright">Copyright 2011 - <%= Time.now.year -%> <%= @host_full_name -%></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+<% end -%>

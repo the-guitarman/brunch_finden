@@ -1,0 +1,56 @@
+<div id="new-review">
+  <h3 class="headline"><%= anchor_for(t('.headline'), 'new-review') -%></h3>
+  <div class="action-links">
+    <%= link_to('Hinweise & Regeln', root_url, {:class => 'hidden bg-image review-rules link-icon info', :rel => :nofollow}) -%>
+  </div>
+  <div class="hidden review-rules">
+    <h4>Hinweise & Regeln</h4>
+    <h5>Meinung schreiben</h5>
+    <p>
+      Beschreiben Sie wahrheitsgemäß Ihre persönlichen Erfahrungen und 
+      Erlebnisse beim Besuch einer Brunch-Location in mindestens 
+      <%= Mixins::ReviewCompleteness::MIN_WORDS_FOR_REVIEW -%> Worten. 
+      Wie hat es Ihnen gefallen? Was sind Ihre Eindrücke? Wie sind die 
+      Speisen? Und wie zufrieden sind Sie mit dem Service. 
+      Würden Sie die Location weiterempfehlen? Bedenken Sie, 
+      dass Ihre Ausführungen anderen helfen sollen. 
+    </p>
+    <h5>Was ist zu beachten?</h5>
+    <p>
+      Sie dürfen nicht aus anderen Quellen kopieren. Zitate müssen von Ihnen 
+      gekennzeichnet sein. Aus rechtlichen Gründen nennen Sie keine Echtnamen 
+      von Personen. Abkürzungen, wie z. B. "Frau M.", sind erlaubt, 
+      "Frau Meier" jedoch nicht.
+    </p>
+    <h5>Netiquette beachten</h5>
+    <p>
+      Achten Sie beim Schreiben Ihrer Meinung auf eine faire Beurteilung und 
+      einen Angemessenen Ton. Unsachgemäße Kritik, Beleidigungen und 
+      falsche Aussagen sind zu unterlassen und stellen einen Missbrauch 
+      dieser Plattform dar. Dies gilt auch für Links zu anderen Seiten und 
+      für jegliche Art von Werbung.
+    </p>
+  </div>
+  <% javascript_tag({:defer => 'defer'}) do -%>
+      $('a.review-rules').click(function(){
+          var reviewRules = $('div.review-rules');
+          if (reviewRules.hasClass('hidden')) {
+              reviewRules.hide().removeClass('hidden').slideDown('slow');
+          } else {
+              reviewRules.slideUp('slow', function(){
+                  reviewRules.addClass('hidden');
+              });
+          }
+          return false;
+      }).hide().removeClass('hidden').fadeIn('slow');
+  <% end -%>
+  <%= render({
+        :partial => 'frontend/reviews/new_form', 
+        :locals => {
+          :review => @review,
+          :review_template_questions => @review_template_questions,
+          :review_questions => @review_questions
+        }
+      })
+  -%>
+</div>

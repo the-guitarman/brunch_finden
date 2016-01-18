@@ -1,0 +1,17 @@
+<div id="backend-main-menu">
+  <div id="bd">
+    <% @backend_tool_groups.each do |group| -%>
+      <% if tools = @accessible_backend_tools[group] and not tools.empty? -%>
+        <div class="column">
+          <div class="headline"><%= group.to_s.split('_').map{|w| w.camelize}.join(' ') -%></div>
+          <% tools.each do |tool| -%>
+            <div class="main-tool">
+                <%c="<div class='image-container'>#{image_tag("backend/tools/#{tool.first}.png")}</div>"-%>
+                <%=link_to raw("#{c}<br /><span class='text'>#{tool.first.to_s.split('_').map{|w| w.camelize}.join(' ')}</span>"),:controller=>"/backend/index", :action=>tool.last -%>
+            </div>
+          <% end -%>
+        </div>
+      <% end -%>
+    <% end -%>
+  </div>
+</div>

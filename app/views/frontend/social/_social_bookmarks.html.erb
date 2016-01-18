@@ -1,0 +1,22 @@
+<% if defined?(position) -%>
+  <% if position == :header -%>
+    <div class="addthis_toolbox addthis_default_style addthis_16x16_style breadcrumb-social-links">
+      <%= all_social_links(16) -%>
+      <%= print_and_compact_bookmarks(16) -%>
+      <%#= all_social_bookmarks(16) -%>
+    </div>
+
+  <% elsif position == :footer -%>
+    <div class="addthis_toolbox addthis_default_style addthis_32x32_style" style="float:right">
+      <%= all_social_links(26) -%>
+      <%= print_and_compact_bookmarks(26) -%>
+      <%#= all_social_bookmarks(26) -%>
+    </div>
+
+  <% end -%>
+  <script type="text/javascript">
+    var addthis_config = {"data_track_clickback":true};
+    //var addthis_config = {"data_track_clickback":true,"data_track_addressbar":true};
+  </script>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4dc68dac6169ab52"></script>
+<% end -%>

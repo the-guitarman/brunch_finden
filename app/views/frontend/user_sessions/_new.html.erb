@@ -1,0 +1,6 @@
+<div class="user-authentication textblock">
+  <% unless defined?(headline_off) -%>
+    <h1 class="blockhead">Login</h1>
+  <% end -%>
+  <%= render({:partial => 'frontend/user_sessions/new_form'}) -%>
+</div>

@@ -1,0 +1,43 @@
+<h2>Anbieter:</h2>
+<p>
+  <%#= image_tag('supplier.png') -%>
+  <%= @host_full_name -%><br />
+  Gerd Kretzschmar<br />
+  Schwanauer Str. 58<br />
+  09128 Chemnitz<br />
+</p>
+
+<h2>Kontakt:</h2>
+<p>
+  <%#= image_tag('contact.png') -%>
+  Telefon: +49 177 939 5818<br />
+  E-Mail: <%= mail_to("info@#{@host_name}", "info(at)#{@host_name}", {:encode => :hex}) -%><br />
+  Webseite: http://<%= @host_full_name -%><br />
+  <br />
+  <%#= image_tag('responsible_person.png') -%>
+  Inhaltlich Verantwortlicher gemäß §6 MDStV<br />
+  Gerd Kretzschmar<br />
+</p>
+
+<h2>Haftungshinweis:</h2>
+<p>
+  Trotz sorgfälltiger inhaltlicher Kontrolle übernehmen wir keine Haftung 
+  für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten 
+  sind ausschließlich die Betreiber verantwortlich.
+</p>
+<p>
+  Wir haben wir keinen Einfluss auf die Inhalte verlinkter Seiten, hierfür ist der jeweilige 
+  Dienstanbieter verantwortlich. Sollten rechtswidrige Seiten über die Hyperlinks abrufbar 
+  sein, bitten wir um eine kurze Mitteilung. Wir werden dies dann überprüfen und die Links 
+  ggf. entfernen.
+</p>
+<p>
+  Sollten Inhalt(e) oder Aufmachung dieser Seiten Rechte Dritter oder 
+  gesetzliche Bestimmungen verletzen, senden Sie uns bitte eine 
+  <%= mail_to("info@#{@host_name}", 'Nachricht', {:encode => :hex}) -%> 
+  ohne Kostennote. Wir garantieren, dass zu Recht beanstandete Passagen unverzüglich 
+  entfernt werden, ohne dass von Ihrer Seite die Einschaltung eines Rechtsbeistandes 
+  erforderlich ist. Dennoch von Ihnen ohne vorherige Kontaktaufnahme ausgelöste Kosten 
+  werden wir vollumfänglich zurückweisen und gegebenenfalls Gegenklage wegen Verletzung 
+  vorgenannter Bestimmungen einreichen. 
+</p>

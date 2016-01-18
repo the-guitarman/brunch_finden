@@ -1,0 +1,63 @@
+<li class="unknown-author">
+    <%= form_entry(
+          :text_field,
+          nil, @frontend_user, :email, 
+          {
+            :container_type => :div, 
+            :field_size => field_size, :field_class => :asterisk, 
+            :field_value => params.seek(:frontend_user, :email),
+            :small_note => I18n.t('shared.frontend_user.small_notes.email')
+          }
+        )
+    -%>
+    <% javascript_tag({:defer => 'defer'}) do -%>
+        <%= observe_field(:frontend_user_email,
+              :url    => check_frontend_locations_url,
+              :with   => "'check[frontend_user[email]]='+encodeURIComponent(value);",
+              :before => before_observe_field(
+                  :frontend_user_email, 
+                  t(:blank, :scope => [:activerecord, :errors, :models, :frontend_user, :attributes, :email])
+              ),
+              :complete => complete_observe_field(:frontend_user_email)
+            )
+        -%>
+        <%= check_asterisk_field(
+              :frontend_user_email, 
+              t(:blank, :scope => [:activerecord, :errors, :models, :frontend_user, :attributes, :email])
+            ) 
+        -%>
+    <% end -%>
+
+
+
+
+    <%= form_entry(
+          :text_field,
+          nil, @frontend_user, :name, 
+          {
+            :container_type => :div, 
+            :field_size => field_size, :field_class => :asterisk, 
+            :field_value => params.seek(:frontend_user, :name),
+            :label_name => :_name,
+            :small_note => I18n.t('shared.frontend_user.small_notes.name')
+          }
+        )
+    -%>
+    <% javascript_tag({:defer => 'defer'}) do -%>
+        <%= observe_field(:frontend_user_name,
+              :url    => check_frontend_locations_url,
+              :with   => "'check[frontend_user[name]]='+encodeURIComponent(value);",
+              :before => before_observe_field(
+                  :frontend_user_name, 
+                  t(:blank, :scope => [:activerecord, :errors, :models, :frontend_user, :attributes, :name])
+              ),
+              :complete => complete_observe_field(:frontend_user_name)
+            )
+        -%>
+        <%= check_asterisk_field(
+              :frontend_user_name, 
+              t(:blank, :scope => [:activerecord, :errors, :models, :frontend_user, :attributes, :name])
+            ) 
+        -%>
+    <% end -%>
+  </li>

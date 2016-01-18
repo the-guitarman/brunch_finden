@@ -1,0 +1,26 @@
+<div class="content-box">
+  <p>
+    <% if @review and @review.errors.empty? -%>
+      <%
+        destination = @review.destination
+        url = location_rewrite_url(create_rewrite_hash(destination.rewrite)+{:anchor => "review-#{@review.id}"})
+        title = "Ich habe auf #{@host_name} einen Bericht über #{destination.name} veröffentlicht. Jetzt lesen:"
+      -%>
+      <%= t('.text', {
+            :name => h(destination.name),
+            :link => link_to(h(destination.name), url)
+          })
+      -%>
+      <br /><br />
+      <%= render({
+            :partial => 'frontend/common/ct_share_links',
+            :locals  => {:url => url, :title => title}
+          })
+      -%>
+    <% else -%>
+      <%= t('.error', {:domain_name => @host_name}) -%>
+    <% end -%>
+  </p>
+  <br />
+  <%= render :partial => 'frontend/common/ct_advertisement_336x280_large_rectangle' -%>
+</div>

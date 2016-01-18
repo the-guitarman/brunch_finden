@@ -1,0 +1,6 @@
+<% form_tag(search_url, {:id => 'search-form', 'data-remote' => true}) do -%>
+  <%= text_field_tag('search', nil, {:autocomplete => 'off', :id => 'search-field', :placeholder => t('shared.search.field_default_value')}) -%>
+  <%= submit_tag('', {:id => 'search-button', :class => 'button-level1 bg-image', :name => nil}) -%>
+  <%#= image_submit_tag('/images/frontend/search_loupe.png', {:id => 'search-button', :class => 'button-level1', :name => nil}) -%>
+  <div id="search-suggestions"></div>
+<% end -%>

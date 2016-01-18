@@ -1,0 +1,113 @@
+container = '#create-review'
+hover_cls = Frontend::StarsHelper::HOVER_CLS
+
+# remove all errors and messages from the form fields
+page << remove_messages_below(container)
+
+unless @all_valid
+  # display errors
+  base_errors = []
+  field_errors = {}
+  
+  # collect all error messages
+  @objects_to_validate.each do |object|
+    unless object.is_a?(Rating)
+      type = object.class.name.underscore
+      if Rails.version >= '3.0.0'
+        fields = object.errors.keys.uniq
+      else
+        fields = object.errors.map{|k,v| k.to_sym}
+      end
+      fields.delete(:value) if object.is_a?(Review)
+      [:base, :frontend_user, :frontend_user_id].each do |field|
+        if base = fields.delete(field)
+          base_errors << object.errors[base]
+        end
+      end
+      fields.each do |field|
+        field_errors["##{type}_#{field}"] = object.errors[field]
+      end
+    end
+  end
+  
+  # prepend/append the errors
+  base_errors = base_errors.flatten.compact.uniq
+  unless base_errors.empty?
+    page << prepend_message_to(container, infobox_error(base_errors))
+  end
+  field_errors.each do |field, messages|
+    page << append_error_message_to(field, text_message_error(messages), {:append => true})
+  end
+  
+  if @review.errors[:value].any?
+    page << "
+      $('#destination-stars').replaceWith('#{escape_javascript(
+        render({
+          :partial => 'frontend/reviews/fields_destination_stars',
+          :locals  => {:review => @review}
+        })
+      )}');
+      #{js_set_destination_stars(hover_cls, {:star_hover => true, :required => true})}"
+  end
+  
+  @review_questions.each do |rq_id, rating|
+    if rating.errors.any?
+      page << "
+        $('#review-questions-#{rq_id}').replaceWith('#{escape_javascript(
+          render({
+            :partial => 'frontend/reviews/fields_review_questions',
+            :locals  => {
+              :review_template_questions => @review_template_questions,
+              :review_questions => {rq_id => rating}
+            }
+          })
+        )}');
+        #{js_set_review_question_stars(hover_cls, {:star_hover => true})}"
+    end
+  end
+  
+  page << scroll_to_first_error(container)
+  
+else
+  # success, so ...
+  
+  ## ... reset/replace the form and ...
+  #page << empty_form_entries(container)
+  #page << "
+  #  $('#destination-stars').replaceWith('#{escape_javascript(
+  #    render({
+  #      :partial => 'frontend/reviews/fields_destination_stars',
+  #      :locals  => {:review => Review.new}
+  #    })
+  #  )}');
+  #  #{js_set_destination_stars(hover_cls, {:star_hover => true, :required => true})}"
+  #@review_questions.each do |rq_id, rating|
+  #  page << "
+  #    $('#review-questions-#{rq_id}').replaceWith('#{escape_javascript(
+  #      render({
+  #        :partial => 'frontend/reviews/fields_review_questions',
+  #        :locals  => {
+  #          :review_template_questions => @review_template_questions,
+  #          :review_questions => {rq_id => rating}
+  #        }
+  #      })
+  #    )}');
+  #    #{js_set_review_question_stars(hover_cls, {:star_hover => true})}"
+  #end
+  
+  # ... replace the form with an empty div and ...
+  page << "$('#{container}').replaceWith('<div id=\"#{container.gsub(/^#/,'')}\"></div>');"
+  
+  
+  messages = [I18n.t('shared.new_review.created.message')]
+  if logged_in?
+    # ... show review on the page
+    # TODO
+  else
+    # ... show success message (email)
+    messages << I18n.t('shared.new_review.created.logged_out')
+  end
+  page << prepend_message_to(container, infobox(messages, '', true))
+  page << "simpleScrollTo('#{container} .infobox');"
+  
+end

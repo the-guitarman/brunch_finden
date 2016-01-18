@@ -1,0 +1,261 @@
+<% 
+  reviews_count = @location.reviews.showable.count 
+  location_rewrite_hash = create_rewrite_hash(@location.rewrite)
+-%>
+
+<div class="location-page content-page">  
+  <div class="page-header">
+    <h1>
+      <%= link_to(
+            content_tag(:span, @location.name, {:itemprop => 'name'}), 
+            location_rewrite_url(location_rewrite_hash),
+            {:itemprop => 'url'}
+          ) 
+      -%>
+    </h1>
+    <div class="action-links">
+      <%= link_to('<button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Änderung melden</button>', report_location_changes_url(location_rewrite_hash), {:class => 'hidden report-changes', :rel => :nofollow}) -%>
+      <%= link_to('<button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span> Bild hochladen</button>', new_location_image_url(location_rewrite_hash), {:class => 'hidden image-upload', :rel => :nofollow}) -%>
+      <%= link_to('<button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span> Bewertung schreiben</button>', new_location_review_url(location_rewrite_hash), {:class => 'hidden new-review new-rating', :rel => :nofollow}) -%>
+      <% if reviews_count > 0 -%>
+        <%= link_to("<button type=\"button\" class=\"btn btn-primary btn-sm\"><span class=\"glyphicon glyphicon-star\" aria-hidden=\"true\"></span> Bewertungen (#{reviews_count})</button>", report_location_changes_url(location_rewrite_hash), {:class => 'hidden reviews ratings', :rel => :nofollow}) -%>
+      <% end -%>
+      <% content_for :jquery_on_ready do -%>
+          $('a.new-review, a.report-changes, a.image-upload').click(function(){
+              var self = $(this);
+              $.fancybox.showActivity();
+              $.fancybox({
+                  autoDimensions: false,
+                  cache: false,
+                  height: 500,
+                  href: self.attr('href'),
+                  showTitle: false,
+                  //scrolling: 'no',
+                  width: 620
+              });
+              return false;
+          }).hide().removeClass('hidden').fadeIn('slow');
+      <% end -%>      
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-4 col-md-3">
+      <%= render({
+            :partial => 'frontend/locations/images', 
+            :locals => {:images => @images}
+          }) 
+      -%>
+    </div>
+    <div class="col-xs-12 col-sm-4 col-md-3 hidden-sm">
+      <%= render({:partial => 'frontend/common/ct_advertisement_120x240_vertical_banner'}) -%>
+    </div>
+    <div class="col-xs-12 col-sm-4 col-md-3 aggregated-review-and-ratings">
+      <div class="row">
+        <div class="col-xs-12">
+          <%= schema_org_aggregated_review(@location.aggregated_review, @location) do
+                aggregated_review_stars(@location, {:show_raters => false, :split_stars => 2})
+              end
+          -%>
+        </div>
+        <div class="col-xs-12">
+          <% unless @review_template_questions.empty? -%>
+            <%= schema_org_aggregated_ratings do
+                  ret = ''
+                  aggregated_ratings = @location.aggregated_ratings
+                  @review_template_questions.each_with_index do |rtq, idx|
+                    ar = aggregated_ratings.select{|r| r.review_question_id == rtq.review_question_id}.first
+                    ret += aggregated_rating_stars(rtq.review_question, ar, {:show_raters => false, :split_stars => 2})
+                  end
+                  ret
+                end
+            -%>
+          <% end -%>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-3">
+          <div class="aggregated-raters">
+            Bewertungen / Meinungen gesamt: <%= reviews_count %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 col-md-3">
+      <%= schema_org_geo(@location.geo_location, {:class => 'map'}) do 
+            ret = '' #content_tag(:h3, link_to(t('.at_the_map', {:name => @location.name}), location_rewrite_url(location_rewrite_hash)))
+            if @map_locations
+              ret += geo_map(@map_locations, {
+                :scale_control      => false,
+                :rotate_control     => false,
+                :pan_control        => true,
+                :navigation_control => false,
+                :map_type_control   => false,
+                :overview_map_control => false,
+                :street_view_control  => false,
+                :zoom_control         => true,
+                :zoom                 => 14
+              })
+            end
+            ret
+          end
+      -%>
+    </div>
+  </div>
+  <div class="row">
+    <% if @location.price? or @location.price_information? -%>
+      <div class="col-xs-12 col-sm-4">
+        <dl <!--class="dl-horizontal"-->>
+          <% if @location.price? -%>
+            <dt><%= Location.human_attribute_name(:price) -%></dt>
+            <dd>
+              <%= number_to_currency(@location.price) -%> <%= price_mark -%>
+              <%= content_tag(:span, 'EUR', {:itemprop => 'currenciesAccepted', :class => 'meta-data'}) -%>
+            </dd>
+          <% end -%>
+          <% if @location.price_information? -%>
+            <dt><%= Location.human_attribute_name(:price_information) -%></dt>
+            <dd>
+              <%= @location.price_information -%> <%= price_mark -%>
+            </dd>
+          <% end -%>
+        </dl>
+        <div><%= price_mark_description -%></div>
+      </div>
+    <% end -%>
+    
+    <% if @location.brunch_time? or @location.opening_hours? -%>
+      <div class="col-xs-12 col-sm-4">
+        <% if @location.brunch_time? -%>
+          <dl <!--class="dl-horizontal"-->>
+            <dt><%= Location.human_attribute_name(:brunch_time) -%></dt>
+            <dd><%= @location.brunch_time -%></dd>
+          </dl>
+        <% end -%>
+
+        <% if @location.opening_hours? -%>
+          <dl <!--class="dl-horizontal"-->>
+            <dt><%= Location.human_attribute_name(:opening_hours) -%></dt>
+            <dd><%= @location.opening_hours -%></dd>
+          </dl>
+        <% end -%>
+      </div>
+    <% end -%>
+    
+    <% if @location.description? or @location.service? -%>
+      <div class="col-xs-12 col-sm-4">
+        <% if @location.description? -%>
+          <dl <!--class="dl-horizontal"-->>
+            <dt><%= Location.human_attribute_name(:description) -%></dt>
+            <dd><%= content_tag(:span, @location.description.gsub("\n", '<br />'), {:itemprop => 'description'}) -%></dd>
+          </dl>
+        <% end -%>
+
+        <% if @location.service? -%>
+          <dl <!--class="dl-horizontal"-->>
+            <dt><%= Location.human_attribute_name(:service) -%></dt>
+            <dd><%= @location.service -%></dd>
+          </dl>
+        <% end -%>
+      </div>
+    <% end -%>
+  </div>
+  
+  <address>
+    <div class="row">
+      <div class="col-xs-12 col-sm-4">
+        <dl>
+          <dt <!--class="dl-horizontal"-->><%= t('.address') -%></dt>
+          <dd>
+            <%= schema_org_address do
+                  #ret = t('.address')
+                  ret = content_tag(:h2, link_to(@location.name, location_rewrite_url(location_rewrite_hash)))
+                  if @location.street?
+                    ret += content_tag(:span, @location.street, {:itemprop => 'streetAddress'}) + '<br />'.html_safe
+                  end
+                  ret += content_tag(:span, @location.zip_code.code, {:itemprop => 'postalCode'}) + ' '.html_safe
+                  ret += content_tag(:span, @location.zip_code.city.name, {:itemprop => 'addressLocality'})
+                  ret
+                end
+            -%>
+          </dd>
+        </dl>
+      </div>
+
+      <% if @location.phone? or @location.fax? or @location.email? -%>
+        <div class="col-xs-12 col-sm-4">
+          <dl <!--class="dl-horizontal"-->>
+            <% if @location.phone? -%>
+              <dt><%= Location.human_attribute_name(:phone) -%></dt>
+              <dd><%= content_tag(:span, @location.phone, {:itemprop => 'telephone'}) -%></dd>
+            <% end -%>
+            <% if @location.fax? -%>
+              <dt><%= Location.human_attribute_name(:fax) -%></dt>
+              <dd><%= content_tag(:span, @location.fax, {:itemprop => 'faxNumber'}) -%></dd>
+            <% end -%>
+            <% if @location.email? -%>
+              <dt><%= Location.human_attribute_name(:email) -%></dt>
+              <dd>
+                <%= mail_to(@location.email.downcase, nil, {
+                      :encode => :hex, :itemprop => 'email', 
+                      :replace_at => "[at]", :replace_dot => "[dot]"
+                    }) 
+                -%>
+              </dd>
+            <% end -%>
+          </dl>
+        </div>
+      <% end -%>
+
+      <% if @location.website? -%>
+        <div class="col-xs-12 col-sm-4">
+          <dl <!--class="dl-horizontal"-->>
+            <dt><%= Location.human_attribute_name(:website) -%></dt>
+            <dd>
+              <% website = URIFetcher.complete_uri(@location.website.strip) -%>
+              <% unless website.blank? -%>
+                <%= link_to(website, website, {:target => '_blank', :rel => 'nofollow'}) -%>
+              <% end -%>
+            </dd>
+          </dl>
+        </div>
+      <% end -%>
+    </div>
+  </address>
+  
+  <% if reviews_count > 0 -%>
+    <div class="content-box last only reviews">
+      <h3 class="headline"><%= anchor_for("Bewertungen für #{@location.name} (#{reviews_count})".html_safe, 'reviews') -%></h3>
+      <%= render({
+            :partial => 'frontend/reviews/show_list',
+            :locals  => {
+              :destination => @location,
+              :reviews => @location.reviews.showable.find(:all, {:order => 'published_at DESC'})
+            }
+          }) 
+      -%>
+    </div>
+  <% end -%>
+  
+  <% unless @locations_close_to_this.empty? %>
+    <div class="row">
+      <div class="col-xs-12">
+        <h4 class="headline"><%= t('.more_locations') -%></h4>
+        
+        <ul class="list-unstyled">
+          <% @locations_close_to_this.each_with_geodist do |location, distance| -%>
+            <li>
+              <% 
+                kilometers = "#{number_with_precision(distance / 1000)} #{t('shared.geokit.current_unit')}"
+                link_text = location.name + content_tag(:span, kilometers, {:class => :badge})
+              -%>
+              <%= link_to(link_text, location_rewrite_url(create_rewrite_hash(location.rewrite))) -%>
+              <%# distance = location.geo_location.distance_to(geo_location) -%>
+            </li>
+          <% end -%>
+        </ul>
+      </div>
+    </div>
+  <% end -%>
+  
+  <div class="row">
+    <div class="col-xs-12"><%= price_mark_description -%></div>
+  </div>
+</div>

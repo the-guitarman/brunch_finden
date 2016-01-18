@@ -1,0 +1,6 @@
+unless @login_or_email_blank.blank?
+  page << remove_messages_below('user-password-reset')
+  page << append_error_message_to(:login_or_email, text_message_error(@login_or_email_blank))
+else
+  #page << show_communitybar_after_reset_password_request
+end

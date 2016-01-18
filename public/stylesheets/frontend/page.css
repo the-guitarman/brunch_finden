@@ -1,0 +1,174 @@
+#exit-box { margin-top:150px; text-align:center; width:300px; }
+#exit-box a { color:#990000; }
+
+#homepage ul { display:block; margin-bottom:15px; }
+#homepage ul li { line-height: 23px; }
+#homepage #cities-with-most-locations { width:250px; }
+#homepage #latest-reviews { width:250px; }
+#homepage #latest-reviews a,
+#homepage #latest-reviews small { display:block; }
+#homepage #latest-reviews small { line-height:13px; }
+#homepage .states { margin-bottom:20px; margin-right:20px; width:170px; }
+#homepage #map { width:470px; height:570px; }
+#homepage .coupons .coupon.odd .c-image { margin-right:20px; }
+
+#location { position:relative; }
+#location h2, #location h3 { font-weight:normal; }
+#location h2 { margin-bottom:0; }
+#location .content-box { margin-right:15px; }
+#location .content-box > div { margin-bottom:0; }
+#location .label { font-weight:bold; }
+#location span.label { display:inline-block; min-width:60px; }
+#location .images,
+#location .info-box { padding:10px; width:230px; } /*height:230px; */
+#location .info-box > div { margin-bottom:5px; }
+#location .location-box { margin-bottom:20px; overflow:hidden; } /*margin-right:20px; */
+#location .ad-box { display:none; height:230px; overflow:hidden; padding:10px; width:120px; }
+#location .shadow-box { border:1px solid #CCCCCC; border-radius:3px; box-shadow:2px 2px 2px rgba(0, 0, 0, 0.2); }
+
+#location #map { height:250px; width:250px; }
+
+@media only screen and (min-device-width: 1024px) {
+  #location .ad-box { display:block; }
+  #location .geo-location { margin-right:0; }
+}
+
+#location .action-links, 
+#new-review .action-links { position:absolute; top:0; right:0; }
+#location .action-links a, 
+#new-review .action-links a { float:right; margin-left:10px; }
+
+#locations-nearby div { display:inline-block; margin-right:20px; }
+
+#image-upload #progress { display:none; }
+#image-upload #progress > div { position:relative; }
+#image-upload #progress #progress-bar { float:left; padding-top:19px; position:relative;  }
+#image-upload #progress #image-to-upload { display:none; height:50px; margin-left:150px; width:50px; }
+#image-upload #progress-bar > div { display:inline-block; }
+#image-upload #progress .bar { height:15px; width:100px; }
+#image-upload #progress .bar.outer { border:1px solid #990000; border-radius:2px; }
+#image-upload #progress .bar.inner { background-color:#990000; border-radius:1px; }
+#image-upload #progress .value { margin-left:2px; position:relative; text-align:right; top:-4px; width:30px }
+
+#fancybox-content .headline { margin-bottom:10px; }
+#fancybox-content form { border-radius:5px; display:block; margin:0; padding:0; width:580px; } /*float:left; */
+#fancybox-content ol li { padding-left:0; padding:5px 5px 5px 0; }
+#fancybox-content .form-entry label { display:inline; float:none; line-height:15px; width:auto; }
+#fancybox-content .form-entry textarea { height:80px; width:480px; }
+#fancybox-content .form-entry .input-area { margin-left:0; }
+#fancybox-content .form-entry input[type="submit"] { margin-left:0; }
+#fancybox-content .form-entry .text-message.error { margin-left:0; margin-top:3px; }
+#fancybox-content .form-entry small { color:#000000; position:relative; top:-3px; }
+#fancybox-content .location-stars { margin-top:6px; }
+#fancybox-content .location-stars .star-hover { color:#808080; margin-left:10px; }
+#fancybox-content .review-value { clear:none; min-width:120px; }
+#fancybox-content .review-question { clear:none; float:left; min-width:120px; }
+#fancybox-content .review-value .location-stars,
+#fancybox-content .review-question .location-stars { margin-top:0; }
+#fancybox-content .review-value .location-stars .star-rating-control,
+#fancybox-content .review-question .location-stars .star-rating-control { display:block; overflow:hidden; }
+#fancybox-content .review-value .location-stars .star-hover,
+#fancybox-content .review-question .location-stars .star-hover { display:block; line-height:25px; margin-left:0px; }
+#fancybox-content .terms-and-conditions label { float:left; line-height:24px; width:45px; }
+#fancybox-content .infobox { padding:10px; text-align:left; }
+
+#coupons-page > .content-box { width:460px; }
+#coupons-page ul.list-columns li { display:inline-block; }
+#coupons-page ul.list-columns li img { width:227px; }
+#coupons-page .coupon-categories ul.list-columns li { width:227px; }
+#coupons-page .top-coupon-merchants ul li { box-shadow:0 0 1px #DCDCDC; float:left; height:30px; margin-bottom:5px; margin-right:5px; }
+
+.coupons .coupon { margin-bottom:10px; padding-bottom:10px; position:relative; }
+.coupons .coupon.odd .c-image { margin-right:0; }
+.coupons .coupon .c-image { border:2px dashed #990000; border-radius:5px; box-shadow:3px 3px 3px rgba(0, 0, 0, 0.2); display:inline-block; font-size:14px; height:105px; margin-right:20px; overflow:hidden; position:relative; text-align:left; vertical-align:top; width:250px; }
+.coupons .coupon .c-image .c-type { background-color:#CC8080; border-radius:4px 4px 0 0; box-shadow:0px 2px 2px rgba(0, 0, 0, 0.2); color:#FFFFFF; font-weight:bold; line-height:18px; padding:5px; text-align:center; }
+.coupons .coupon .c-image .c-name { line-height:17px; height:65px; padding:5px; }
+.coupons .coupon .c-image a.coupon-merchant { float:right; margin-left:5px; }
+.coupons .coupon .c-image .remaining-days { bottom:-14px; font-size:8px; margin-bottom:0; position:absolute; text-align:center; }
+.coupons .coupon .c-description { display:inline-block; max-width:400px; vertical-align:top; }
+.coupons .coupon .primarybutton { position:absolute; right:0; top:0; }
+
+#homepage .coupons .coupon { float:left; }
+#homepage .coupons .coupon .c-image { width:210px; }
+
+#coupons-page .coupons .coupon { float:left; }
+#coupons-page .coupons .coupon .c-image { width:210px; }
+
+#coupon-category-page.coupons .coupon,
+#all-merchant-coupons.coupons .coupon { border-bottom:1px solid #990000; }
+#coupon-category-page.coupons .coupon.last,
+#all-merchant-coupons.coupons .coupon.last { border-bottom:none; }
+#coupon-category-page.coupons .coupon .c-image,
+#all-merchant-coupons.coupons .coupon .c-image { margin-right:20px; }
+
+#all-merchant-coupons h1 { line-height:30px; }
+#all-merchant-coupons h1 img { float:left; }
+#all-merchant-coupons.coupons .coupon .c-image { margin-right:20px; }
+
+
+
+#cities { margin-bottom:20px; }
+#cities > div { margin-bottom:10px; }
+#cities ul { columns:4; column-gap:20px; -moz-columns:4; -moz-column-gap:20px; -ms-columns:4; -ms-column-gap:20px; -o-columns:4; -o-column-gap:20px; -webkit-columns:4; -webkit-column-gap:20px; }
+#cities li { display:block; }
+#cities .advertisement { text-align:center; }
+
+#coupon-categories ul { columns:4; column-gap:20px; -moz-columns:4; -moz-column-gap:20px; -ms-columns:4; -ms-column-gap:20px; -o-columns:4; -o-column-gap:20px; -webkit-columns:4; -webkit-column-gap:20px; }
+#coupon-categories li { display:block; }
+
+#all-coupon-merchants ul { columns:5; column-gap:20px; -moz-columns:4; -moz-column-gap:20px; -ms-columns:4; -ms-column-gap:20px; -o-columns:4; -o-column-gap:20px; -webkit-columns:4; -webkit-column-gap:20px; }
+#all-coupon-merchants li { display:block; float:left; margin-bottom:40px; width:110px; }
+#all-coupon-merchants a,
+#all-coupon-merchants span { display:block; text-align:center; }
+
+/*#all-city-locations ul { columns:5; column-gap:20px; -moz-columns:4; -moz-column-gap:20px; -ms-columns:4; -ms-column-gap:20px; -o-columns:4; -o-column-gap:20px; -webkit-columns:4; -webkit-column-gap:20px; }*/
+#all-city-locations li { display:block; }
+/*#all-city-locations a,
+#all-city-locations span { display:block; }*/
+#all-city-locations a.location { color:#FFFFFF; font-size:100%; padding:3px 10px; }
+#all-city-locations a.location.primarybutton { margin-right:3px; }
+#all-city-locations .col-header .location-comparison,
+#all-city-locations .col-footer .location-comparison { position:relative; }
+#all-city-locations .col-header .location-comparison .counter,
+#all-city-locations .col-footer .location-comparison .counter { padding-left:42px; }
+#all-city-locations .col-header .location-comparison .bg-image { background-position:0 -138px; display:inline-block; height:30px; left:5px; position:absolute; top:-4px; width:30px; }
+#all-city-locations .col-footer .location-comparison .bg-image { background-position:0 -168px; display:inline-block; height:30px; left:5px; position:absolute; top:-8px; width:30px; }
+
+.location-comparator { height:520px;  max-width:790px; overflow-x:scroll; overflow-y:hidden; }
+.location-comparator a { color:#990000; text-decoration:none; }
+.location-comparator a:hover { color:#990000; text-decoration:underline; }
+.location-comparator table tr td { background-color:#FFFFFF; border-right:1px solid #CC8080; border-top:1px solid #CC8080; color:#000000; height:40px; max-height:40px; max-width:150px; min-height:40px; min-width:150px; vertical-align:top; width:150px; }
+.location-comparator table tr td.label { background-color:#CC8080; color:#FFFFFF; font-weight:bold; max-width:100px; min-width:100px; width:100px; }
+.location-comparator table tr.last td { border-bottom:1px solid #CC8080; }
+.location-comparator table tr:hover td.attr { background-color:#E5ECF9; }
+
+.states ul, 
+.coupon-categories ul { margin:0; padding:0; }
+
+.states li, 
+.cities li, 
+.locations li, 
+.reviews li,
+.coupon-categories li,
+.all-coupon-merchants li { list-style:none outside none; line-height:30px; }
+
+.states li.last, 
+.cities li.last, 
+.locations li.last, 
+.reviews li.last,
+.coupon-categories li.last,
+.all-coupon-merchants li.last { margin-bottom:0px; }
+
+.states li a, 
+.cities a, 
+.locations li a, 
+.reviews li a,
+.coupon-categories li a,
+.all-coupon-merchants li a { color:#990000; }
+
+.states li a:hover, 
+.cities a:hover, 
+.locations li a:hover, 
+.reviews li a:hover,
+.coupon-categories li a:hover,
+.all-coupon-merchants li a:hover { color:#990000; }

@@ -1,0 +1,16 @@
+Hallo <%=h @user.login -%>,
+
+Ihr <%= @review_type -%> zu <%= @item_type %>
+<%= @item_name %>
+wurde gelöscht, da <%= @reason %>
+
+Durch die Löschung Ihres Erfahrungsbericht ist Ihr Guthaben
+bei <%= @domain_name -%> entsprechend gesunken.
+Bei Fragen stehen wir Ihnen gern mit Rat und Tat zur Seite.
+
+Mit freundlichen Grüßen,
+
+Ihr <%= @domain_name -%> Team
+
+--
+<%= render :partial => 'mailers/footer' %>

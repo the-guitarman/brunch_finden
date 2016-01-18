@@ -1,0 +1,17 @@
+<% cache(frontend_index_ct_latest_reviews) do -%>
+  <% if defined?(reviews) and not reviews.empty? -%>
+    <div id="" class="latest-reviews">
+      <h3 class="headline"><%= t_f_a(:index, :headline_latest_reviews) -%></h3>
+      <ul class="list-group">
+        <% reviews.each do |review| -%>
+          <% location = review.destination -%>
+          <li class="list-group-item">
+            <%= link_to(location.name, location_rewrite_url(create_rewrite_hash(location.rewrite))) -%>
+            <%= aggregated_review_stars(location, {:split_stars => 2, :show_label => false}) -%>
+            <small>am: <%= l(review.published_at, :format => :latest_reviews) -%></small>
+          </li>
+        <% end -%>
+      </ul>
+    </div>
+  <% end -%>
+<% end -%>

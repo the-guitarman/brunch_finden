@@ -1,0 +1,23 @@
+Hallo,
+
+vielen Dank für Ihre Anmeldung bei <%= @domain_name -%>!
+
+Um Ihre Anmeldung zu bestätigen, klicken Sie bitte auf den folgenden Link:
+
+<%= frontend_user_confirmation_url({:confirmation_code => @user.perishable_token}) %>
+
+Der Link funktioniert nicht? Dann kopieren Sie bitte folgenden Link in die Adresszeile
+Ihres Browsers und fügen Sie den Bestätigungscode in das betreffende Feld:
+
+<%= frontend_user_confirm_now_url %>
+Bestätigungscode: <%= @user.perishable_token %>
+
+Viel Spaß bei <%= @domain_name -%> - legen Sie am besten gleich los!
+
+Sie haben sich gar nicht bei <%= @domain_name -%> angemeldet? Keine Sorge - bestätigen
+Sie die Anmeldung nicht, werden Ihre Daten automatisch gelöscht. 
+(Hinweis: Nach der Anmeldung werden ggf. meherere Erinnerungs-E-Mails zur Bestätigung 
+Ihres Benutzerkontos versandt, bevor Ihre Daten vollständig gelöscht werden.)
+
+--
+<%= render :partial => 'mailers/frontend/footer' -%>

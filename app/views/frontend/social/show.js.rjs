@@ -1,0 +1,5 @@
+unless @partial.blank?
+  page << "$('##{@partial.to_crc32}').html('#{escape_javascript(
+              render(:partial => "frontend/social/ct_#{@partial}", :locals => {:node_id => @partial.to_crc32})
+          )}');"
+end

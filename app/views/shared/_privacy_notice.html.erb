@@ -1,0 +1,191 @@
+<%
+  if Rails.env.production?
+    @info_email = image_tag('info_email.png', :class => 'info-email')
+  end
+-%>
+<h2>Informationen über Privatsphäre und Datenschutz</h2>
+<p>
+  Wir freuen uns über Ihr Interesse an unserer Internetpräsenz und unserem Unternehmen. 
+  Für externe Links zu fremden Inhalten können wir dabei trotz sorgfältiger inhaltlicher 
+  Kontrolle keine Haftung übernehmen. Der Schutz Ihrer personenbezogenen Daten bei der Erhebung, 
+  Verarbeitung und Nutzung anlässlich Ihres Besuchs auf unserer Homepage ist uns 
+  ein wichtiges Anliegen. Ihre Daten werden im Rahmen der gesetzlichen Vorschriften geschützt. 
+  Nachfolgend finden Sie Informationen, welche Daten während Ihres Besuchs auf der Homepage 
+  erfasst und wie diese genutzt werden.
+</p>
+
+<h2>1. Allgemein</h2>
+<p>
+  In den Logfiles unserer Webserver und integrierten Statistiktools werden automatisch solche 
+  Daten gespeichert, die Ihr Browser an uns übermittelt. Dazu gehören: Browsertyp und -version, 
+  verwendetes Betriebssystem, Referrer URL (die zuvor besuchte Seite), 
+  Hostname des zugreifenden Rechners (IP Adresse) und Uhrzeit der Serveranfrage.<br />
+  <br />
+  Diese Daten sind für uns in der Regel nicht bestimmten Personen zuordenbar. 
+  Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen, 
+  die Daten werden zudem nach einer statistischen Auswertung oder automatisch (auch 
+  ohne vorherige Auswertung) nach Zeitablauf vollständig gelöscht.
+</p>
+
+<h2>2. Cookies</h2>
+<p>
+  Die Internetseiten verwenden an mehreren Stellen so genannte Cookies. 
+  Sie dienen dazu, unser Angebot nutzerfreundlicher, effektiver und sicherer zu machen. 
+  Cookies sind kleine Textdateien, die auf Ihrem Rechner abgelegt werden und 
+  die Ihr Browser speichert. Die meisten der von uns verwendeten Cookies 
+  sind so genannte "Session-Cookies". Sie werden nach Ende Ihres Besuchs automatisch gelöscht. 
+  Cookies richten auf Ihrem Rechner keinen Schaden an und enthalten keine Viren.<br />
+  <br />
+  Um dieses Cookies zu löschen oder die Cookiebehandlung generell zu verändern, 
+  konsultieren Sie bitte die Hilfe Ihres Browser. In der Regel finden sich diese 
+  Einstellungen unter Extras -> Einstellungen Datenschutz (Firefox) oder 
+  unter Extras -> Internetoptionen -> Datenschutz (Internet Explorer). 
+</p>
+
+<h2>3. Kommentare, Formulardaten</h2>
+<p>
+  Formulare dienen Ihnen dazu uns Informationen zu übermitteln. Selbstverständlich 
+  erfassen und speichern wir solche Informationen, die Sie auf <%= @host_name -%> eingeben 
+  oder uns in sonstiger Weise übermitteln. Das betrifft etwa Kommentare, Namen, Email-Adressen 
+  und URLs, die Sie in die entsprechenden Kommentarfelder eintragen. Diese Angaben geschehen 
+  freiwillig und werden in keiner Weise überprüft, die Verwendung von Pseudonymen etc. 
+  ist möglich. Wir weisen darauf hin, dass Name, angegebene Webseite und Kommentare für jeden 
+  Benutzer der Seite einzusehen sind.
+</p>
+
+<h2>4. Google Analytics</h2>
+<p>
+  Diese Website benutzt Google Analytics, einen Webanalysedienst der Google Inc. („Google")
+  Google Analytics verwendet sog. „Cookies", Textdateien, die auf Ihrem Computer gespeichert
+  werden und die eine Analyse der Benutzung der Website durch Sie ermöglicht. Die durch den 
+  Cookie erzeugten Informationen über Ihre Benutzung diese Website (einschließlich Ihrer IP-Adresse)
+  wird an einen Server der Google in den USA übertragen und dort gespeichert. Google wird diese 
+  Informationen benutzen, um Ihre Nutzung der Website auszuwerten, um Reports über die Web-
+  siteaktivitäten für die Websitebetreiber zusammenzustellen und um weitere mit der Websitenutzung 
+  und der Internetnutzung verbundene Dienstleistungen zu erbringen. Auch wird Google diese 
+  Informationen gegebenenfalls an Dritte übertragen, sofern dies gesetzlich vorgeschrieben oder 
+  soweit Dritte diese Daten im Auftrag von Google verarbeiten. Google wird in keinem Fall Ihre 
+  IP-Adresse mit anderen Daten der Google in Verbindung bringen. Sie können die Installation der 
+  Cookies durch eine entsprechende Einstellung Ihrer Browser Software verhindern: wir weisen 
+  Sie jedoch darauf hin, dass Sie in diesem Fall gegebenenfalls nicht sämtliche Funktionen dieser 
+  Website voll umfänglich nutzen können. Durch die Nutzung dieser Website erklären Sie sich mit der 
+  Bearbeitung der über Sie erhobenen Daten durch Google in der zuvor beschriebenen Art und 
+  Weise und zu dem zuvor benannten Zweck einverstanden. 
+  Bitte informieren Sie sich diesbezüglich unter unseren Allgemeinen Geschäftsbedingungen. 
+  Bitte berücksichtigen Sie zusätzlich Googles Datenschutzerklärung.
+</p>
+
+<h2>5. Google Adsense / Werbeanzeigen</h2>
+<p>
+  Auf dieser Website nutzen wir zeitweise den Google Adsense Service, 
+  um themenbezogenen Werbeanzeigen zu schalten. Ihr Browser speichert eventuell 
+  ein von Google Inc. gesendetes Cookie. Die dort gespeicherten Informationen 
+  (niemals persönliche Daten wie Name, Adresse, E-Mail-Adresse etc.) über Ihren Besuch 
+  sowohl auf dieser, als auch auf anderen Websites, kann dazu genutzt werden, 
+  um weitere Anzeigen zu Produkten und Diensten anzuzeigen, 
+  die Sie möglicherweise interessieren. Falls Sie mehr über diese Methoden erfahren 
+  möchten oder wissen möchten, welche Möglichkeiten Sie haben, 
+  damit diese Informationen nicht von Google Inc. verwendet werden kann, klicken Sie hier. <% # <= TODO %>
+</p>
+
+<h2>6. Google +1</h2>
+<p>
+  Dieser Internetauftritt verwendet den +1-Button von google.com, welcher von der Google Inc., 
+  1600 Amphitheatre Parkway, Mountain View, CA 94043, USA ("Google") betrieben wird. 
+  Der Button ist mit dem Zusatz / Logo "+1″ gekennzeichnet. Wenn eine Webseite unseres 
+  Internetauftritts aufgerufen wird, auf welcher ein solcher Button eingebaut wurde, 
+  baut der Browser eine direkte Verbindung mit den Servern von Google auf. 
+  Der Button wird von Google direkt an den Browser übermittelt und von diesem in die Webseite 
+  eingebunden. Durch die Einbindung der Buttons erhält Google die Information, 
+  dass die entsprechende Seite des Internetauftritts aufgerufen wurde. 
+  Ist der Besucher der jeweiligen Webseite zum Zeitpunkt seines Besuchs bei Google eingeloggt, 
+  kann Google den Besuch dem Google-Konto des Nutzers zuordnen. Wird der Button angeklickt, 
+  wird die entsprechende Information vom Browser direkt an Google übermittelt und 
+  dort gespeichert. Zweck und Umfang der Datenerhebung und die weitere Verarbeitung und 
+  Nutzung der Daten durch Google sowie die diesbezüglichen Rechte des Nutzers und 
+  Einstellungsmöglichkeiten zum Schutz seiner Privatsphäre ist bitte den diesbezüglichen 
+  Datenschutzhinweisen von Google zu entnehmen. Wünscht der Nutzer nicht, 
+  dass Google über die besuchte Webseite des Internetauftritts Daten über den Nutzer sammelt, 
+  muss sich der Besucher vor seinem Besuch dieser Webseiten des Internetauftritts 
+  bei Google ausloggen.
+</p>
+
+<h2>7. Facebook</h2>
+<p>
+  Diese Website verwendet zeitweise Social Plugins ("Plugins") des sozialen Netzwerkes 
+  facebook.com, welches von der Facebook Inc., 1601 S. California Ave, Palo Alto, CA 94304, USA 
+  betrieben wird ("Facebook"). Die Plugins sind mit einem Facebook Logo oder dem Zusatz 
+  "Facebook Social Plugin" gekennzeichnet. Wenn Sie eine Blogseite aufrufen, 
+  die ein solches Plugin enthält, baut Ihr Browser eine direkte Verbindung mit den Servern 
+  von Facebook auf. Der Inhalt des Plugins wird von Facebook direkt an Ihren Browser 
+  übermittelt und von diesem in die Webseite eingebunden.<br />
+  <br />
+  Durch die Einbindung der Plugins erhält Facebook die Information, dass Sie die entsprechende 
+  Seite aufgerufen haben. Sind Sie bei Facebook eingeloggt kann Facebook den Besuch 
+  Ihrem Facebook-Konto zuordnen. Wenn Sie mit den Plugins interagieren, zum Beispiel den 
+  "Gefällt mir" Button betätigen oder einen Kommentar abgeben, 
+  wird die entsprechende Information von Ihrem Browser direkt an Facebook übermittelt und 
+  dort gespeichert. <br />
+  <br />
+  Zweck und Umfang der Datenerhebung und die weitere Verarbeitung und Nutzung der Daten 
+  durch Facebook sowie Ihre diesbezüglichen Rechte und Einstellungsmöglichkeiten zum Schutz 
+  Ihrer Privatssphäre entnehmen Sie bitte den Datenschutzhinweisen von Facebook.<br />
+  <br />
+  Wenn Sie nicht möchten, dass Facebook über diese Website Daten über Sie sammelt, 
+  müssen Sie sich vor Ihrem Besuch auf <%= @host_name %> bei Facebook ausloggen.
+</p>
+
+<h2>8. Erhebung und Verarbeitung von Daten</h2>
+<p>
+  Jeder Zugriff auf unsere Homepage und jeder Abruf einer auf der Homepage hinterlegten Datei werden protokolliert. Die Speicherung dient internen systembezogenen und statistischen Zwecken.
+  Protokolliert werden: Name der abgerufenen Datei, Datum und Uhrzeit des Abrufs, übertragene Datenmenge, Meldung über erfolgreichen Abruf, Webbrowser und anfragende Domain. Zusätzlich werden die IP Adressen der anfragenden Rechner protokolliert.
+  In einigen Fällen werden sogenannte Cookies auf Ihrem PC erzeugt. Hierbei handelt es sich um kleine Dateien, mit deren Hilfe wir zum Beispiel technische Abläufe steuern können. Generell verwenden wir Cookies ausschließlich für technische Zwecke, personenbezogene Daten werden damit nicht erhoben, verarbeitet oder genutzt.
+  Diese Website benutzt Google Analytics, einen Webanalysedienst der Google Inc. ("Google") Google Analytics verwendet sog. "Cookies", Textdateien, die auf Ihrem Computer gespeichert werden und die eine Analyse der Benutzung der Website durch Sie ermöglicht. Die durch den Cookie erzeugten Informationen über Ihre Benutzung diese Website (einschließlich Ihrer IP-Adresse) wird an einen Server der Google in den USA übertragen und dort gespeichert. Google wird diese Informationen benutzen, um Ihre Nutzung der Website auszuwerten, um Reports über die Websiteaktivitäten für die Websitebetreiber zusammenzustellen und um weitere mit der Websitenutzung und der Internetnutzung verbundene Dienstleistungen zu erbringen. Auch wird Google diese Informationen gegebenenfalls an Dritte übertragen, sofern dies gesetzlich vorgeschrieben oder soweit Dritte diese Daten im Auftrag von Google verarbeiten. Google wird in keinem Fall Ihre IP-Adresse mit anderen Daten der Google in Verbindung bringen. Sie können die Installation der Cookies durch eine entsprechende Einstellung Ihrer Browser Software verhindern; wir weisen Sie jedoch darauf hin, dass Sie in diesem Fall gegebenenfalls nicht sämtliche Funktionen dieser Website voll umfänglich nutzen können.
+  Durch die Nutzung dieser Website erklären Sie sich mit der Bearbeitung der über Sie erhobenen Daten durch Google in der zuvor beschriebenen Art und Weise und zu dem zuvor benannten Zweck einverstanden.
+  Weitergehende personenbezogene Daten werden nur erfasst, wenn Sie diese Angaben freiwillig, etwa im Rahmen einer Anfrage oder Registrierung, machen. Darauf werden Sie vor der Erhebung der Daten an den entsprechenden Stellen ausdrücklich hingewiesen.
+</p>
+
+<h2>9. Nutzung und Weitergabe personenbezogener Daten</h2>
+<p>
+  Soweit Sie uns personenbezogene Daten zur Verfügung gestellt haben, verwenden wir diese nur zur Beantwortung Ihrer Anfragen, zur Abwicklung mit Ihnen geschlossener Verträge und für die technische Administration.
+  Ihre personenbezogenen Daten werden an Dritte nur weitergegeben oder sonst übermittelt, wenn dies zum Zwecke der Vertragsabwicklung - beispielsweise Weitergabe von Bestelldaten an Lieferanten - erforderlich ist, dies zu Abrechnungszwecken erforderlich ist oder Sie zuvor eingewilligt haben. Sie haben das Recht, eine erteilte Einwilligung mit Wirkung für die Zukunft jederzeit zu widerrufen. Dazu senden Sie bitte eine E-Mail an <%= @info_email -%> oder wenden sich postalisch an die unten angegebene Adresse.
+  Die Löschung der gespeicherten personenbezogenen Daten erfolgt, wenn Sie Ihre Einwilligung zur Speicherung widerrufen, wenn ihre Kenntnis zur Erfüllung des mit der Speicherung verfolgten Zwecks nicht mehr erforderlich ist oder wenn ihre Speicherung aus sonstigen gesetzlichen Gründen unzulässig ist.
+</p>
+
+<h2>10. Auskunftsrecht</h2>
+<p>
+  Auf schriftliche Anfrage werden wir Sie gern über die zu Ihrer Person 
+  gespeicherten Daten informieren. Bitte wenden Sie sich dazu an folgende Adresse:<br />
+  <br />
+  <% if Rails.env.production? -%>
+     <%= image_tag('supplier_address.png') -%>
+  <% else -%>
+     Brunch-Finden.de<br />
+     Gerd Kretzschmar<br />
+     Schwanauer Str. 58<br />
+     09128 Chemnitz
+  <% end -%>
+</p>
+
+<h2>11. Aktualisierung dieser Datenschutzerklärung</h2>
+<p>
+  Aktuelle Gegebenheiten, wie z.B. Gesetzesnovellierungen oder technische Entwicklungen, 
+  können eine Aktualisierung dieser Erklärung notwendig machen. 
+  Wir behalten uns deshalb das Recht vor, die Erklärung nach Bedarf zu ändern oder zu ergänzen. 
+  Die Änderung werden wir an dieser Stelle veröffentlichen. 
+  Daher sollten Sie diese Web-Seite regelmäßig aufrufen, 
+  um sich über den aktuellen Stand der Datenschutzerklärung zu informieren.
+</p>
+
+<h2>12. Sicherheitshinweis:</h2>
+<p>
+  Wir sind bemüht, Ihre personenbezogenen Daten durch Ergreifung aller technischen und 
+  organisatorischen Möglichkeiten so zu speichern, dass sie für Dritte nicht zugänglich sind. 
+  Bei der Kommunikation per E-Mail kann die vollständige Datensicherheit von uns nicht 
+  gewährleistet werden, so dass wir Ihnen bei vertraulichen Informationen den Postweg empfehlen. 
+  Bei Fragen oder Anregungen wenden Sie sich bitte an <%= @info_email -%>
+</p>
+
+<p>
+  Stand: 01/2011
+</p>

@@ -1,0 +1,3 @@
+# minimize the communitybar content (hide the content) and show the footer, 
+# because the user is not longer logged in
+#page << show_communitybar_logged_out_small

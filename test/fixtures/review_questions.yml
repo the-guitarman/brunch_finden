@@ -1,0 +1,25 @@
+1:
+  id: 1
+  text: "Bedienungsanleitung"
+  answer_type: "list"
+  analyzable: true
+2:
+  id: 2
+  text: "Design"
+  answer_type: "list"
+  analyzable: true
+3:
+  id: 3
+  text: "Handhabung / Komfort"
+  answer_type: "list"
+  analyzable: true
+4:
+  id: 4
+  text: "Besitzen Sie das Produkt"
+  answer_type: "boolean"
+  analyzable: false
+5:
+  id: 5
+  text: "Textfrage"
+  answer_type: "text"
+  analyzable: false

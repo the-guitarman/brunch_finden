@@ -1,0 +1,308 @@
+################################################################################
+# Index-Controller #############################################################
+#
+# controller:
+#   action:
+#     title: <String>
+#     meta:
+#       description: <String>
+#       keyword: <String>
+#       robots: <String>
+#
+
+# error variables:
+# __ERROR__
+errors: 
+  show: 
+    title: "__ERROR__"
+    meta: 
+      description: ""
+      keywords: ""
+      robots: "noindex, noarchive, nofollow"
+
+# index variables:
+# - __DOMAIN_NAME__
+# - __DOMAIN_FULL_NAME__
+index:
+  index:
+    title: Brunch-Locations finden auf __DOMAIN_FULL_NAME__
+    meta:
+      description: Brunchvergleich und Meinungen zu über __NUMBER_OF_LOCATIONS__ Brunch Locations und Restaurants in deiner Nähe.
+      keywords: brunchvergleich,brunch,location,locations,brunch location,brunch locations,restaurant,restaurants,frühstück,mittag,essen,finden,suchen,vergleichen,bewerten
+      robots: index,follow
+  about_us:
+    title: "Über uns - __DOMAIN_FULL_NAME__"
+    meta:
+      description: ""
+      keywords: "Über uns"
+      robots: "noindex,follow"
+  advertising_opportunities:
+    title: "Werbemöglichkeiten auf __DOMAIN_FULL_NAME__"
+    meta:
+      description: "Werbemöglichkeiten"
+      keywords: "Werbemöglichkeiten"
+      robots: "noindex, noarchive, nofollow"
+  general_terms_and_conditions:
+    title: "Allgemeine Geschäftsbedingungen - __DOMAIN_NAME__"
+    meta:
+      description: ""
+      keywords: "Allgemeinen Geschäftsbedingungen,AGB,__DOMAIN_NAME__"
+      robots: index,follow
+  privacy_notice:
+    title: "Datenschutz - __DOMAIN_FULL_NAME__"
+    meta:
+      description: "Was wir für Ihren Datenschutz tun."
+      keywords: "Datenschutz,__DOMAIN_NAME__"
+      robots: "noindex,follow"
+  registration_information:
+    title: "Impressum - __DOMAIN_FULL_NAME__"
+    meta:
+      description: "Das Team von __DOMAIN_FULL_NAME__ stellt sich vor. Wir sind zwei junge Chemnitzer, die für Euch diese kostenlose Plattform erschaffen haben."
+      keywords: "Impressum,Kontakt,__DOMAIN_NAME__"
+      robots: "index,follow"
+
+# cities variables:
+# - __DOMAIN_NAME__
+# - __DOMAIN_FULL_NAME__
+# - __STATE_NAME__
+# - __CITY_NAME__
+# - __NUMBER_OF_LOCATIONS__ => 5
+# - __NUMBER_OF_LOCATIONS_WITH_MODEL__ => 1 Brunch-Location or 5 Brunch-Locations 
+cities:
+  show:
+    title: "Brunchen __CITY_NAME__ (__STATE_NAME__) - __DOMAIN_FULL_NAME__"
+    meta:
+      description: "Brunchen in __CITY_NAME__ (__STATE_NAME__) - Wähle unter __NUMBER_OF_LOCATIONS_WITH_MODEL__ und finde den passenden Brunch für jede Gelegenheit. Jetzt Locations von __CITY_NAME__ (__STATE_NAME__) anschauen."
+      keywords: "brunch,finden,__CITY_NAME__,__STATE_NAME__,__DOMAIN_NAME__"
+      robots: "index,follow"
+
+coupon_categories:
+  index:
+    title: "Alle Gutschein-Kategorien - __DOMAIN_FULL_NAME__"
+    meta:
+      description: "Gutschein in Kategorien suchen und finden auf __DOMAIN_FULL_NAME__"
+      keywords: "gutscheine,kategorien,coupons,suchen,finden,search,__DOMAIN_NAME__"
+      robots: "index, follow"
+  show:
+    title: "__COUPON_CATEGORY_NAME__ Gutscheine - __DOMAIN_FULL_NAME__"
+    meta:
+      description: "__COUPON_CATEGORY_NAME__ Gutscheine suchen und finden auf __DOMAIN_FULL_NAME__"
+      keywords: "__COUPON_CATEGORY_NAME__,gutscheine,coupons,finden,suchen,search,__DOMAIN_NAME__"
+      robots: "index, follow"
+
+coupons:
+  index:
+    title: "Gutscheine, Produktproben, Rabattgutscheine, Gewinnspiele und Coupons auf __DOMAIN_NAME__"
+    meta:
+      description: "Die neuesten und beliebtesten Gutscheine, Produktproben, Rabattgutscheine, gratis Sparcoupons Gewinnspiele und Coupons auf __DOMAIN_NAME__"
+      keywords: "coupons, coupon, kupon, kupons, cupon, cupons, rabattcoupons, produktprobe, produktproben, gutschein, gutscheine, kostenlos, gratis, kostenlose, e-coupons, gutscheincode, gutscheincodes, couponing, sparen, rabatt, rabatte, rabattmarke, rabattmarken, Gratisprobe, gratisproben, coupons"
+      robots: "index, follow"
+  all_coupon_merchants:
+    title: "Alle Anbieter von Gutscheinen, Produktproben, Rabattgutscheinen, Gewinnspielen und Coupons von 0-9 und A-Z auf __DOMAIN_NAME__"
+    meta:
+      description: "Sehen sie alle Anbieter von Gutscheinen, Produktproben, Rabattgutscheine, gratis Sparcoupons Gewinnspiele und Coupons auf __DOMAIN_NAME__"
+      keywords: "anbieter, gutschein anbieter, merchant, coupon merchant, merchants, coupon merchants"
+      robots: "index, follow"
+  all_merchant_coupons:
+    title: "Alle Gutscheine, Produktproben, Rabattgutscheine, gratis Sparcoupons Gewinnspiele und Coupons von __MERCHANT_NAME__ auf __DOMAIN_NAME__"
+    meta:
+      description: "Sehen sie alle Gutscheine, Produktproben, Rabattgutscheine, gratis Sparcoupons Gewinnspiele und Coupons von __MERCHANT_NAME__ auf __DOMAIN_NAME__"
+      keywords: "__MERCHANT_NAME__,gutschein,gutscheine,coupon,coupons"
+      robots: "index, follow"
+  show:
+    title: "Gutschein __COUPON_ID__: __COUPON_NAME__ von __MERCHANT_NAME__ __ONLY_NEW_CUSTOMER__ - __DOMAIN_FULL_NAME__"
+    meta:
+      description: "Gutschein __COUPON_ID__: __COUPON_NAME__ von __MERCHANT_NAME__ __ONLY_NEW_CUSTOMER__ auf __DOMAIN_FULL_NAME__"
+      keywords: "gutschein,coupon,__DOMAIN_NAME__"
+      robots: "noindex, nofollow"
+
+# location variables:
+# - __DOMAIN_NAME__
+# - __DOMAIN_FULL_NAME__
+# - __STATE_NAME__
+# - __CITY_NAME__
+# - __LOCATION_NAME__
+locations:
+  show:
+    title: "__LOCATION_NAME__ (__STATE_NAME__) - __DOMAIN_FULL_NAME__"
+    meta:
+      description: "Details zur Brunch-Location __LOCATION_NAME__ (__STATE_NAME__) auf __DOMAIN_FULL_NAME__. Erfahre den Preis, die Öffnungszeiten und vieles mehr ..."
+      keywords: "brunch,location,__LOCATION_NAME__,__STATE_NAME__,__DOMAIN_NAME__"
+      robots: "index,follow"
+  new:
+    title: "Neue Brunch Location anlegen - __DOMAIN_FULL_NAME__"
+    meta:
+      description: "Neue Brunch Location auf __DOMAIN_FULL_NAME__ anlegen."
+      keywords: "neu,new,anlegen,anlage,__DOMAIN_NAME__"
+      robots: "index,follow"
+  create:
+    title: "Brunch Location anlegen - __DOMAIN_FULL_NAME__"
+    meta:
+      description: "Brunch Location anlegen."
+      keywords: "anlegen,eintragen,__DOMAIN_NAME__"
+      robots: "noindex,follow"
+  edit:
+    title: "Brunch Location __LOCATION_NAME__ (__STATE_NAME__) ändern - __DOMAIN_FULL_NAME__"
+    meta:
+      description: "Brunch Location __LOCATION_NAME__ (__STATE_NAME__) ändern."
+      keywords: "ändern,edit,änderung,__LOCATION_NAME__,__STATE_NAME__,__DOMAIN_NAME__"
+      robots: "index,follow"
+  confirm:
+    title: "Brunch Location bestätigen - __DOMAIN_FULL_NAME__"
+    meta:
+      description: "Brunch Location bestätigen."
+      keywords: "bestätigen,__DOMAIN_NAME__"
+      robots: "noindex,follow"
+
+# location variables:
+# - __DOMAIN_NAME__
+# - __DOMAIN_FULL_NAME__
+# - __STATE_NAME__
+# - __CITY_NAME__
+# - __LOCATION_NAME__
+location_images:
+  new:
+    title: "Ein Bild zu __LOCATION_NAME__ (__STATE_NAME__) hochladen - __DOMAIN_FULL_NAME__"
+    meta:
+      description: "Hier können Sie ein Bild zur Brunch-Location __LOCATION_NAME__ (__STATE_NAME__) auf __DOMAIN_FULL_NAME__ hochladen."
+      keywords: "bild,hochladen,image,upload,brunch,location,__LOCATION_NAME__,__STATE_NAME__,__DOMAIN_NAME__"
+      robots: "index,follow"
+  create:
+    title: "Ein Bild zu __LOCATION_NAME__ (__STATE_NAME__) hochladen - __DOMAIN_FULL_NAME__"
+    meta:
+      description: "Hier können Sie ein Bild zur Brunch-Location __LOCATION_NAME__ (__STATE_NAME__) auf __DOMAIN_FULL_NAME__ hochladen."
+      keywords: "bild,hochladen,image,upload,brunch,location,__LOCATION_NAME__,__STATE_NAME__,__DOMAIN_NAME__"
+      robots: "noindex,follow"
+  confirm:
+    title: "Bild-Upload zu Brunch Location bestätigen - __DOMAIN_FULL_NAME__"
+    meta:
+      description: "Bild-Upload zu Brunch Location bestätigen."
+      keywords: "bestätigen,__DOMAIN_NAME__"
+      robots: "noindex,follow"
+
+# location suggestion variables:
+# - __DOMAIN_NAME__
+# - __DOMAIN_FULL_NAME__
+location_suggestions:
+  new:
+    title: "Neuer Brunch Location Vorschlag - __DOMAIN_FULL_NAME__"
+    meta:
+      description: "Neuer Brunch Location Vorschlag auf __DOMAIN_FULL_NAME__."
+      keywords: "suggestion,vorschlag,__DOMAIN_NAME__"
+      robots: "index,follow"
+  create:
+    title: "Neuer Brunch Location Vorschlag speichern - __DOMAIN_FULL_NAME__"
+    meta:
+      description: "Neuer Brunch Location Vorschlag speichern."
+      keywords: "suggestion,vorschlag,__DOMAIN_NAME__"
+      robots: "index,follow"
+
+password_reset_requests:
+  new:
+    title: __DOMAIN_NAME__ - Passwort vergessen
+    meta:
+      description: "Sie haben Ihr Passwort vergessen? Kein Problem. Geben Sie Ihre E-Mail-Adresse ein und wir senden Ihnen Informationen, wie Sie Ihre Passwort ändern können."
+      keywords: __DOMAIN_NAME__
+      robots: noindex, noarchive, follow
+  create:
+    title: __DOMAIN_NAME__ - Passwort vergessen
+    meta:
+      description: "Sie haben Ihr Passwort vergessen? Kein Problem. Geben Sie Ihre E-Mail-Adresse ein und wir senden Ihnen Informationen, wie Sie Ihre Passwort ändern können."
+      keywords: __DOMAIN_NAME__
+      robots: noindex, noarchive, follow
+  edit:
+    title: __DOMAIN_NAME__ - Neues Passwort speichern
+    meta:
+      description: "Vergeben Sie jetzt ein neues Passwort für Ihren __DOMAIN_NAME__ Account."
+      keywords: __DOMAIN_NAME__
+      robots: noindex, noarchive, follow
+  update:
+    title: __DOMAIN_NAME__ - Neues Passwort speichern
+    meta:
+      description: "Vergeben Sie jetzt ein neues Passwort für Ihren __DOMAIN_NAME__ Account."
+      keywords: __DOMAIN_NAME__
+      robots: noindex, noarchive, follow
+
+# searches variables:
+# - __DOMAIN_NAME__
+# - __DOMAIN_FULL_NAME__
+searches:
+  search:
+    title: "Suche - Suchergebnisliste - __DOMAIN_FULL_NAME__"
+    meta:
+      description: "Suche die passende Brunch-Location für jeden Anlass auf __DOMAIN_FULL_NAME__. Finde die Location in Deiner Nähe und nutze den Brunchvergleich."
+      keywords: "suchen,search,__DOMAIN_NAME__"
+      robots: "index, follow"
+
+# states variables:
+# - __DOMAIN_NAME__
+# - __DOMAIN_FULL_NAME__
+# - __STATE_NAME__
+# - __NUMBER_OF_LOCATIONS__ => 5
+# - __NUMBER_OF_LOCATIONS_WITH_MODEL__ => 1 Brunch-Location or 5 Brunch-Locations 
+states:
+  show:
+    title: "Brunch Locations in __STATE_NAME__ finden - __DOMAIN_FULL_NAME__"
+    meta:
+      description: "Brunchen in __STATE_NAME__ - Finde Brunch-Locations in __STATE_NAME__. Genieße dein Leben und gehe doch mal in __STATE_NAME__ brunchen."
+      keywords: "brunch,finden,__STATE_NAME__,__DOMAIN_NAME__"
+      robots: "index,follow"
+
+users:
+  show:
+    title: __DOMAIN_NAME__ - Mitglieder - Überblick
+    meta:
+      description: "__DOMAIN_NAME__ - Mitglieder - Überblick"
+      keywords: __DOMAIN_NAME__, Mitglieder
+      robots: noindex, noarchive, follow
+  new:
+    title: __DOMAIN_NAME__ - Anmeldung
+    meta:
+      description: "Melden Sie sich noch heute bei __DOMAIN_NAME__ an und werden Sie ein Mitglied unserer Community."
+      keywords: __DOMAIN_NAME__, Anmeldung
+      robots: noindex, noarchive, follow
+  edit:
+    title: __DOMAIN_NAME__
+    meta:
+      description: "__DOMAIN_NAME__"
+      keywords: __DOMAIN_NAME__
+      robots: noindex, noarchive, follow
+  confirm_now:
+    title: __DOMAIN_NAME__
+    meta:
+      description: "__DOMAIN_NAME__"
+      keywords: __DOMAIN_NAME__
+      robots: noindex, noarchive, follow
+  confirm_new_user_now:
+    title: __DOMAIN_NAME__
+    meta:
+      description: "__DOMAIN_NAME__"
+      keywords: __DOMAIN_NAME__
+      robots: noindex, noarchive, follow
+  confirm_new_email:
+    title: __DOMAIN_NAME__
+    meta:
+      description: "__DOMAIN_NAME__"
+      keywords: __DOMAIN_NAME__
+      robots: noindex, noarchive, follow
+  confirm_new_email_now:
+    title: __DOMAIN_NAME__
+    meta:
+      description: "__DOMAIN_NAME__"
+      keywords: __DOMAIN_NAME__
+      robots: noindex, noarchive, follow
+
+user_sessions:
+  new:
+    title: __DOMAIN_NAME__ - Login
+    meta:
+      description: "__DOMAIN_NAME__ - Login"
+      keywords: "__DOMAIN_NAME__, Login"
+      robots: noindex, noarchive, follow
+  destroy:
+    title: __DOMAIN_NAME__ - Sie haben sich ausgeloggt
+    meta:
+      description: "Auf Wiedersehen bei __DOMAIN_NAME__ - Sie haben sich erfolgreich abgemeldet."
+      keywords: "__DOMAIN_NAME__, Logout"
+      robots: noindex, noarchive, follow
+    

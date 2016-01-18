@@ -1,0 +1,9 @@
+
+Don't put any essential / system relevant files in here.
+This directory is only for instance customizations.
+Files in here are typically changeable from BACKEND or through a ssh shell to the server.
+
+On deploy time this directory will be renamed to "custom_templates".
+So if you have changed a file and want the changes to be enabled on deployed instance
+you have to COPY your changed files from "custom_templates/" to "custom/".
+

@@ -1,0 +1,24 @@
+# constants to configure the look of the frontend
+
+# common
+EMAIL:
+  ADMIN:
+    - admin@brunch-finden.de
+  SUPPORT:
+    - admin@brunch-finden.de
+    - filmkasten@web.de
+    
+STAGE: development
+DOMAIN:
+  NAME: brunch-finden.de
+  FULL_NAME: www.brunch-finden.de
+  # TOP_LEVEL_DOMAIN_SIZE = 1 for my-domain.de
+  # TOP_LEVEL_DOMAIN_SIZE = 2 for my-domain.co.uk or my-domain.com.au
+  TOP_LEVEL_DOMAIN_SIZE: 1
+SUBDOMAINS:
+  SECURE: secure
+  BACKEND: ''
+  MOBILE: m
+BACKEND:
+  DOMAIN: www.brunch-finden.de
+  PATH: /backend

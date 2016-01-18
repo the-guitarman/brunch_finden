@@ -1,0 +1,85 @@
+<div class="container">
+  
+</div>
+
+
+<div id="locations" class="content-box last only">
+  <h1>
+    <%= link_to(t('.brunch_h1', {:city_name => @city.name}),
+          city_rewrite_url(create_rewrite_hash(@city.rewrite))
+        )
+    -%>
+  </h1>
+
+  <h2 class="headline">
+    <%= link_to(t('.brunch_h2', {
+            :city_name => @city.name,
+            :number_of_locations => @city.number_of_locations
+          }),
+          city_rewrite_url(create_rewrite_hash(@city.rewrite))
+        )
+    -%>
+  </h2>
+  
+  <div id="all-city-locations" class="content-box only last all-city-locations">
+    <% unless @locations.empty? -%>
+      <ul>
+        <li class="col-header">
+          <%= render({:partial => 'frontend/cities/location_comparison_control_panel'}) -%>
+        </li>
+        <% @locations.each do |location| -%>
+          <li class="<%= @locations.last == location ? 'col last' : 'col' -%>">
+            <div class="col-remember">
+              <%= check_box_tag('location_comparison[]', '1', false, {:id => "location_#{location.id}", :class => :hidden, :title => 'zum vergleichen auswählen'}) -%>
+            </div>
+            <div class="col-image">
+              <%= get_location_image_tag(location.images.showable.find(:first), {:size => :list}) -%>
+            </div>
+            <div class="col-details">
+              <%= link_to(location.name, location_rewrite_url(create_rewrite_hash(location.rewrite))) -%>
+              <%= aggregated_review_stars(location, {:split_stars => 2, :show_label => false}) -%>
+              <% if location.price_information? -%>
+                <div><%= Location.human_attribute_name(:price_information) -%>: <%= truncate(location.price_information, {:length => 100}) -%></div>
+              <% end -%>
+            </div>
+            <div class="col-price">
+              <div>
+                <% if location.price? -%>
+                  <%= number_to_currency(location.price) -%> <%= price_mark -%>
+                <% else -%>
+                  &nbsp;
+                <% end -%>
+              </div>
+              <div><%= link_to('Anzeigen', location_rewrite_url(create_rewrite_hash(location.rewrite)), {:class => 'primarybutton location'}) -%></div>
+            </div>
+          </li>
+        <% end -%>
+        <li class="col-footer">
+          <%= render({:partial => 'frontend/cities/location_comparison_control_panel'}) -%>
+        </li>
+      </ul>
+      <div><%= price_mark_description -%></div>
+    <% else -%>
+      <%= t('.no_locations', {:city_name => @city.name}) -%><br />
+      <%= link_to t('.new_location'), new_location_url -%>
+    <% end -%>
+  </div>
+  
+  <%= will_paginate(@locations) -%>
+  
+  <%= render :partial => 'frontend/common/ct_advertisement_300x250_rectangle' -%>
+</div>
+
+<% if @page == 1 -%>
+  <div id="city-description" class="content-box last only">
+    <h3 class="headline">
+      <%= link_to(t('.brunch_h3', {:city_name => @city.name}),
+            city_rewrite_url(create_rewrite_hash(@city.rewrite))
+          )
+      -%>
+    </h3>
+    <% if @city.description? -%>
+      <%= content_tag(:p, @city.description.gsub("\n", '<br />'), {:itemprop => 'description', :class => 'expandable'}) -%>
+    <% end -%>
+  </div>
+<% end -%>

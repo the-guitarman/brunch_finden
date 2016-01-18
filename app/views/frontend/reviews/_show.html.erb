@@ -1,0 +1,24 @@
+<div class="review<%= last ? ' last' : '' -%>">
+  <div class="review-author">
+    <%= anchor_for(
+          "#{l(review.published_at)}, von #{content_tag(:span, user_name(user_short(review)), {:itemprop => 'author'})}", 
+          "review-#{review.id}"
+        )
+    -%>
+    <%= content_tag(:span, review.published_at.iso8601, {:itemprop => 'datePublished', :class => 'meta-data'}) -%>
+  </div>
+  <div class="stars">
+    <%= schema_org_review_rating(review, destination) do
+          review_stars(review, destination) 
+        end
+    -%>
+    <%
+      ratings = review.ratings
+      @review_template_questions.each_with_index do |rtq, idx|
+        rating = ratings.select{|r| r.review_question_id == rtq.review_question_id}.first
+    -%>
+      <%= rating_stars(rtq.review_question, rating, {:answer_position => :after}) -%>
+    <% end -%>
+  </div>
+  <div class="review-text expandable" itemprop="description"><%= h(review.text) -%></div>
+</div>

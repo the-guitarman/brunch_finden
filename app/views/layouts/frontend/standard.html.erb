@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xml:lang="<%= I18n.locale -%>" lang="<%= I18n.locale -%>" 
+      xmlns:og="http://ogp.me/ns#"  
+      xmlns:fb="http://www.facebook.com/2008/fbml"<%= schema_org_body_attributes -%>>
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+    <% 
+       if (Rails.version < '3.0.0' and response.status.to_i < 400) or 
+          (Rails.version >= '3.0.0' and response.code.to_i < 400)
+    -%>
+      <% header_tags = render({:partial => 'shared/page_header_tags'}) -%>
+      <%= header_tags -%>
+      <%# unless header_tags =~ /rel="canonical"/ -%>
+        <%#<link rel="canonical" href="<%= "#{request.protocol}#{request.host}#{request.path.gsub(/\/$/,'')}" -% >" /> -%>
+      <%# end -%>
+    <% else -%>
+      <title>Ein Fehler <%= Rails.version < '3.0.0' ? response.status.to_i : response.code.to_i -%> ist aufgetreten</title>
+    <% end -%>
+    
+    <%= render({:partial => 'shared/facebook_tags'}) -%>
+    <%= render({:partial => 'shared/twitter_tags'}) -%>
+    <%= render({:partial => 'shared/schema_org_tags'}) -%>
+      
+    <%= csrf_meta_tag if Rails::VERSION::MAJOR < 3 -%>
+
+    <meta http-equiv="Content-Language" content="<%= I18n.locale -%>" />
+    <meta name="robots" content="NOODP" />
+
+    <link href='/favicon.ico' type='image/x-icon' rel='shortcut icon' />
+    
+    <link rel="alternate" hreflang="x-default" href="http://<%= @host_full_name -%>" />
+    
+    <link rel="apple-touch-icon" href="http://<%= @host_full_name -%>/images/apple_touch_icon.png" />
+    <link rel="apple-touch-icon-precomposed" href="http://<%= @host_full_name -%>/images/apple_touch_icon.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://<%= @host_full_name -%>/images/apple_touch_icon_ipad.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://<%= @host_full_name -%>/images/apple_touch_icon_iphone_retina.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://<%= @host_full_name -%>/images/apple_touch_icon_ipad_retina.png" />
+    <link rel="apple-touch-startup-image" href="http://<%= @host_full_name -%>/images/apple_touch_icon.png" />
+    <!-- <%= app_version_string -%> -->
+    
+    <% if Rails.env.development? -%>
+      <%= stylesheet_link_tag(
+        # Blueprint CSS Framework
+#        'bp_1/reset',
+#        'bp_1/typography',
+        #'bp_1/form',
+        #'bp_1/grid',
+#        'bp_1/ie',
+
+        # additional css for javascripts
+        'frontend/jquery-ui-autocomplete',
+        'frontend/jquery.rating',
+        'frontend/jquery.fancybox-1.3.4',
+        #'frontend/socialshareprivacy',
+        # show loading overlay
+        '/javascripts/frontend/show_loading/css/showLoading.css',
+        # ad gallery
+        '/javascripts/frontend/ad_gallery/jquery.ad-gallery.css',
+
+        # Application CSS
+        #'frontend/layout',
+        #'frontend/global',
+        #'frontend/page',
+        #'frontend/classes',
+        ##'frontend/styles',
+        #'frontend/css3_formular_style',
+
+        'shared/addthis_smart_layers',
+        
+        'frontend/images',
+        
+        'bootstrap',
+        'frontend/bootstrap_overrides',
+        'frontend/responsive',
+
+        :cache => "#{GLOBAL_CONFIG[:cached_css_frontend_path]}fe_styles"
+      ) -%>
+
+      <%#= stylesheet_link_tag(
+            'frontend/print',
+            :cache => "#{GLOBAL_CONFIG[:cached_css_frontend_path]}fe_print_styles", :media => "print"
+          )
+      -%>
+    <% else -%>
+      <%= stylesheet_link_tag(
+        # Blueprint CSS Framework
+        'bp_1/reset',
+        'bp_1/typography',
+        #'bp_1/form',
+        #'bp_1/grid',
+        'bp_1/ie',
+
+        # additional css for javascripts
+        'frontend/jquery-ui-autocomplete.min',
+        'frontend/jquery.rating.min',
+        'frontend/jquery.fancybox-1.3.4.min',
+        #'frontend/socialshareprivacy',
+        # show loading overlay
+        '/javascripts/frontend/show_loading/css/showLoading.min.css',
+        # ad gallery
+        '/javascripts/frontend/ad_gallery/jquery.ad-gallery.css',
+
+        # Application CSS
+        'frontend/layout.min',
+        'frontend/global.min',
+        'frontend/page.min',
+        'frontend/classes.min',
+        #'frontend/styles',
+        'frontend/css3_formular_style.min',
+
+        'shared/addthis_smart_layers.min',
+
+        :cache => "#{GLOBAL_CONFIG[:cached_css_frontend_path]}fe_styles"
+      ) -%>
+
+      <%#= stylesheet_link_tag(
+            'frontend/print',
+            :cache => "#{GLOBAL_CONFIG[:cached_css_frontend_path]}fe_print_styles", :media => "print"
+          )
+      -%>
+    <% end -%>
+  </head>
+  <body class="<%= controller_name -%> <%= action_name -%>">
+    <%= render({:partial => 'frontend/common/responsive_navbar'}) -%>
+    <div class="container-float">
+      <% if ((not (controller_name == 'index' and action_name == 'index')) and 
+             response.status.to_i < 400)
+      -%>
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="hidden-xs">
+              <%= breadcrumb -%>
+            </div>
+            <div class="show-details for-breadcrumb visible-xs hidden-sm">
+              <a href="#" rel="nofollow">Wo bin ich? <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
+              <a href="#" rel="nofollow" class="hidden">Breadcrumb ausblenden <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></a>
+            </div>
+          </div> 
+        </div>
+      <% end -%>
+      
+      <% if (not (controller_name == 'index' and action_name == 'index')) -%>
+        <%= render({:partial => 'frontend/common/responsive_advertisement'}) -%>
+      <% end -%>
+      
+      <div class="row">
+        <div class="col-xs-12">
+          <%= yield -%>
+        </div>
+      </div>
+      
+      <%#= render :partial => 'frontend/common/ct_footer' -%>
+      <%= render({:partial => 'frontend/common/responsive_footer'}) -%>
+    </div>
+
+    <% if Rails.env.development? -%>
+      <%= javascript_include_tag(
+        'shared/extensions/string',
+
+        'jquery-1.7.2',
+        'bootstrap',
+
+        'frontend/jquery-ui.min',
+        'frontend/jquery-ui-autocomplete-ext',
+        'frontend/jquery.autocomplete',
+
+        'frontend/jquery.captcha',
+        'frontend/jquery.cookie',
+        'frontend/jquery.location_comparison',
+        'frontend/jquery.location_images',
+        'frontend/jquery.scroll_to',
+
+        # read more/less expander
+        'frontend/jquery.expander',
+        
+        'frontend/jquery.gmap_directions',
+
+        # star rating
+        'frontend/jquery.rating',
+        'frontend/jquery.MetaData',
+        'frontend/jquery.location_rating',
+
+        # additional javascripts
+        'frontend/fancybox/jquery.fancybox-1.3.4',
+
+        'frontend/jquery.main',
+
+        ## social share privacy
+        #'frontend/jquery.socialshareprivacy',
+
+        # show loading overlay
+        'frontend/show_loading/js/jquery.showLoading', 
+        # ad gallery
+        'frontend/ad_gallery/jquery.ad-gallery',
+        'frontend/jquery.images_gallery',
+        
+        'frontend/jssor_slider/jssor',
+        'frontend/jssor_slider/jssor.slider',
+        'frontend/jssor_slider/jssor.full_width_slider',
+        
+#        'shared/jquery.addthis_smart_layers',
+
+        :cache => "#{GLOBAL_CONFIG[:cached_js_frontend_path]}fe_js"
+      ) -%>
+      
+    <% else -%>
+      <%= javascript_include_tag(
+        'shared/extensions/string.min',
+
+        'jquery-1.7.2.min',
+        'bootstrap.min',
+
+        'frontend/jquery-ui.min',
+        'frontend/jquery-ui-autocomplete-ext.min',
+        'frontend/jquery.autocomplete.min',
+
+        'frontend/jquery.captcha.min',
+        'frontend/jquery.cookie.min',
+        'frontend/jquery.location_comparison.min',
+        'frontend/jquery.location_images.min',
+        'frontend/jquery.scroll_to.min',
+
+        # read more/less expander
+        'frontend/jquery.expander.min',
+        
+        'frontend/jquery.gmap_directions.min',
+
+        # star rating
+        'frontend/jquery.rating.pack',
+        'frontend/jquery.MetaData.min',
+        'frontend/jquery.location_rating.min',
+
+        # additional javascripts
+        'frontend/fancybox/jquery.fancybox-1.3.4.pack',
+
+        'frontend/jquery.main.min',
+
+        ## social share privacy
+        #'frontend/jquery.socialshareprivacy.min',
+
+        # show loading overlay
+        'frontend/show_loading/js/jquery.showLoading.min', 
+        # ad gallery
+        'frontend/ad_gallery/jquery.ad-gallery.min',
+        'frontend/jquery.images_gallery.min',
+        
+        'frontend/jssor_slider/jssor.min',
+        'frontend/jssor_slider/jssor.slider.min',
+        'frontend/jssor_slider/jssor.full_width_slider.min',
+        
+#        'shared/jquery.addthis_smart_layers.min',
+
+        :cache => "#{GLOBAL_CONFIG[:cached_js_frontend_path]}fe_js"
+      ) -%>
+
+    <% end -%>
+    
+    <% javascript_tag do -%>
+      <%= yield(:jquery_global) -%>
+      $(document).ready(function() {
+          <%= yield(:jquery_on_ready) -%>
+          initSearchField(
+              '#search-field', 
+              '#search-form', 
+              '<%= t('shared.search.field_default_value') -%>',
+              '<%= escape_javascript(text_message_error(t('shared.search.no_search_phrase_error'), nil, true)) -%>'
+          );
+          $(document).on('click', '#search-form .text-message .close', function() {$(this).parents('.text-message').remove();});
+          //if($('.socialshareprivacy').length > 0){$('.socialshareprivacy').socialSharePrivacy({services:{facebook:{'action':'like'}}});};
+          $('.expandable').expander({slicePoint:400, expandPrefix:' ', expandText:'<%= t('shared.read_more_text') -%>', userCollapseText:'<%= t('shared.read_less_text') -%>', afterExpand: function() {$(this).find('.details').css('display', 'inline');}});
+      });
+    <% end -%>
+    
+    <% if @map_locations -%>
+      <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=<%= I18n.locale -%>"></script>
+      <%= javascript_include_tag(
+        'frontend/jquery.gmaps.min',
+        :cache => "#{GLOBAL_CONFIG[:cached_js_frontend_path]}fe_gmaps_js"
+      ) -%>
+    <% end -%>
+    
+    <% if Rails.env.production? -%>
+      <!-- Google Analytics -->
+      <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      </script>
+      <script type="text/javascript">
+        try {
+          var pageTracker = _gat._getTracker("<%= google_analytics_property_id -%>");
+          pageTracker._trackPageview();
+        } catch(err) {}
+      </script>
+      <!-- Google Analytics -->
+
+    <%
+#      <!-- Piwik -->
+#      <script type="text/javascript">
+#        var pkBaseURL = (("https:" == document.location.protocol) ? "https://85.214.105.79:7600/" : "http://85.214.105.79:7600/");
+#        document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+#      </script>
+#      <script type="text/javascript">
+#        try {
+#          var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
+#          piwikTracker.trackPageView();
+#          piwikTracker.enableLinkTracking();
+#        } catch( err ) {}
+#      </script>
+#      <noscript>
+#        <p>
+#          <img src="http://85.214.105.79:7600/piwik.php?idsite=1" style="border:0" alt="" />
+#       </p>
+#      </noscript>
+#      <!-- End Piwik Tag -->
+    -%>
+    <% end -%>
+    <%#= render :partial => 'frontend/common/ct_addthis_smart_layers' -%>
+      
+    <a href="#" class="bg-image scrollup">Scroll</a>
+    
+    <%= render :partial => 'frontend/common/ct_preloads' -%>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+<%
+  error = (params.key?(:confirmation_code) and (@user.blank? or @user.confirmed?))
+-%>
+<div class="form-entry<%= error ? ' error' : '' -%>">
+  <%= label_tag(:confirmation_code, FrontendUser.human_attribute_name(:confirmation_code)) -%>
+  <%= text_field_tag(:confirmation_code, '') -%>
+  <% if error -%>
+    <%= text_message_error(t_f_a(:confirm_now, '.confirmation_code_error')) -%>
+  <% end -%>
+</div>
+<div class="form-entry submit">  
+  <div class="label"></div>
+  <div class="input-area">
+    <%= submit_tag('Aktivieren', {:class => 'primarybutton', :name => nil}) -%>
+    <% if logged_in? -%>
+      <%= link_to('später aktivieren', frontend_user_confirm_later_url, {:class => 'confirm-later'}) -%>
+    <% end -%>
+  </div>
+</div>

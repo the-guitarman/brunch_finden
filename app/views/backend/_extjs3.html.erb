@@ -1,0 +1,34 @@
+<%
+  extjs_path = GLOBAL_CONFIG[:extjs3_url_path]
+  cached_js_backend_path = GLOBAL_CONFIG[:cached_js_backend_path]
+%>
+<!-- <%#= p 'extjs_path:'+extjs_path %> -->
+
+<!-- ExtJS files -->
+<%= stylesheet_link_tag(
+  # ExtJ library: base library
+  "#{extjs_path}resources/css/ext-all"#,
+  # Don't cache it, because
+  #   - of the relative image URLs inside
+  #   - it's one file only
+  #:cache=>"#{extjs_directory}"
+) -%>
+
+
+<% if Rails.env.development? -%>
+  <%= javascript_include_tag(
+    "#{extjs_path}ext-base-debug",
+    # ExtJS library: all widgets
+    "#{extjs_path}ext-all-debug",
+    :cache=>"#{cached_js_backend_path}extjs3"
+  ) -%>
+
+<% else  %>
+  <%= javascript_include_tag(
+    "#{extjs_path}ext-base",
+    # ExtJS library: all widgets
+    "#{extjs_path}ext-all",
+    :cache=>"#{cached_js_backend_path}extjs3"
+  ) -%>
+
+<% end %>

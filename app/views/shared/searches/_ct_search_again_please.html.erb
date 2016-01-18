@@ -1,0 +1,10 @@
+<h2><%= t('shared.search.no_search_string') -%></h2>
+<%= t('shared.search.no_search_string_options') -%>:<br />
+<ul>
+  <li><%= Location.human_name -%></li>
+  <li><%= City.human_name -%></li>
+  <li><%= ZipCode.human_name -%></li>
+  <li><%= Location.human_attribute_name(:street) -%></li>
+  <li><%= State.human_name -%></li>
+</ul>
+<%= t('shared.search.no_search_string_try_again') -%>

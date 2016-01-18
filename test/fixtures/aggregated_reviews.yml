@@ -1,0 +1,12 @@
+1:
+  id: 1
+  destination_id: 1
+  destination_type: Location
+  user_count: 2
+  value: 90
+2:
+  id: 2
+  destination_id: 2
+  destination_type: Location
+  user_count: 1
+  value: 100

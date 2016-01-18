@@ -1,0 +1,17 @@
+<% unless @page_header_tags.blank? -%>
+  <title><%= @page_header_tags['title'] -%></title>
+  <% if @page_header_tags.key?('meta') -%>
+    <% @page_header_tags['meta'].keys.each do |key| -%>
+      <meta name="<%= key -%>" content="<%=@page_header_tags['meta'][key] -%>" />
+    <% end -%>
+  <% end -%>
+  <% if @page_header_tags.key?('link') -%>
+    <% @page_header_tags['link'].each do |header_link_tag| -%>
+      <%= header_link_tag -%>
+    <% end -%>
+  <% end -%>
+<% else -%>
+  <title><%= @host_full_name -%> - Brunchen in deiner Stadt</title>
+  <meta name="description" content="Finde Brunch-Locations in deiner Nähe auf <%= @host_full_name -%>." />
+  <meta name="keywords" content="<%= @host_name -%>, brunch, frühstück, mittag, essen" />
+<% end -%>

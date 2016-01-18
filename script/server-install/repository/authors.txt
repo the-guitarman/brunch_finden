@@ -1,0 +1,3 @@
+sebastian = Sebastian <sebastianhendygk@gmx.de>
+gsrepo = Sebastian <sebastianhendygk@gmx.de>
+gerd = Gerd <gerd.kretzschmar@s2000.tu-chemnitz.de>

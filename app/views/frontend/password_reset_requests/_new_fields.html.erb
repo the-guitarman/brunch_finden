@@ -1,0 +1,13 @@
+<div class="form-entry<%= @login_or_email_blank.blank? ? '' : ' error' -%>">
+  <%= label_tag(:login_or_email, FrontendUser.human_attribute_name(:login_or_email), {:class => 'label'}) -%>
+  <%= text_field_tag(:login_or_email, '') -%>
+  <% unless @login_or_email_blank.blank? -%>
+    <%= text_message_error(@login_or_email_blank) -%>
+  <% end -%>
+</div>
+<div class="form-entry submit">
+  <div class="label"></div>
+  <div class="input-area">
+    <%= submit_tag('E-Mail anfordern', :class => 'primarybutton', :name => nil) -%>
+  </div>
+</div>

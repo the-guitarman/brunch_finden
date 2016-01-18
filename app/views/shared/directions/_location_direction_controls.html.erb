@@ -1,0 +1,100 @@
+<% geo_location = @location.geo_location -%>
+<div class="location-direction-controls row">
+<% form_tag(mobile_location_directions_url({:id => @location.id}), {:id => 'location-directions', 'data-remote' => true}) do -%>
+  <div class="col-md-4 my-location">
+    <strong>Mein Standort</strong><br />
+    <div><label><%= radio_button_tag(:my_position, :auto, {:selected => :selected}) -%> <small>Automatisch</small></label></div>
+    <div>
+      <label><%= radio_button_tag(:my_position, :manuel) -%> <small>Eingabe, </small></label>
+      <label><small>Adresse:</small> <%= text_field_tag(:my_position_text, nil, {:placeholder => ''}) -%></label>
+    </div>
+  </div>
+  <div class="col-md-4 mode-of-travel">                  
+    <strong>Verkehrsmittel</strong><br />
+    <div><label><%= radio_button_tag(:mode_of_travel, :WALKING, {:selected => :selected}) -%> <small>Zu Fuß</small></label></div>
+    <div><label><%= radio_button_tag(:mode_of_travel, :BICYCLING) -%> <small>Mit dem Fahrrad</small></label></div>
+    <div><label><%= radio_button_tag(:mode_of_travel, :TRANSIT) -%> <small>Mit öffentlichen Verkehrsmitteln</small></label></div>
+    <div><label><%= radio_button_tag(:mode_of_travel, :DRIVING) -%> <small>Mit dem Auto</small></label></div>
+  </div>
+  <div class="col-md-4">
+    <%= submit_tag('Anzeigen', {:class => 'btn btn-default', :name => nil}) -%>
+  </div>
+<% end -%>
+</div>
+<div class="location-directions row">
+  <div class="directions-map" ></div>
+  <div class="directions-panel"></div>
+</div>
+<% content_for :jquery_mobile_on_ready do -%>
+    $('.my-location input[type="radio"]').click(function(){
+        var self = $(this);
+        var address = $('#my_position_text');
+        if (self.attr('id') == 'my_position_auto') {
+            //address.attr('disabled', 'disabled');
+        } else {
+            //address.removeAttr('disabled');
+            address.delay(400).focus();
+        }
+    });
+    
+    $('#my_position_text').click(function(){
+        $('.my-location input[id="my_position_manuel"]').trigger('click');
+    });
+    
+    if (typeof(navigator.geolocation.getCurrentPosition) != 'function') {
+        var radios = $('.my-location input[type="radio"]');
+        radios.parent().remove();
+        radios.remove();
+    }
+
+    $('form#location-directions').submit(function(){
+        var self = $(this);
+        var parentEl = self.parents('.panel-body').first();
+        var targetEl = $('div.location-directions').first();
+        var locationPosition = new google.maps.LatLng(<%= geo_location.lat -%>, <%= geo_location.lng -%>);
+        var modeOfTravel = $('.mode-of-travel input[type="radio"]:checked').val();
+
+        parentEl.showLoading();
+        
+        var showError = function(){
+            parentEl.html('Es ist ein Fehler aufgetreten. Ihre Position konnte nicht bestimmt werden.');
+        };
+        
+        if ($('.my-location input[type="radio"]:checked').val() == 'auto') {
+            navigatorPosition({
+                success: function(position){
+                    var currentPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    showLocationDirections({
+                        'locationPosition': locationPosition,
+                        'currentPosition': currentPosition,
+                        'modeOfTravel': modeOfTravel
+                    });
+                    parentEl.hideLoading();
+                }, 
+                failure: function() {
+                    showError();
+                    parentEl.hideLoading();
+                }
+            });
+        } else {
+            geocodeAddress($('#my_position_text').val(), {
+                success: function(position) {
+                    var currentPosition = new google.maps.LatLng(position['latitude'], position['longitude']);
+                    showLocationDirections({
+                        'locationPosition': locationPosition,
+                        'currentPosition': currentPosition,
+                        'modeOfTravel': modeOfTravel
+                    });
+                }, 
+                failure: function() {
+                    showError();
+                }, 
+                complete: function() {
+                    parentEl.hideLoading();
+                }
+            });
+        }
+        
+        return false;
+    });
+<% end -%>

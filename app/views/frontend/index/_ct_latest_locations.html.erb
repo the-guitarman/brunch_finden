@@ -1,0 +1,15 @@
+<% cache(frontend_index_ct_latest_locations) do -%>
+  <% if defined?(locations) and not locations.empty? -%>
+    <div id="" class="latest-reviews">
+      <h3 class="headline"><%= t_f_a(:index, :headline_latest_locations) -%></h3>
+      <ul class="list-group">
+        <% locations.each do |location| -%>
+          <li class="list-group-item">
+            <%= link_to(location.name, location_rewrite_url(create_rewrite_hash(location.rewrite))) -%>
+            <small>eingetragen am: <%= l(location.created_at, :format => :latest_reviews) -%></small>
+          </li>
+        <% end -%>
+      </ul>
+    </div>
+  <% end -%>
+<% end -%>

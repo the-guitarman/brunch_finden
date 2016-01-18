@@ -1,0 +1,21 @@
+Guten Tag <%= @frontend_user.name -%>,
+
+Sie erhalten diese E-Mail, weil sie eine neue Brunch-Location (<%= @location.name -%>) auf <%= @domain_full_name -%> gemeldet haben.
+
+Klicken Sie bitte auf den nachfolgenden Link um die Eintragung zu bestätigen und abzuschließen.
+
+<%= @location.name -%> in <%= @location.zip_code.city.name %>:
+<%= confirm_frontend_location_url(:id => @location.id, :token => @location.confirmation_code) %>
+
+<% unless @locations_unconfirmed.empty? -%>
+Weitere noch nicht bestätigte Location von Ihnen:
+<% @locations_unconfirmed.each do |l| -%>
+<%= l.name -%> in <%= l.zip_code.city.name %>
+<%= confirm_frontend_location_url(:id => l.id, :token => l.confirmation_code) %>
+
+<% end -%>
+<% end -%>
+Vielen Dank
+Das Team von <%= @domain_name %>
+
+Hinweis: Falls Sie die o.g. Brunch-Location nicht bei uns gemeldet haben, löschen Sie diese E-Mail bitte. Sie erhalten keine weitere Nachricht von uns.

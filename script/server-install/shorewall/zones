@@ -1,0 +1,4 @@
+#ZONE    INTERFACE      BROADCAST     OPTIONS
+inet     eth0           detect
+vpn      edge0          detect
+

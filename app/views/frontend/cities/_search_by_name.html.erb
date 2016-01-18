@@ -1,0 +1,25 @@
+<% js = '' -%>
+<% if cities and !cities.empty? -%>
+  <ul>
+    <% 
+      cities.each do |city|
+        if city
+          suggestion_id = "city-#{escape_javascript(city.id.to_s)}-suggestion"
+          js += "
+              $('##{suggestion_id}').click(function() {
+                  $('#location_suggestion_city').val('#{escape_javascript(city.name)}');
+                  $('.search-suggestions').hide();
+              });"
+    -%>
+          <li id="<%= suggestion_id -%>">
+            <%= city.name -%>
+          </li>
+    <%
+        end
+      end
+    -%>
+  </ul>
+  <% unless js.blank? -%>
+    <%= javascript_tag(js) -%>
+  <% end -%>
+<% end -%>

@@ -1,0 +1,29 @@
+<div class="location-comparator">
+  <h4 class="headline"><%= @locations.length -%> <%= Location.human_name({:count => @locations.length}) -%> vergleichen</h4>
+  <%
+    rows   = {}
+    fields = [:name, :price, :price_information]
+    fields.each{|f| rows[f] = []}
+    fields.each do |f|
+      @locations.each do |l|
+        ret = 
+          if f == :name
+            link_to(l.name, location_rewrite_url(create_rewrite_hash(l.rewrite)))
+          elsif f == :price
+            l.send("#{f}?".to_sym) ? number_to_currency(l.send(f)) : ''
+          else
+            l.send(f)
+          end
+        rows[f] << "<td class=\"attr\">#{ret}</td>".html_safe
+      end
+    end
+  -%>
+  <table>
+    <% fields.each do |f| -%>
+      <tr<%= fields.last == f ? ' class="last"' : '' -%>>
+        <td class="label"><%= Location.human_attribute_name(f) -%>:</td>
+        <%= rows[f] -%>
+      </tr>
+    <% end -%>
+  </table>
+</div>

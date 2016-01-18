@@ -1,0 +1,39 @@
+Guten Tag,
+
+Sie haben auf <%= @domain_full_name -%> eine Bewertung für 
+<%= @item.name -%> (url: <%= location_rewrite_url(@location_rewrite_hash) -%>) abgegeben.
+
+Bitte bestätigen Sie Ihre Bewertung mit folgendem Link:
+<%= confirm_review_url({
+      :id    => @review.id, 
+      :token => @review.confirmation_code
+    }).html_safe 
+%>
+
+Ihre Bewertung:
+<%
+  if @review_template_questions
+    @review_template_questions.each do |rtq|
+      if rating = @review.ratings.find(:first, {:conditions => {:review_question_id => rtq.review_question_id}})
+        review_answer = ReviewAnswer.find(:first, {:conditions => {:review_question_id => rtq.review_question_id, :score => rating.value}})
+-%>
+<%= rating.review_question.text -%>: <%= review_answer.text %>
+<%
+      end
+    end
+  end
+-%>
+Text: <%= @review.text %>
+
+<%= render({
+      :partial => 'mailers/frontend/review_mailer/more_unconfirmed_reviews', 
+      :locals => {:reviews => @other_unpublished_reviews}
+    })
+-%>
+
+Vielen Dank
+Das Team von <%= @domain_name %>
+
+<%#= render :partial => 'mailers/frontend/register_or_login' %>
+
+<%= render :partial => 'mailers/frontend/footer' -%>

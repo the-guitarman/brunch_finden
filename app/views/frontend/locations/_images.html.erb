@@ -1,0 +1,26 @@
+<div id="location-images">
+  <%#= get_location_image_in_fancybox_link(
+        images.first,
+        {:size => :location, :class => 'main-image'},
+        {:gallery => 'location-head-gallery', :only_larger_image => (images.length > 1 ? false : true)}
+      )
+  -%>
+  <div class="fancybox-images hidden">
+    <% images.each do |image| -%>
+      <%= schema_org_photo do
+            get_location_image_in_fancybox_link(
+              image,
+              {:size => :location, :itemprop => 'contentURL'},
+              {:gallery => 'location-head-gallery-1', :only_larger_image => (images.length > 1 ? false : true)}
+            )
+          end
+      -%>
+    <% end -%>
+  </div>
+  
+  <%= render({
+        :partial => 'frontend/location_images/images_gallery',
+        :locals => {:images => images}
+      }) 
+  -%>
+</div>

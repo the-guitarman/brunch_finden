@@ -1,0 +1,217 @@
+#  # meta data definition
+#  meta: 
+#    date:
+#      read: 'response/date'
+#    time:
+#      read: 'response/time'
+#    type: 
+#      read: 'response/type'
+#      # returns:
+#      #   list         -> Daten im Ubersichtsformat
+#      #   detailed     -> Daten im Detailformat
+#      #   empty        -> Leeres Ergebnis
+#      #   forbidden    -> Nutzer-ID uid passt nicht zur IP-Adresse
+#      #   format error -> Falsches Format angefordert
+#      #   error        -> Sonstiger Fehler
+#    count:
+#      read: 'response/count'
+#    your_uid:
+#      read: 'response/your_uid'
+#    your_ip:
+#      read: 'response/your_ip'
+#  
+#  # object structure definition
+#  objects:
+#    coupon:
+#      read: 'response/coupons'
+#      find_by: 'coupon_id'
+#      objects:
+#        coupon_category:
+#          read: 'coupon/categories'
+#          find_by: 'name'
+#          has_and_belongs_to_many: 'coupon_categories'
+#
+#  # object format/attributes definition
+#  format:
+#    coupon:
+#      customer_id: 
+#        association: 'customer#name=coupons4u.de'
+#      coupon_id:
+#        read: 'coupon/id'
+#      name:
+#        read: 'coupon/name'
+#      valid_from:
+#        read: 'coupon/valid_from'
+#      valid_to:
+#        read: 'coupon/valid_to'
+#      image_url:
+#        read: 'coupon/image_url'
+#      merchant_id:
+#        read: 'coupon/merchant_id'
+#      merchant_name:
+#        read: 'coupon/merchant'
+#      merchant_logo_url:
+#        read: 'coupon/merchant_logo'
+#      url:
+#        read: 'coupon/coupon_url'
+#      kind:
+#        read: 'coupon/type'
+#        # returns one of: rabattcoupons, gewinnspiele, gratiscoupons_produktproben
+#      hint:
+#        read: 'coupon/hint'
+#      favourite:
+#        read: 'coupon/favourite'
+#      code:
+#        read: 'coupon/coupon_code'
+#      priority:
+#        read: 'coupon/priority'
+#      value:
+#        read: 'coupon/value'
+#      unit:
+#        read: 'coupon/unit'
+#      minimum_order_value:
+#        read: 'coupon/minimum_order_value'
+#      only_new_customer:
+#        read: 'coupon/only_new_customer'
+#    coupon_category:
+#      name:
+#        read: 'category_?'
+# 
+#  # objects to skip definition
+#  skip:
+#    coupon:
+#      merchant_id:
+#        - '5'
+
+meta: 
+  date:
+    read: 'response/date'
+  time:
+    read: 'response/time'
+  type:
+    read: 'response/type'
+  count:
+    read: 'response/count'
+  your_uid:
+    read: 'response/your_uid'
+  your_ip:
+    read: 'response/your_ip'
+
+objects:
+  coupon:
+    read: 'response/coupons'
+    find_by: 'coupon_id'
+    objects:
+      coupon_category:
+        read: 'coupon/categories'
+        find_by: 'name'
+        has_and_belongs_to_many: 'coupon_categories'
+  coupon_merchant:
+    read: 'response/merchants'
+    find_by: 'merchant_id'
+    
+format:
+  coupon:
+    customer_id: 
+      association: 'customer#name=coupons4u.de'
+    coupon_id:
+      read: 'coupon/id'
+    name:
+      read: 'coupon/name'
+    valid_from:
+      read: 'coupon/valid_from'
+    valid_to:
+      read: 'coupon/valid_to'
+    merchant_id:
+      read: 'coupon/merchant_id'
+    url:
+      read: 'coupon/coupon_url'
+    kind:
+      read: 'coupon/type'
+    hint:
+      read: 'coupon/hint'
+    favourite:
+      read: 'coupon/favourite'
+    code:
+      read: 'coupon/coupon_code'
+    priority:
+      read: 'coupon/priority'
+    value:
+      read: 'coupon/value'
+    unit:
+      read: 'coupon/unit'
+    minimum_order_value:
+      read: 'coupon/minimum_order_value'
+    only_new_customer:
+      read: 'coupon/only_new_customer'
+
+  coupon_category:
+    name:
+      read: 'category_?'
+      
+  coupon_merchant:
+    merchant_id:
+      read: 'merchant/id'
+    name:
+      read: 'merchant/name'
+    logo_url:
+      read: 'merchant/logo'
+    description:
+      read: 'merchant/description'
+      
+skip:
+  coupon:
+    merchant_id:
+      - value: '62'
+        description: ''
+      - value: '231'
+        description: ''
+      - value: '562'
+        description: ''
+      - value: '631'
+        description: 'LLOYD'
+      - value: '839'
+        description: ''
+      - value: '1026'
+        description: 'GANT shop'
+      - value: '1820'
+        description: 'Jockey'
+    merchant_name:
+      - value: 'Bon-Kredit'
+        description: ''
+      - value: 'heine.de'
+        description: ''
+      - value: 'Weltbild'
+        description: ''
+      - value: 'Alba Moda'
+        description: ''
+      - value: 'T-Online'
+        description: ''
+      - value: 'Wohnprofil'
+        description: ''
+      - value: 'Herrenausstatter.de'
+        description: ''
+      - value: 'FashionSisters.de'
+        description: ''
+      - value: 'Albertoshop.de'
+        description: ''
+      - value: 'FashionOnSale.de'
+        description: ''
+      - value: 'Gant-Shop.de'
+        description: ''
+      - value: 'GANT shop'
+        description: ''
+      - value: 'Jacques-Britt.de'
+        description: ''
+      - value: 'Jockey.de'
+        description: ''
+      - value: 'Jockey'
+        description: ''
+      - value: 'Lloydstore.de'
+        description: ''
+      - value: 'LLOYD'
+        description: ''
+      - value: 'Olympshop.de'
+        description: ''
+      - value: 'Rene-Lezard-Shop.com'
+        description: ''

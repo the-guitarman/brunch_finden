@@ -1,0 +1,14 @@
+<% cache(frontend_index_ct_city_with_most_locations) do -%>
+  <% if defined?(cities) and not cities.empty? -%>
+    <div id="cities-with-most-locations" class="cities">
+      <h3 class="headline"><%= t('.cities_with_most_locations') -%></h3>
+      <ul class="list-group">
+      <% cities.each do |city| -%>
+        <% a_content = city.name + ' ' + content_tag(:span, city.number_of_locations, {:class => 'badge'}) -%>
+        <% li_content = link_to(a_content, city_rewrite_url(create_rewrite_hash(city.rewrite))) -%>
+        <%= content_tag(:li, li_content, {:class => 'list-group-item'}) -%>
+      <% end -%>
+      </ul>
+    </div>
+  <% end -%>
+<% end -%>

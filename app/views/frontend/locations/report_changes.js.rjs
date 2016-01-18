@@ -1,0 +1,40 @@
+container = 'report-location-changes'
+
+page << remove_messages_below("##{container}")
+
+if @yacaph_validated and @changes_validated
+  page << "$('##{container}').html('#{escape_javascript(
+    infobox(I18n.t('shared.location.report_changes.changes_received', {:domain_name => @host_name}), '', true) + 
+    '<br /><br />' +
+    render({
+      :partial => 'frontend/common/ct_share_links',
+      :locals  => {
+        :url => location_rewrite_url(create_rewrite_hash(@location.rewrite)), 
+        :title => "Ich habe auf #{@host_name} Änderungen zur Brunch-Location '#{@location.name}' gemeldet. Location jetzt ansehen:"
+      }
+    })
+  )}');"
+else
+  unless @changes_validated
+    page << append_error_message_to('#changes', text_message_error(t(:blank, :scope => [:activerecord, :errors, :models, :location_changes, :attributes, :changes])))
+  end
+  
+  unless @yacaph_validated
+    page << append_error_message_to('#captcha', text_message_error(t('shared.captcha.error')), {:append => true})
+  end
+  
+  # empty captcha field
+  page << "$('#captcha').val('');"
+    
+  # replace captcha image
+  page << "
+      var hidden = $('#captcha_validation');
+      if (hidden.length > 0) {
+          hidden.replaceWith('#{escape_javascript(yacaph_hidden_text)}');
+      }
+
+      var image = $('#captcha').parent().find('img');
+      if (image.length > 0) {
+          image.replaceWith('#{escape_javascript(yacaph_image)}');
+      }"
+end

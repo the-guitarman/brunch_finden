@@ -1,0 +1,58 @@
+01:
+  id: 1
+  destination_id: 1
+  destination_type: Location
+  frontend_user_id: 2
+  state: 1
+  value: 100
+  helpful_yes: 0
+  helpful_no: 0
+  general_terms_and_conditions: 1
+  published_at: "2011-05-30 15:52:50"
+  created_at: "2011-05-30 15:52:50"
+  updated_at: "2011-05-30 15:52:50"
+  confirmation_code: FISo7AQQXw0wVz7hod
+  text: <%= "Freilebende Gummibärchen gibt es nicht. Man kauft sie in Packungen an der Kinokasse. "*3 %>
+02:
+  id: 2
+  destination_id: 1
+  destination_type: Location
+  frontend_user_id: 3
+  state: 1
+  value: 80
+  helpful_yes: 0
+  helpful_no: 0
+  general_terms_and_conditions: 1
+  published_at: "2011-05-30 15:52:50"
+  created_at: "2011-05-30 15:52:50"
+  updated_at: "2011-05-30 15:52:50"
+  confirmation_code: mkiN2xSnogaXdPyvDc5
+  text: <%= "Dieser Kauf ist der Beginn einer fast erotischen und sehr ambivalenten Beziehung Gummibärchen-Mensch. "*3 %>
+03:
+  id: 3
+  destination_id: 2
+  destination_type: Location
+  frontend_user_id: 1
+  state: 1
+  value: 100
+  helpful_yes: 0
+  helpful_no: 0
+  general_terms_and_conditions: 1
+  published_at: "2011-05-30 15:52:50"
+  created_at: "2011-05-30 15:52:50"
+  updated_at: "2011-05-30 15:52:50"
+  confirmation_code: sfaY6IAu9dv3XhpVMLHD
+  text: <%= "Zuerst genießt man. "*10 %>
+04:
+  id: 4
+  destination_id: 2
+  destination_type: Location
+  frontend_user_id: 3
+  state: 0
+  value: 20
+  general_terms_and_conditions: 1
+  published_at: "2011-05-30 15:52:50"
+  created_at: "2011-05-30 15:52:50"
+  updated_at: "2011-05-30 15:52:50"
+  confirmation_code: FISo7AQQXw0wVz7hod
+  text: <%= "Dieser Genuß umfaßt alle Sinne. "*6 %>

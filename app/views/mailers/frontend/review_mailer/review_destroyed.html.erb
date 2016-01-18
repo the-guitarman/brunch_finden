@@ -1,0 +1,16 @@
+Guten Tag <%= @user.login -%>,
+
+Ihr <%= @review_type -%> "<%= @review_title -%>"
+zum <%= @item_type -%> "<%= @item_name -%>"
+erstellt am <%= l(@review.created_at, :time => :datetime) %>
+<% if @review.published_at -%>
+und publiziert am <%= l(@review.published_at, :time => :datetime) %>
+<% end -%>
+wurde soeben aus folgendem Grund gelöscht:
+
+<%= @reason %>
+
+
+Das Team von <%= @domain_name %>
+
+<%= render :partial => 'mailers/footer' %>

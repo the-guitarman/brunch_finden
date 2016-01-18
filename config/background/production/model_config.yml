@@ -1,0 +1,69 @@
+CLICKOUT:
+  DO_NOT_TRACK:
+    USER_AGENTS:
+      - ASPseek
+      - AbachoBOT
+      - B#L#I#T#Z#B#O#T
+      - Crawler
+      - Exabot
+      - Fetch API Request
+      - Francis
+      - Gigabot
+      - Java
+      - Jeeves
+      - Jetbot
+      - Mercator
+      - Microsoft URL Control
+      - Mister Pix
+      - QihooBot
+      - RPT-HTTPClient
+      - Slurp
+      - Smarthousing.org
+      - Webclipping
+      - Wget
+      - YandexBot
+      - Yopi-crawler
+      - ZyBorg
+      - allothers
+      - altavista
+      - augurfind
+      - crawler
+      - eule
+      - excite
+      - fireball
+      - google
+      - grub-client
+      - heritrix
+      - ia_archiver
+      - infoseek
+      - inktomi
+      - larbin
+      - lycos
+      - msnbot
+      - northernlight
+      - psbot
+      - robot
+      - scooter
+      - spider
+      - suchtop-bot
+      - tricusBOT
+    IPS:
+      - 124.82.93.210
+      
+FRONTEND_USER:
+  # Specify after how many days a confirmation reminder email
+  # will be forwarded to users with unconfirmed accounts.
+  FORWARD_CONFIRMATION_REMINDER_EMAIL: [3, 7]
+
+  # Specify how many days unconfirmed user accounts can exist,
+  # after the last confirmation reminder email.
+  DELETE_UNCONFIRMED_X_DAYS_AFTER_LAST_REMINDER_EMAIL: 3
+      
+  GENERATED_CONTENT:
+    # Specify after how many days a confirmation reminder email
+    # will be forwarded to users with unconfirmed accounts.
+    FORWARD_CONFIRMATION_REMINDER_EMAIL: [7]
+
+    # Specify how many days unconfirmed user accounts can exist,
+    # after the last confirmation reminder email.
+    DELETE_UNCONFIRMED_X_DAYS_AFTER_LAST_REMINDER_EMAIL: 7

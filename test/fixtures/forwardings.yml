@@ -1,0 +1,11 @@
+01:
+  id: 1
+  source_url: '/categories/led-tvs'
+  destination_url: '/categories/cat-4-televisions'
+  last_use_at: 2009-01-08 14:33:32 Z
+
+02:
+  id: 2
+  source_url: '/param/categories/led-tvs'
+  destination_url: '/param/categories/cat-4-televisions'
+  last_use_at: 2009-01-08 14:33:32 Z

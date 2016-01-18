@@ -1,0 +1,6 @@
+<h1 class="blockhead"><%= t('.headline') -%></h1>
+<div class="user-authentication">
+  <h4 class="textgreen">Herzlichen Glückwunsch. Ihr Passwort wurde erfolgreich geändert.</h4>
+  <p class="confirmation-note textblock">Melden Sie sich gleich bei <%= @host_name -%> an:</p>
+  <%= render({:partial => 'frontend/user_sessions/new_form'}) -%>
+</div>

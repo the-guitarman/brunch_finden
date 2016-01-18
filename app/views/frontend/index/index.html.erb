@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-xs-12">
+    <%= render({
+          :partial => 'frontend/common/jssor_full_width_slider', 
+          :locals => {:images => @images}
+        }) 
+    -%>
+  </div>
+</div>
+
+<div class="home-page content-page">
+  <div class="row">
+    <div class="cols-xs-12 col-sm-4">
+      <%= render :partial => 'frontend/index/ct_states' -%>
+    </div>
+    <div class="cols-xs-12 col-sm-4">
+      <%= render :partial => 'frontend/index/ct_city_with_most_locations', :locals => {:cities => @cities_with_most_locations} -%>
+    </div>
+    <div class="cols-xs-12 col-sm-4">
+      <%= render :partial => 'frontend/index/ct_latest_locations', :locals => {:locations => @latest_locations} -%>
+    </div>
+  </div>
+  <div class="row">
+    <div class="cols-xs-12 col-sm-8">
+      <%= render :partial => 'frontend/index/ct_latest_reviews', :locals => {:reviews => @latest_reviews} -%>
+    </div>
+    <!--
+    <div class="cols-xs-12 col-sm-4" style="height: 300px;">
+      <%# if @map_locations -%>
+        <%#= geo_map(@map_locations, {
+              :scale_control      => false,
+              :rotate_control     => false,
+              :pan_control        => true,
+              :navigation_control => false,
+              :map_type_control   => false,
+              :overview_map_control => false,
+              :street_view_control  => false,
+              :zoom_control         => true,
+              :zoom                 => 6
+            })
+        -%>
+      <%# end -%>
+    </div>
+    -->
+    <div class="cols-xs-12 col-sm-4">
+      <%= render :partial => 'frontend/index/ct_latest_coupons', :locals => {:latest_coupons => @latest_coupons} -%>
+    </div>
+  </div>
+  <div class="row">
+    <div class="cols-xs-12">
+      <%= render :partial => 'frontend/index/ct_facebook_like_box' -%>
+    </div>
+  </div>
+</div>

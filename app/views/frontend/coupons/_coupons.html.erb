@@ -1,0 +1,17 @@
+<% unless coupons.empty? -%>
+  <div <%= "id=\"#{css_id}\"" if defined?(css_id) and not css_id.blank? -%> class="content-box <%= css_class -%>">
+    <% if defined?(headline) and not headline.blank? -%>
+      <h2 class="headline"><%= headline -%></h2>
+    <% end -%>
+    <ul class="list-columns">
+      <% coupons.each_with_index do |coupon, index| -%>
+        <li class="<%= 'right' if index.odd? -%>">
+          <%= coupon_link(coupon, {:position => index + 1, :template => template_partial_path}) -%>
+          <% if defined?(show_remaining_days) and not show_remaining_days.blank? -%>
+            <p><%= remaining_days(coupon) -%></p>
+          <% end -%>
+        </li>
+      <% end -%>
+    </ul>
+  </div>
+<% end -%>

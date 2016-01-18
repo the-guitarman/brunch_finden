@@ -1,0 +1,11 @@
+<div class="content-box">
+  <p>
+    <%= t('shared.new_review.created.message') -%>
+    <% unless logged_in? -%>
+      <br />
+      <%= t('shared.new_review.created.logged_out') -%>
+    <% end -%>
+  </p>
+  <br />
+  <%= render :partial => 'frontend/common/ct_advertisement_336x280_large_rectangle' -%>
+</div>

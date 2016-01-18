@@ -1,0 +1,77 @@
+1:
+  id: 1
+  login: <%= CustomConfigHandler.instance.frontend_config['DOMAIN']['NAME'].downcase %>
+  email: info@<%= CustomConfigHandler.instance.frontend_config['DOMAIN']['NAME'].downcase %>
+  score: 100
+  salutation: 
+  first_name: Gerd
+  name: Kretzschmar
+  birthday: 
+  active: 1
+  state: confirmed
+  created_at: <%= 1.days.ago.to_s :db %>
+  updated_at: <%= 1.days.ago.to_s :db %>
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("gerds-password" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+  general_terms_and_conditions: true
+2:
+  id: 2
+  login: 
+  email: john@farmer.com
+  score: 100
+  salutation: 
+  first_name: 
+  name: John
+  birthday:
+  active: 1
+  state: unknown
+  created_at: <%= 1.days.ago.to_s :db %>
+  updated_at: <%= 1.days.ago.to_s :db %>
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("john-farmers-unknown-password" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+  general_terms_and_conditions: true
+3:
+  id: 3
+  login: 
+  email: john@boy.com
+  score: 100
+  salutation: 
+  first_name: 
+  name: John
+  birthday:
+  active: 1
+  state: unknown
+  created_at: <%= 1.days.ago.to_s :db %>
+  updated_at: <%= 1.days.ago.to_s :db %>
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("john-boys-unknown-password" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+  general_terms_and_conditions: true
+  
+4:
+  id: 4
+  login: klara
+  email: klara@fall.de
+  score: 0
+  salutation: Ms
+  first_name: Klara
+  name: Fall
+  birthday:
+  active: 0
+  state: waiting
+  created_at: <%= 1.days.ago.to_s :db %>
+  updated_at: <%= 1.days.ago.to_s :db %>
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("klaras-password" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+  general_terms_and_conditions: true

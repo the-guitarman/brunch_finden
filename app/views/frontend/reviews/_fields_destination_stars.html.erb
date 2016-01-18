@@ -1,0 +1,4 @@
+<li id="destination-stars" class="form-entry review-value<%= form_entry_error(review, :value) -%>">
+  <%= label_tag('review[value]', t('shared.new_review.value')) -%>
+  <%= set_review_stars(review, {:star_hover => true, :required => true}) -%>
+</li>

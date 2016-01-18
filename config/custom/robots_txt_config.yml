@@ -1,0 +1,30 @@
+## YAML Template.
+---
+*:
+  Disallow: 
+    - /exit/
+    - /javascripts/
+    - /mobile.html
+    - /mobile/
+    - /param/
+    - /stylesheets/
+AdsBot-Google*:
+  Disallow: ''
+AhrefsBot:
+  Disallow: /
+Mediapartners-Google*: 
+  Disallow: ''
+SEOkicks-Robot:
+  Disallow: /
+Slurp:
+  Crawl-delay: 30
+Speedy:
+  Crawl-delay: 20
+suggybot:
+  Disallow: /
+WebReaper:
+  Disallow: /
+Wget:
+  Disallow: index.html
+Yandex: 
+  Crawl-delay: 5

@@ -1,0 +1,23 @@
+test:
+  encoding: utf8
+  username: ****
+  #adapter: mysql2
+  adapter: mysql
+  wait_timeout: 10
+  database: brunch_finden_test
+  #database: test_bf
+  pool: 50
+  host: localhost
+  password: ****
+
+indexer_database:
+  encoding: utf8
+  username: ****
+  #adapter: mysql2
+  adapter: mysql
+  wait_timeout: 10
+  database: brunch_finden_test
+  #database: test_bf
+  pool: 50
+  host: localhost
+  password: ****

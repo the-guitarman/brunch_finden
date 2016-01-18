@@ -1,0 +1,16 @@
+Hallo <%=h @user.login -%>,
+
+Ihr <%= @review_type -%> zum <%= @item_type %>
+<%= @item_name %>
+wurde gesperrt, da <%= @review.review_locking.reason %>
+
+Durch die Sperrung Ihres Erfahrungsbericht ist Ihr Guthaben
+bei <%= @domain_name -%> entsprechend gesunken.
+Bei Fragen stehen wir Ihnen gern mit Rat und Tat zur Seite.
+
+Mit freundlichen Grüßen,
+
+Ihr <%= @domain_name -%> Team
+
+--
+<%= render :partial => 'mailers/footer' %>

@@ -1,0 +1,10 @@
+<%
+  unless defined?(tool_name)
+    tool_name = ''
+  else
+    tool_name = "#{tool_name} - "
+  end
+-%>
+
+<title><%= @host_name.split(':').first.downcase -%> - <%= tool_name -%>Backend (<%= Rails.env.to_s -%>)</title>
+<meta name="description" content="<%= app_version_string -%>" />

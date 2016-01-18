@@ -1,0 +1,16 @@
+<% form_for(@review, {:url => create_location_review_url(create_rewrite_hash(review.destination.rewrite)), :html => {:id => 'create-review', :class => 'new-review bf-form'}}) do |f| -%>
+  <%= render({
+        :partial => 'frontend/reviews/fields', 
+        :locals => {
+          :f => f,
+          :review => review,
+          :review_template_questions => review_template_questions,
+          :review_questions => review_questions
+        }
+      })
+  -%>
+  <p><%= asterisk_note -%></p>
+<% end -%>
+<% if request.xhr? -%>
+  <%= javascript_tag("$('#create-review').ajaxifyForm();", {:defer => 'defer'}) -%>
+<% end -%>

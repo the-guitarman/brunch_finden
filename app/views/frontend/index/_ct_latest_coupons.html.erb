@@ -1,0 +1,18 @@
+<% cache(frontend_index_ct_latest_coupons) do -%>
+  <% if defined?(latest_coupons) and not latest_coupons.empty? %>
+    <h3 class="headline"><%= t_f_a(:index, :lastest_coupons) -%></h3>
+    <div id="latest-coupons" class="coupons">
+      <%= render({
+            :partial => 'frontend/coupons/coupon', 
+            :collection => latest_coupons,
+            :locals => {
+              :link_to_local => true,
+              :show_description => false#,
+              #:truncate_name => 45
+            }
+          })
+      -%>
+    </div>
+    <%= link_to(t_f_a(:index, :show_more_coupons), coupons_url, {:class => 'bg-image more-link'}) -%>
+  <% end -%>
+<% end -%>

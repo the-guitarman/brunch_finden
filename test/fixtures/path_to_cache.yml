@@ -1,0 +1,5 @@
+1:
+  id: 1
+  expired_count: 1
+  expired_last: <%= 1.days.ago.to_s :db %>
+  path: '/cities/all'

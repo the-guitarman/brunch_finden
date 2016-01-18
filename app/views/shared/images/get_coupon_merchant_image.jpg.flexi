@@ -1,0 +1,96 @@
+# A transparent background color is the default (for gif and png), so
+# don't use the :color option. If you want to have a jpg image and you
+# don't use the :color option, it will end in a black background color.
+# To get a white background color use:
+# :color => 'white' or color(255, 255, 255, 255) # color(red, green, blue, opacity)
+# e.g.: Fleximage::Blank.new('80x30', :color => 'white')
+# color(r, g, b, a=0) is a helper method
+
+if @coupon_merchant.id > 0
+  if @coupon_merchant.has_image?
+    # coupon_merchant with an image
+    @coupon_merchant.operate do |image|
+      image.resize(@size, {
+        :alignment => :center,
+        :padding => Fleximage::Operator::Base.color(255, 255, 255, 255)
+      })
+    end
+    
+  else
+    text = prepare_logo_text(@coupon_merchant.name, @size) #.downcase
+    # coupon_merchant without an image
+    CouponMerchant.get_noimage_image(@image_type).operate do |image|
+      image.resize(@size, {
+        :alignment => :center,
+        :padding => Fleximage::Operator::Base.color(255, 255, 255, 255)
+      })
+      image.background(:color => 'white')
+      image.text(text,
+        :alignment  => :center, #(@coupon_merchant.id > 0 ? :top : :center),
+        :color      => Fleximage::Operator::Base.color(51, 51, 51, 0),
+        :font_size  => 10,
+        :font       => 'vendor/fonts/arial.ttf',
+        :text_align => :center
+        #:offset => '0x15',
+        #:shadow => {
+        #  :blur => 1,
+        #  :opacity => 0.5,
+        #}#,
+        #:offset => '300x150',
+        #:antialias => true,
+        #:rotate => -15,
+        #:stroke => {
+        #  :width => 3,
+        #  :color => color(0, 0, 0),
+        #}
+      )
+    end
+    
+  end
+
+else
+  # no image
+  no_image = Magick::Image.read("#{Rails.root}/public/images/#{CouponMerchant::NO_IMAGE[@image_type]}").first
+  size = @size.split('x')
+
+  # don't stretch overlay image larger, than it is
+  if size[0].to_i > no_image.columns and
+     size[1].to_i > no_image.rows
+    @overlay_size = nil
+  else
+    @overlay_size = @size
+  end
+
+  #CouponMerchant.get_noimage_image(@image_type).operate do |image|
+  Fleximage::Blank.new(@size).operate do |image|
+    image.image_overlay("#{Rails.root}/public/images/#{CouponMerchant::NO_IMAGE[@image_type]}",
+      :size => @overlay_size,
+      :alignment => :center
+    )
+    image.resize(@size, {
+      :alignment => :center,
+      :padding => Fleximage::Operator::Base.color(255, 255, 255, 255)
+    })
+    image.background(:color => 'white')
+    image.text('no logo',
+      :alignment  => :center, #(@coupon_merchant.id > 0 ? :top : :center),
+      :color      => Fleximage::Operator::Base.color(51, 51, 51, 0),
+      :font_size  => 10,
+      :font       => 'vendor/fonts/arial.ttf',
+      :text_align => :center
+      #:offset => '0x15',
+      #:shadow => {
+      #  :blur => 1,
+      #  :opacity => 0.5,
+      #}#,
+      #:offset => '300x150',
+      #:antialias => true,
+      #:rotate => -15,
+      #:stroke => {
+      #  :width => 3,
+      #  :color => color(0, 0, 0),
+      #}
+    )
+  end
+
+end

@@ -1,0 +1,13 @@
+<% reviews.each do |review| -%>
+  <%= schema_org_review do
+        render({
+          :partial => 'frontend/reviews/show',
+          :locals  => {
+            :review => review,
+            :last => reviews.last == review,
+            :destination => destination
+          }
+        })
+      end
+  -%>
+<% end -%>
